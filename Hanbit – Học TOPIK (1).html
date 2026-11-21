@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hanbit – Học TOPIK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#fff5f9;--card:#fff;--ink:#3a1830;--mute:#8a6a7e;--p:#ff4f9a;--p2:#ff8cc0;--soft:#ffe1ef;--ok:#14b87a;--no:#f0476b;--line:#ffd3e6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#24101c;--card:#33192a;--ink:#ffeaf4;--mute:#d3a5bf;--soft:#4a2038;--line:#5a2c47}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#24101c;--card:#33192a;--ink:#ffeaf4;--mute:#d3a5bf;--soft:#4a2038;--line:#5a2c47}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 "Be Vietnam Pro",system-ui,sans-serif;min-height:100vh}
+.kr{font-family:"Noto Sans KR","Be Vietnam Pro",sans-serif}
+.app{max-width:560px;margin:0 auto;padding:18px 16px 170px}
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.3px}h1 span{color:var(--p)}
+.chip{background:var(--soft);color:var(--p);border-radius:99px;padding:5px 12px;font-weight:600;font-size:13px}
+.lv{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px}
+.lv button{flex:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.lv button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(255,79,154,.35)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:14px}
+.hero{background:linear-gradient(135deg,#ff4f9a,#ff9ccb);color:#fff;border:0;box-shadow:0 12px 28px rgba(255,79,154,.3)}
+.hero h2{margin:0 0 4px;font-size:20px;font-weight:800}.hero p{margin:0 0 14px;opacity:.95}
+.bar{height:10px;background:rgba(255,255,255,.35);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#fff;border-radius:9px;transition:width .4s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat b{display:block;font-size:24px;font-weight:800;color:var(--p)}.stat small{color:var(--mute)}
+.btn{border:0;border-radius:14px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer;background:var(--p);color:#fff}
+.btn.alt{background:var(--soft);color:var(--p)}.btn.w{background:#fff;color:var(--p)}.btn.ok{background:var(--ok)}.btn.no{background:var(--no)}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.flash{perspective:900px;height:230px;margin-bottom:14px;cursor:pointer}
+.fi{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flash.f .fi{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--card);border:1.5px solid var(--line);padding:16px}
+.face.b{transform:rotateY(180deg);background:linear-gradient(135deg,var(--soft),var(--card))}
+.big{font-size:44px;font-weight:700;color:var(--p)}.mean{font-size:26px;font-weight:800}
+.hint{color:var(--mute);font-size:13px}
+.opt{display:block;width:100%;text-align:left;margin-bottom:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:14px;font:inherit;font-weight:600;cursor:pointer}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.opt.no{background:var(--no);color:#fff;border-color:var(--no)}
+.q{font-size:34px;text-align:center;font-weight:700;margin:10px 0 18px;color:var(--p)}
+.g h3{margin:0 0 4px;font-size:18px;color:var(--p)}.g p{margin:2px 0}.ex{background:var(--soft);border-radius:12px;padding:9px 12px;margin-top:8px}
+.hg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.hg button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:10px 0;cursor:pointer;font:inherit}
+.hg b{display:block;font-size:26px;color:var(--p)}.hg small{color:var(--mute)}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px))}
+nav div{display:flex;width:100%;max-width:560px}
+nav button{flex:1;border:0;background:none;color:var(--mute);font:inherit;font-size:12px;font-weight:600;padding:6px 0;cursor:pointer;border-radius:12px}
+nav button.on{color:var(--p);background:var(--soft)}nav button span{display:block;font-size:20px}
+button:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.flash{height:270px}
+#cat{position:fixed;right:10px;bottom:calc(72px + env(safe-area-inset-bottom,0px));width:64px;z-index:5;cursor:grab;touch-action:none;user-select:none}#cat:active{cursor:grabbing}#cat svg{display:block}#cat.dn #cb{bottom:auto;top:100%;margin:4px 0 0}#cat.lf #cb{right:auto;left:0}
+#cb{display:none;position:absolute;right:0;bottom:100%;margin-bottom:4px;width:max-content;max-width:min(240px,70vw);background:var(--card);color:var(--ink);border:1.5px solid var(--p2);border-radius:16px 16px 4px 16px;padding:9px 12px;font-size:13px;box-shadow:0 6px 18px rgba(255,79,154,.25)}
+#cat svg{filter:drop-shadow(0 4px 6px rgba(255,79,154,.35))}
+.ring{flex:none;width:112px;height:112px;border-radius:50%;background:conic-gradient(#fff calc(var(--v)*1%),rgba(255,255,255,.3) 0);display:grid;place-items:center}.ring b{width:86px;height:86px;border-radius:50%;background:#ff5fa5;display:grid;place-items:center;font-size:28px}
+.wk{display:flex;gap:8px;align-items:flex-end;height:110px;margin-top:10px}.wk div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;text-align:center}.wk i{width:100%;max-width:26px;border-radius:8px 8px 4px 4px;background:linear-gradient(var(--p),var(--p2))}.wk small{font-size:11px;color:var(--mute)}
+.sec{margin:18px 0 10px;font-size:16px;color:var(--p)}
+.deck{cursor:pointer;margin:0;display:flex;flex-direction:column;gap:6px}.deck b{font-size:14px}
+.pb{background:var(--soft)}.pb i{background:var(--p)}
+.mode{display:flex;gap:14px;align-items:center;cursor:pointer}.ic{font-size:26px;flex:none;width:46px;height:46px;border-radius:14px;background:var(--soft);display:grid;place-items:center}
+.inp{display:block;width:100%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:14px;font-size:18px;margin-bottom:8px}
+.opt.sel{border-color:var(--p);background:var(--soft)}
+details>summary{cursor:pointer;list-style:none}details>summary::-webkit-details-marker{display:none}
+.gi{border-top:1px solid var(--line);margin-top:14px;padding-top:12px}select.opt{margin-bottom:0}
+</style></head><body>
+<div class="app"><header><h1>Han<span>bit</span> · TOPIK</h1><div style="display:flex;gap:8px;align-items:center"><div class="chip" id="xp"></div><button class="chip" id="mt" onclick="togMimi()" style="border:0;cursor:pointer;font:inherit;font-weight:600"></button></div></header>
+<main id="m"></main></div>
+<div id="cat" title="Kéo Mimi đi chơi!"><div id="cb"></div><svg viewBox="0 0 64 60" width="64" height="60"><path d="M9 28 L13 5 L29 17Z M55 28 L51 5 L35 17Z" fill="#ff8cc0"/><path d="M14 11 L17 19 L23 16Z M50 11 L47 19 L41 16Z" fill="#fff"/><ellipse cx="32" cy="36" rx="24" ry="20" fill="#ffc2dd"/><circle cx="23" cy="33" r="3.2" fill="#3a1830"/><circle cx="41" cy="33" r="3.2" fill="#3a1830"/><circle cx="17" cy="40" r="3.5" fill="#ff4f9a" opacity=".4"/><circle cx="47" cy="40" r="3.5" fill="#ff4f9a" opacity=".4"/><path d="M29 39 Q32 43 35 39Z" fill="#ff4f9a"/><path d="M32 42 Q28 47 24 44 M32 42 Q36 47 40 44 M8 36 L17 38 M8 42 L17 42 M56 36 L47 38 M56 42 L47 42" stroke="#3a1830" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg></div>
+<nav><div id="nav"></div></nav>
+<script>
+const W={1:[["안녕하세요","xin chào","annyeonghaseyo","안녕하세요, 만나서 반가워요.","Xin chào, rất vui được gặp bạn."],["감사합니다","cảm ơn","gamsahamnida","도와주셔서 감사합니다.","Cảm ơn vì đã giúp tôi."],["네","vâng","ne","네, 알겠어요.","Vâng, tôi hiểu rồi."],["아니요","không","aniyo","아니요, 괜찮아요.","Không, không sao đâu."],["물","nước","mul","물을 마셔요.","Tôi uống nước."],["밥","cơm","bap","밥을 먹었어요?","Bạn ăn cơm chưa?"],["학교","trường học","hakgyo","학교에 가요.","Tôi đến trường."],["친구","bạn bè","chingu","친구를 만나요.","Tôi gặp bạn."],["사람","người","saram","좋은 사람이에요.","Là người tốt."],["오늘","hôm nay","oneul","오늘 날씨가 좋아요.","Hôm nay thời tiết đẹp."],["내일","ngày mai","naeil","내일 만나요.","Ngày mai gặp nhé."],["집","nhà","jip","집에 있어요.","Tôi ở nhà."],["책","sách","chaek","책이 재미있어요.","Sách thú vị."],["먹다","ăn","meokda","김치를 먹어요.","Tôi ăn kim chi."],["가다","đi","gada","시장에 가요.","Tôi đi chợ."],["오다","đến","oda","친구가 와요.","Bạn tôi đến."],["좋다","tốt, thích","jota","이 노래가 좋아요.","Tôi thích bài hát này."],["크다","to, lớn","keuda","방이 커요.","Phòng rộng."],["학생","học sinh","haksaeng","저는 대학생이에요.","Tôi là sinh viên."],["선생님","giáo viên","seonsaengnim","선생님, 질문 있어요.","Thưa thầy/cô, em có câu hỏi."],["한국","Hàn Quốc","hanguk","한국어를 공부해요.","Tôi học tiếng Hàn."],["하나","một","hana","사과 하나 주세요.","Cho tôi một quả táo."],["커피","cà phê","keopi","커피 한 잔 주세요.","Cho tôi một ly cà phê."],["어머니","mẹ","eomeoni","어머니는 요리를 잘해요.","Mẹ nấu ăn giỏi."],["아버지","bố","abeoji","아버지는 회사에 가요.","Bố đi làm."],["이름","tên","ireum","이름이 뭐예요?","Bạn tên gì?"],["시장","chợ","sijang","시장에서 과일을 사요.","Mua trái cây ở chợ."],["사다","mua","sada","옷을 사요.","Tôi mua quần áo."],["마시다","uống","masida","차를 마셔요.","Tôi uống trà."],["공부하다","học","gongbuhada","매일 공부해요.","Tôi học mỗi ngày."],["예쁘다","đẹp","yeppeuda","꽃이 예뻐요.","Hoa đẹp."],["맛있다","ngon","masitda","정말 맛있어요.","Ngon thật."],["지금","bây giờ","jigeum","지금 뭐 해요?","Bây giờ bạn làm gì?"],["어디","ở đâu","eodi","화장실이 어디예요?","Nhà vệ sinh ở đâu?"]],
+2:[["시간","thời gian","sigan","시간이 없어요.","Tôi không có thời gian."],["음식","đồ ăn","eumsik","한국 음식을 좋아해요.","Tôi thích đồ ăn Hàn."],["날씨","thời tiết","nalssi","날씨가 추워요.","Thời tiết lạnh."],["여행","du lịch","yeohaeng","제주도로 여행 가요.","Tôi đi du lịch đảo Jeju."],["운동","vận động","undong","매일 운동해요.","Tôi tập thể dục mỗi ngày."],["쇼핑","mua sắm","syoping","주말에 쇼핑해요.","Cuối tuần tôi đi mua sắm."],["가격","giá cả","gagyeok","가격이 비싸요.","Giá đắt."],["약속","cuộc hẹn","yaksok","내일 약속이 있어요.","Ngày mai tôi có hẹn."],["가족","gia đình","gajok","가족이 세 명이에요.","Gia đình có ba người."],["취미","sở thích","chwimi","제 취미는 독서예요.","Sở thích của tôi là đọc sách."],["병원","bệnh viện","byeongwon","병원에 가야 해요.","Tôi phải đến bệnh viện."],["회사","công ty","hoesa","회사가 멀어요.","Công ty ở xa."],["주말","cuối tuần","jumal","주말에 뭐 해요?","Cuối tuần bạn làm gì?"],["빌리다","mượn","billida","책을 빌렸어요.","Tôi đã mượn sách."],["기다리다","chờ","gidarida","버스를 기다려요.","Tôi chờ xe buýt."],["길","đường","gil","길을 잃었어요.","Tôi bị lạc đường."],["비싸다","đắt","bissada","이 가방은 비싸요.","Chiếc túi này đắt."],["쉬다","nghỉ ngơi","swida","집에서 쉬어요.","Tôi nghỉ ở nhà."]],
+3:[["경험","kinh nghiệm","gyeongheom","경험이 많아요.","Tôi có nhiều kinh nghiệm."],["준비","chuẩn bị","junbi","시험을 준비해요.","Tôi chuẩn bị cho kỳ thi."],["계획","kế hoạch","gyehoek","여행 계획을 세워요.","Lập kế hoạch du lịch."],["환경","môi trường","hwangyeong","환경을 보호해야 해요.","Phải bảo vệ môi trường."],["건강","sức khỏe","geongang","건강이 제일 중요해요.","Sức khỏe quan trọng nhất."],["문화","văn hóa","munhwa","한국 문화가 재미있어요.","Văn hóa Hàn rất thú vị."],["의견","ý kiến","uigyeon","의견을 말해 보세요.","Hãy nói ý kiến của bạn."],["변화","thay đổi","byeonhwa","많은 변화가 있었어요.","Đã có nhiều thay đổi."],["이유","lý do","iyu","이유를 말해 주세요.","Hãy nói lý do."],["교통","giao thông","gyotong","교통이 편리해요.","Giao thông thuận tiện."],["직업","nghề nghiệp","jigeop","직업이 뭐예요?","Nghề của bạn là gì?"],["습관","thói quen","seupgwan","좋은 습관을 만들어요.","Tạo thói quen tốt."]],
+4:[["관계","mối quan hệ","gwangye","친구와 좋은 관계를 유지해요.","Giữ quan hệ tốt với bạn."],["영향","ảnh hưởng","yeonghyang","건강에 영향을 줘요.","Ảnh hưởng đến sức khỏe."],["상황","tình huống","sanghwang","상황이 어려워요.","Tình hình khó khăn."],["결정","quyết định","gyeoljeong","빨리 결정하세요.","Hãy quyết định nhanh."],["비교","so sánh","bigyo","두 제품을 비교해요.","So sánh hai sản phẩm."],["발전","phát triển","baljeon","경제가 발전했어요.","Kinh tế đã phát triển."],["주장","khẳng định","jujang","그는 의견을 주장했어요.","Anh ấy khẳng định ý kiến."],["기회","cơ hội","gihoe","좋은 기회를 놓쳤어요.","Tôi bỏ lỡ cơ hội tốt."]],
+5:[["협력","hợp tác","hyeomnyeok","두 회사가 협력해요.","Hai công ty hợp tác."],["갈등","xung đột","galdeung","갈등을 해결해야 해요.","Phải giải quyết xung đột."],["규제","quy định, hạn chế","gyuje","정부가 규제를 강화했어요.","Chính phủ siết chặt quy định."],["책임","trách nhiệm","chaegim","책임을 지세요.","Hãy chịu trách nhiệm."],["해결","giải quyết","haegyeol","문제를 해결했어요.","Đã giải quyết vấn đề."],["전망","triển vọng","jeonmang","전망이 밝아요.","Triển vọng sáng sủa."],["지속","duy trì","jisok","지속 가능한 발전이 중요해요.","Phát triển bền vững rất quan trọng."],["우려","lo ngại","uryeo","우려의 목소리가 커요.","Tiếng nói lo ngại ngày càng lớn."]],
+6:[["현상","hiện tượng","hyeonsang","이상한 현상이 나타났어요.","Một hiện tượng lạ xuất hiện."],["근거","căn cứ","geungeo","근거가 부족해요.","Căn cứ không đủ."],["양상","diện mạo","yangsang","갈등의 양상이 달라졌어요.","Diện mạo xung đột đã thay đổi."],["도입","đưa vào áp dụng","doip","새 제도를 도입했어요.","Đã áp dụng chế độ mới."],["쇠퇴","suy thoái","soetoe","산업이 쇠퇴했어요.","Ngành công nghiệp suy thoái."],["담론","diễn ngôn","damnon","사회적 담론이 형성됐어요.","Diễn ngôn xã hội đã hình thành."]]};
+const G={1:[["이에요 / 예요","là (lịch sự)","저는 학생이에요.","Tôi là học sinh."],["은 / 는","trợ từ chủ đề","저는 베트남 사람이에요.","Tôi là người Việt Nam."],["이 / 가","trợ từ chủ ngữ","비가 와요.","Trời mưa."],["을 / 를","trợ từ tân ngữ","책을 읽어요.","Tôi đọc sách."],["에","chỉ nơi chốn, thời gian","학교에 가요.","Tôi đến trường."],["-아/어요","đuôi câu lịch sự","밥을 먹어요.","Tôi ăn cơm."],["-(으)세요","xin mời, hãy (kính ngữ)","여기 앉으세요.","Mời ngồi đây."],["안 + động từ","phủ định","안 먹어요.","Tôi không ăn."]],
+2:[["-고 싶다","muốn làm gì","여행하고 싶어요.","Tôi muốn đi du lịch."],["-(으)ㄹ 거예요","sẽ làm gì","내일 갈 거예요.","Ngày mai tôi sẽ đi."],["-지만","nhưng","비싸지만 좋아요.","Đắt nhưng tốt."],["-(으)ㄹ까요?","cùng làm nhé? / có nên không?","같이 갈까요?","Chúng ta cùng đi nhé?"],["-아/어서","vì… nên / rồi thì","피곤해서 쉬어요.","Vì mệt nên tôi nghỉ."],["-(으)니까","vì… nên (kết hợp đề nghị)","비가 오니까 우산을 가져가세요.","Trời mưa nên hãy mang ô."],["-아/어야 하다","phải làm gì","병원에 가야 해요.","Tôi phải đi bệnh viện."]],
+3:[["-(으)면","nếu","시간이 있으면 가요.","Nếu có thời gian thì tôi đi."],["-(으)ㄴ 적이 있다","đã từng","한국에 간 적이 있어요.","Tôi đã từng đến Hàn Quốc."],["-(으)려고","định làm gì","한국어를 배우려고 해요.","Tôi định học tiếng Hàn."],["-(으)ㄹ 수 있다","có thể","운전할 수 있어요.","Tôi có thể lái xe."],["-는데","bối cảnh / nhưng","비가 오는데 나가요.","Trời mưa mà tôi vẫn ra ngoài."],["-게 되다","trở nên, được (kết quả)","한국에서 살게 됐어요.","Tôi đã đến sống ở Hàn Quốc."]],
+4:[["-기 때문에","bởi vì","바쁘기 때문에 못 가요.","Vì bận nên tôi không đi được."],["-도록","để, sao cho","잊지 않도록 적으세요.","Hãy ghi lại để không quên."],["-(으)ㄴ/는 것 같다","hình như, có vẻ","비가 올 것 같아요.","Hình như trời sẽ mưa."],["-(으)ㄹ 텐데","chắc là… (nên)","피곤할 텐데 쉬세요.","Chắc bạn mệt, hãy nghỉ đi."]],
+5:[["-는 바람에","vì (dẫn đến kết quả xấu)","늦잠을 자는 바람에 지각했어요.","Vì ngủ quên nên tôi đến trễ."],["-(으)ㄴ/는 반면에","trái lại","편리한 반면에 비싸요.","Tiện lợi nhưng ngược lại đắt."],["-더라도","dù cho","힘들더라도 포기하지 마세요.","Dù mệt cũng đừng bỏ cuộc."],["-(으)ㄹ 만하다","đáng để","이 영화는 볼 만해요.","Bộ phim này đáng xem."]],
+6:[["-(으)ㄹ 뿐만 아니라","không chỉ… mà còn","맛있을 뿐만 아니라 싸요.","Không chỉ ngon mà còn rẻ."],["-기 마련이다","vốn dĩ là như vậy","사람은 실수하기 마련이다.","Con người vốn hay mắc lỗi."],["-(으)ㄴ 채로","trong trạng thái giữ nguyên","불을 켠 채로 잤어요.","Tôi ngủ mà đèn vẫn bật."],["-아/어 봤자","có… cũng vô ích","후회해 봤자 소용없어요.","Hối hận cũng vô ích."]]};
+const H=[["ㄱ","g/k","가"],["ㄴ","n","나"],["ㄷ","d/t","다"],["ㄹ","r/l","라"],["ㅁ","m","마"],["ㅂ","b/p","바"],["ㅅ","s","사"],["ㅇ","ng","아"],["ㅈ","j","자"],["ㅊ","ch","차"],["ㅋ","k","카"],["ㅌ","t","타"],["ㅍ","p","파"],["ㅎ","h","하"],["ㅏ","a","아"],["ㅓ","eo","어"],["ㅗ","o","오"],["ㅜ","u","우"],["ㅡ","eu","으"],["ㅣ","i","이"],["ㅐ","ae","애"],["ㅔ","e","에"]];
+const LN={1:"Cấp 1 · Nhập môn",2:"Cấp 2 · Sơ cấp",3:"Cấp 3 · Trung cấp",4:"Cấp 4",5:"Cấp 5",6:"Cấp 6"};
+
+const TP={"💬 Giao tiếp":"안녕하세요 감사합니다 네 아니요 이름 약속 의견 주장 어디 이유","👪 Gia đình & con người":"사람 친구 어머니 아버지 가족 학생 선생님 관계","🍚 Ăn uống":"물 밥 먹다 마시다 커피 음식 맛있다","🛍 Mua sắm":"시장 사다 쇼핑 가격 비싸다","✈ Du lịch & giao thông":"여행 길 교통 가다 오다 기다리다","🏫 Học tập & công việc":"학교 책 공부하다 회사 직업 준비 계획 경험 한국","🏥 Sức khỏe & đời sống":"병원 건강 운동 쉬다 습관 취미 주말 날씨 집","⏰ Thời gian & tính chất":"오늘 내일 지금 시간 좋다 크다 예쁘다 하나","🌏 Xã hội & môi trường":"환경 문화 변화 영향 상황 결정 비교 발전 기회 협력 갈등 규제 책임 해결 전망 지속 우려 현상 근거 양상 도입 쇠퇴 담론"};
+const ALL=[];for(const l in W)W[l].forEach(w=>ALL.push([...w,+l]));
+const NW=`#1
+0|안녕히 가세요|tạm biệt (nói với người đi)|annyeonghi gaseyo|안녕히 가세요, 내일 봐요.|Tạm biệt, mai gặp nhé.
+0|죄송합니다|xin lỗi|joesonghamnida|늦어서 죄송합니다.|Xin lỗi vì đến muộn.
+0|괜찮아요|không sao|gwaenchanayo|괜찮아요, 걱정 마세요.|Không sao, đừng lo.
+0|처음 뵙겠습니다|rất vui lần đầu gặp|cheoeum boepgetseumnida|처음 뵙겠습니다. 민수입니다.|Lần đầu gặp, tôi là Minsu.
+0|여보세요|alo|yeoboseyo|여보세요, 누구세요?|Alo, ai đó ạ?
+0|말하다|nói|malhada|천천히 말해 주세요.|Hãy nói chậm thôi.
+0|이것|cái này|igeot|이것은 뭐예요?|Cái này là gì?
+0|누구|ai|nugu|이 사람은 누구예요?|Người này là ai?
+0|뭐|cái gì|mwo|뭐 먹을래요?|Bạn muốn ăn gì?
+0|왜|tại sao|wae|왜 안 와요?|Sao bạn không đến?
+1|형제|anh em|hyeongje|형제가 있어요?|Bạn có anh em không?
+1|언니|chị (em gái gọi)|eonni|언니가 요리해요.|Chị tôi nấu ăn.
+1|오빠|anh (em gái gọi)|oppa|오빠는 회사원이에요.|Anh tôi là nhân viên công ty.
+1|동생|em|dongsaeng|동생은 중학생이에요.|Em tôi là học sinh cấp hai.
+1|아이|đứa trẻ|ai|아이가 웃어요.|Đứa trẻ cười.
+1|남자|đàn ông|namja|저 남자는 의사예요.|Người đàn ông đó là bác sĩ.
+1|여자|phụ nữ|yeoja|그 여자는 가수예요.|Cô ấy là ca sĩ.
+1|할머니|bà|halmeoni|할머니 댁에 가요.|Tôi đến nhà bà.
+2|김치|kim chi|gimchi|김치가 매워요.|Kim chi cay.
+2|과일|trái cây|gwail|과일을 좋아해요.|Tôi thích trái cây.
+2|고기|thịt|gogi|고기를 구워요.|Tôi nướng thịt.
+2|빵|bánh mì|ppang|아침에 빵을 먹어요.|Buổi sáng tôi ăn bánh mì.
+2|우유|sữa|uyu|우유를 마셔요.|Tôi uống sữa.
+2|차|trà|cha|따뜻한 차 주세요.|Cho tôi trà nóng.
+2|맵다|cay|maepda|너무 매워요.|Cay quá.
+2|배고프다|đói|baegopeuda|배고파요.|Tôi đói.
+2|주다|cho, đưa|juda|물 좀 주세요.|Cho tôi chút nước.
+3|돈|tiền|don|돈이 없어요.|Tôi không có tiền.
+3|옷|quần áo|ot|옷을 입어요.|Tôi mặc quần áo.
+3|가방|túi, cặp|gabang|가방이 예뻐요.|Chiếc túi đẹp.
+3|싸다|rẻ|ssada|이 신발은 싸요.|Đôi giày này rẻ.
+3|얼마|bao nhiêu|eolma|이거 얼마예요?|Cái này bao nhiêu tiền?
+4|버스|xe buýt|beoseu|버스로 가요.|Tôi đi bằng xe buýt.
+4|지하철|tàu điện ngầm|jihacheol|지하철이 빨라요.|Tàu điện ngầm nhanh.
+4|택시|taxi|taeksi|택시를 타요.|Tôi đi taxi.
+4|공항|sân bay|gonghang|공항에 도착했어요.|Tôi đã đến sân bay.
+4|역|ga|yeok|역이 가까워요.|Ga gần.
+4|타다|đi (phương tiện)|tada|버스를 타요.|Tôi lên xe buýt.
+4|멀다|xa|meolda|집이 멀어요.|Nhà xa.
+4|가깝다|gần|gakkapda|학교가 가까워요.|Trường gần.
+5|회사원|nhân viên công ty|hoesawon|저는 회사원이에요.|Tôi là nhân viên công ty.
+5|의사|bác sĩ|uisa|의사가 되고 싶어요.|Tôi muốn trở thành bác sĩ.
+5|일|việc, công việc|il|일이 많아요.|Có nhiều việc.
+5|숙제|bài tập về nhà|sukje|숙제를 해요.|Tôi làm bài tập.
+5|교실|lớp học|gyosil|교실에 학생이 많아요.|Lớp có nhiều học sinh.
+5|읽다|đọc|ikda|책을 읽어요.|Tôi đọc sách.
+5|쓰다|viết|sseuda|이름을 쓰세요.|Hãy viết tên.
+5|듣다|nghe|deutda|음악을 들어요.|Tôi nghe nhạc.
+5|배우다|học (tiếp nhận)|baeuda|한국어를 배워요.|Tôi học tiếng Hàn.
+5|가르치다|dạy|gareuchida|영어를 가르쳐요.|Tôi dạy tiếng Anh.
+6|아프다|đau, ốm|apeuda|머리가 아파요.|Tôi đau đầu.
+6|약|thuốc|yak|약을 먹어요.|Tôi uống thuốc.
+6|자다|ngủ|jada|일찍 자요.|Tôi ngủ sớm.
+6|일어나다|thức dậy|ireonada|일곱 시에 일어나요.|Tôi thức dậy lúc bảy giờ.
+6|산책|đi dạo|sanchaek|공원에서 산책해요.|Tôi đi dạo ở công viên.
+6|영화|phim|yeonghwa|영화를 봐요.|Tôi xem phim.
+6|음악|âm nhạc|eumak|음악을 좋아해요.|Tôi thích âm nhạc.
+6|보다|nhìn, xem|boda|텔레비전을 봐요.|Tôi xem tivi.
+7|아침|buổi sáng|achim|아침에 운동해요.|Buổi sáng tôi tập thể dục.
+7|저녁|buổi tối|jeonyeok|저녁을 먹어요.|Tôi ăn tối.
+7|어제|hôm qua|eoje|어제 비가 왔어요.|Hôm qua trời mưa.
+7|매일|mỗi ngày|maeil|매일 책을 읽어요.|Tôi đọc sách mỗi ngày.
+7|많다|nhiều|manta|사람이 많아요.|Có nhiều người.
+7|적다|ít|jeokda|돈이 적어요.|Tiền ít.
+7|작다|nhỏ|jakda|강아지가 작아요.|Chú chó nhỏ.
+7|덥다|nóng|deopda|오늘은 더워요.|Hôm nay nóng.
+7|춥다|lạnh|chupda|겨울은 추워요.|Mùa đông lạnh.
+7|둘|hai|dul|커피 둘 주세요.|Cho tôi hai ly cà phê.
+7|셋|ba|set|친구가 셋 있어요.|Tôi có ba người bạn.
+7|빨리|nhanh|ppalli|빨리 오세요.|Hãy đến nhanh.
+7|천천히|chậm rãi|cheoncheonhi|천천히 먹어요.|Ăn từ từ thôi.
+#2
+0|부탁|nhờ vả|butak|부탁이 있어요.|Tôi có việc muốn nhờ.
+0|질문|câu hỏi|jilmun|질문이 있어요.|Tôi có câu hỏi.
+0|대답|câu trả lời|daedap|대답해 주세요.|Hãy trả lời.
+0|인사|chào hỏi|insa|선생님께 인사해요.|Tôi chào thầy cô.
+0|초대|lời mời|chodae|친구를 초대했어요.|Tôi đã mời bạn.
+0|전화|điện thoại|jeonhwa|전화를 받아요.|Tôi nghe điện thoại.
+0|메시지|tin nhắn|mesiji|메시지를 보냈어요.|Tôi đã gửi tin nhắn.
+1|부모님|bố mẹ|bumonim|부모님과 같이 살아요.|Tôi sống cùng bố mẹ.
+1|이웃|hàng xóm|iut|이웃이 친절해요.|Hàng xóm thân thiện.
+1|남편|chồng|nampyeon|남편은 의사예요.|Chồng tôi là bác sĩ.
+1|아내|vợ|anae|아내가 요리해요.|Vợ tôi nấu ăn.
+1|결혼|kết hôn|gyeolhon|내년에 결혼해요.|Năm sau tôi kết hôn.
+2|식당|nhà hàng|sikdang|식당에서 점심을 먹어요.|Tôi ăn trưa ở nhà hàng.
+2|주문|gọi món|jumun|음식을 주문해요.|Tôi gọi món.
+2|메뉴|thực đơn|menyu|메뉴 좀 보여 주세요.|Cho tôi xem thực đơn.
+2|요리|nấu ăn|yori|요리를 배워요.|Tôi học nấu ăn.
+2|배달|giao hàng|baedal|음식을 배달시켜요.|Tôi đặt đồ ăn giao tận nơi.
+2|달다|ngọt|dalda|케이크가 달아요.|Bánh ngọt.
+2|짜다|mặn|jjada|국이 짜요.|Canh mặn.
+3|할인|giảm giá|harin|오늘 할인해요.|Hôm nay giảm giá.
+3|계산|thanh toán|gyesan|카드로 계산해요.|Tôi thanh toán bằng thẻ.
+3|카드|thẻ|kadeu|카드를 써요.|Tôi dùng thẻ.
+3|물건|đồ vật, hàng|mulgeon|물건이 좋아요.|Hàng tốt.
+3|선물|quà|seonmul|생일 선물을 샀어요.|Tôi đã mua quà sinh nhật.
+3|영수증|hóa đơn|yeongsujeung|영수증 주세요.|Cho tôi hóa đơn.
+4|예약|đặt chỗ|yeyak|호텔을 예약했어요.|Tôi đã đặt khách sạn.
+4|호텔|khách sạn|hotel|호텔이 깨끗해요.|Khách sạn sạch sẽ.
+4|표|vé|pyo|기차표를 샀어요.|Tôi đã mua vé tàu.
+4|출발|xuất phát|chulbal|아침에 출발해요.|Tôi xuất phát buổi sáng.
+4|도착|đến nơi|dochak|공항에 도착했어요.|Tôi đã đến sân bay.
+4|사진|ảnh|sajin|사진을 찍어요.|Tôi chụp ảnh.
+4|바다|biển|bada|바다가 예뻐요.|Biển đẹp.
+5|시험|kỳ thi|siheom|내일 시험이 있어요.|Ngày mai có kỳ thi.
+5|수업|giờ học|sueop|수업이 끝났어요.|Giờ học đã kết thúc.
+5|회의|cuộc họp|hoeui|회의가 있어요.|Có cuộc họp.
+5|월급|lương tháng|wolgeup|월급을 받아요.|Tôi nhận lương.
+5|일하다|làm việc|ilhada|회사에서 일해요.|Tôi làm việc ở công ty.
+5|외국어|ngoại ngữ|oegugeo|외국어를 공부해요.|Tôi học ngoại ngữ.
+6|감기|cảm cúm|gamgi|감기에 걸렸어요.|Tôi bị cảm.
+6|열|sốt|yeol|열이 나요.|Tôi bị sốt.
+6|피곤하다|mệt|pigonhada|너무 피곤해요.|Tôi mệt quá.
+6|걷다|đi bộ|geotda|공원을 걸어요.|Tôi đi bộ trong công viên.
+6|수영|bơi lội|suyeong|수영을 배워요.|Tôi học bơi.
+6|노래|bài hát|norae|노래를 불러요.|Tôi hát.
+7|겨울|mùa đông|gyeoul|겨울에 눈이 와요.|Mùa đông có tuyết.
+7|여름|mùa hè|yeoreum|여름이 더워요.|Mùa hè nóng.
+7|봄|mùa xuân|bom|봄에 꽃이 펴요.|Mùa xuân hoa nở.
+7|가을|mùa thu|gaeul|가을이 시원해요.|Mùa thu mát mẻ.
+7|아주|rất|aju|아주 좋아요.|Rất tốt.
+7|항상|luôn luôn|hangsang|항상 웃어요.|Lúc nào cũng cười.
+7|가끔|thỉnh thoảng|gakkeum|가끔 영화를 봐요.|Thỉnh thoảng tôi xem phim.
+#3
+0|설명|giải thích|seolmyeong|설명해 주세요.|Hãy giải thích giúp tôi.
+0|소개|giới thiệu|sogae|자기소개를 해요.|Tôi tự giới thiệu.
+0|동의|đồng ý|dongui|그 의견에 동의해요.|Tôi đồng ý với ý kiến đó.
+0|추천|gợi ý|chucheon|좋은 책을 추천해 주세요.|Hãy gợi ý sách hay.
+0|거절|từ chối|geojeol|제안을 거절했어요.|Tôi đã từ chối đề nghị.
+1|성격|tính cách|seonggyeok|성격이 밝아요.|Tính cách vui vẻ.
+1|고향|quê hương|gohyang|고향이 어디예요?|Quê bạn ở đâu?
+1|세대|thế hệ|sedae|젊은 세대가 달라요.|Thế hệ trẻ khác biệt.
+2|재료|nguyên liệu|jaeryo|신선한 재료를 써요.|Dùng nguyên liệu tươi.
+3|광고|quảng cáo|gwanggo|광고를 많이 봐요.|Tôi xem nhiều quảng cáo.
+3|상품|hàng hóa|sangpum|새 상품이 나왔어요.|Hàng mới đã ra mắt.
+3|환불|hoàn tiền|hwanbul|환불하고 싶어요.|Tôi muốn hoàn tiền.
+4|관광|tham quan|gwangwang|관광을 즐겨요.|Tôi thích tham quan.
+4|주소|địa chỉ|juso|주소를 알려 주세요.|Hãy cho tôi biết địa chỉ.
+4|안내|hướng dẫn|annae|안내를 받았어요.|Tôi đã được hướng dẫn.
+5|신청|đăng ký|sincheong|수업을 신청해요.|Tôi đăng ký lớp.
+5|취업|xin việc|chwieop|취업을 준비해요.|Tôi chuẩn bị xin việc.
+5|성적|điểm số|seongjeok|성적이 올랐어요.|Điểm số đã tăng.
+5|발표|thuyết trình|balpyo|발표를 잘했어요.|Tôi đã thuyết trình tốt.
+5|졸업|tốt nghiệp|joreop|내년에 졸업해요.|Năm sau tôi tốt nghiệp.
+6|스트레스|căng thẳng|seuteureseu|스트레스를 풀어요.|Tôi giải tỏa căng thẳng.
+6|치료|điều trị|chiryo|치료를 받아요.|Tôi được điều trị.
+6|휴식|nghỉ ngơi|hyusik|충분한 휴식이 필요해요.|Cần nghỉ ngơi đầy đủ.
+7|최근|gần đây|choegeun|최근에 이사했어요.|Gần đây tôi đã chuyển nhà.
+7|이미|đã (rồi)|imi|이미 끝났어요.|Đã xong rồi.
+7|아직|vẫn chưa|ajik|아직 안 왔어요.|Vẫn chưa đến.
+7|갑자기|đột nhiên|gapjagi|갑자기 비가 왔어요.|Đột nhiên trời mưa.
+8|사회|xã hội|sahoe|사회가 변하고 있어요.|Xã hội đang thay đổi.
+8|정보|thông tin|jeongbo|정보를 찾아요.|Tôi tìm thông tin.
+8|기술|công nghệ|gisul|기술이 발전했어요.|Công nghệ đã phát triển.
+8|사고|tai nạn|sago|교통사고가 났어요.|Đã xảy ra tai nạn giao thông.
+#4
+0|논의|thảo luận|nonui|문제를 논의했어요.|Đã thảo luận vấn đề.
+0|표현|biểu đạt|pyohyeon|감정을 표현해요.|Tôi biểu đạt cảm xúc.
+0|설득|thuyết phục|seoldeuk|친구를 설득했어요.|Tôi đã thuyết phục bạn.
+4|관광객|khách du lịch|gwangwanggaek|관광객이 많아요.|Có nhiều khách du lịch.
+5|경쟁|cạnh tranh|gyeongjaeng|경쟁이 심해요.|Cạnh tranh khốc liệt.
+5|성과|thành quả|seonggwa|좋은 성과를 냈어요.|Đã đạt thành quả tốt.
+5|분야|lĩnh vực|bunya|이 분야의 전문가예요.|Là chuyên gia lĩnh vực này.
+5|조사|khảo sát|josa|설문 조사를 했어요.|Đã khảo sát.
+6|예방|phòng ngừa|yebang|병을 예방해요.|Phòng bệnh.
+7|점점|dần dần|jeomjeom|점점 추워져요.|Trời dần lạnh hơn.
+7|특히|đặc biệt là|teukhi|특히 여름이 좋아요.|Đặc biệt mùa hè rất tốt.
+7|결국|rốt cuộc|gyeolguk|결국 성공했어요.|Rốt cuộc đã thành công.
+8|제도|chế độ|jedo|새로운 제도가 생겼어요.|Có chế độ mới.
+8|정책|chính sách|jeongchaek|정부 정책이 바뀌었어요.|Chính sách chính phủ thay đổi.
+8|인구|dân số|ingu|인구가 줄고 있어요.|Dân số đang giảm.
+8|경제|kinh tế|gyeongje|경제가 성장해요.|Kinh tế tăng trưởng.
+8|교육|giáo dục|gyoyuk|교육이 중요해요.|Giáo dục quan trọng.
+8|과학|khoa học|gwahak|과학이 발달했어요.|Khoa học phát triển.
+#5
+5|효율|hiệu suất|hyoyul|효율을 높여요.|Nâng cao hiệu suất.
+5|혁신|đổi mới|hyeoksin|기술 혁신이 필요해요.|Cần đổi mới công nghệ.
+7|꾸준히|đều đặn|kkujunhi|꾸준히 노력해요.|Nỗ lực đều đặn.
+8|불평등|bất bình đẳng|bulpyeongdeung|불평등을 줄여야 해요.|Phải giảm bất bình đẳng.
+8|양극화|phân cực|yanggeukhwa|소득 양극화가 심해요.|Phân hóa thu nhập nghiêm trọng.
+8|논란|tranh cãi|nollan|논란이 커졌어요.|Tranh cãi lớn hơn.
+8|입장|lập trường|ipjang|입장을 밝혔어요.|Đã nêu rõ lập trường.
+8|개선|cải thiện|gaeseon|환경을 개선해요.|Cải thiện môi trường.
+8|부담|gánh nặng|budam|부담이 커졌어요.|Gánh nặng tăng lên.
+8|위기|khủng hoảng|wigi|경제 위기가 왔어요.|Khủng hoảng kinh tế đã đến.
+8|대응|ứng phó|daeeung|위기에 대응해요.|Ứng phó với khủng hoảng.
+8|확산|lan rộng|hwaksan|소문이 확산됐어요.|Tin đồn lan rộng.
+8|지원|hỗ trợ|jiwon|정부가 지원해요.|Chính phủ hỗ trợ.
+8|제안|đề xuất|jean|새 계획을 제안해요.|Đề xuất kế hoạch mới.
+#6
+8|양면성|tính hai mặt|yangmyeonseong|기술의 양면성을 봐요.|Nhìn thấy tính hai mặt của công nghệ.
+8|패러다임|hệ hình tư duy|paradaim|패러다임이 바뀌었어요.|Hệ hình đã thay đổi.
+8|모순|mâu thuẫn|mosun|논리에 모순이 있어요.|Lập luận có mâu thuẫn.
+8|정당성|tính chính đáng|jeongdangseong|정당성을 주장해요.|Khẳng định tính chính đáng.
+8|통찰|thấu hiểu sâu sắc|tongchal|깊은 통찰이 필요해요.|Cần sự thấu hiểu sâu sắc.
+8|이념|tư tưởng|inyeom|이념이 다르면 갈등이 생겨요.|Khác tư tưởng thì có xung đột.
+8|형성|hình thành|hyeongseong|여론이 형성됐어요.|Dư luận đã hình thành.
+8|지양|tránh, không theo đuổi|jiyang|폭력을 지양해야 해요.|Cần tránh bạo lực.
+8|심화|trở nên sâu sắc|simhwa|갈등이 심화됐어요.|Xung đột trở nên gay gắt.
+8|한계|giới hạn|hangye|한계를 극복해요.|Vượt qua giới hạn.
+#1
+0|감사해요|cảm ơn (thân mật)|gamsahaeyo|도와줘서 감사해요.|Cảm ơn vì đã giúp.
+0|미안해요|xin lỗi (thân mật)|mianhaeyo|미안해요, 못 가요.|Xin lỗi, tôi không đi được.
+0|알다|biết|alda|저는 그 사람을 알아요.|Tôi biết người đó.
+0|모르다|không biết|moreuda|잘 몰라요.|Tôi không rõ.
+0|있다|có, ở|itda|책이 있어요.|Có sách.
+0|없다|không có|eopda|우산이 없어요.|Tôi không có ô.
+0|하다|làm|hada|일을 해요.|Tôi làm việc.
+0|만나다|gặp|mannada|주말에 만나요.|Cuối tuần gặp nhé.
+1|아들|con trai|adeul|아들이 두 명 있어요.|Tôi có hai con trai.
+1|딸|con gái|ttal|딸이 예뻐요.|Con gái tôi xinh.
+1|아저씨|chú, bác|ajeossi|아저씨, 안녕하세요.|Chào chú.
+1|아기|em bé|agi|아기가 자요.|Em bé đang ngủ.
+2|사과|táo|sagwa|사과가 맛있어요.|Táo ngon.
+2|바나나|chuối|banana|바나나를 좋아해요.|Tôi thích chuối.
+2|쌀|gạo|ssal|쌀을 사요.|Tôi mua gạo.
+2|국|canh|guk|국이 뜨거워요.|Canh nóng.
+2|계란|trứng|gyeran|계란을 먹어요.|Tôi ăn trứng.
+2|생선|cá|saengseon|생선을 구워요.|Tôi nướng cá.
+2|야채|rau|yachae|야채를 많이 먹어요.|Tôi ăn nhiều rau.
+2|점심|bữa trưa|jeomsim|점심 먹었어요?|Bạn ăn trưa chưa?
+2|술|rượu|sul|술을 안 마셔요.|Tôi không uống rượu.
+2|맛없다|dở|maseopda|이 음식은 맛없어요.|Món này dở.
+2|뜨겁다|nóng (đồ vật)|tteugeopda|커피가 뜨거워요.|Cà phê nóng.
+2|차갑다|lạnh (đồ vật)|chagapda|물이 차가워요.|Nước lạnh.
+3|신발|giày|sinbal|신발을 사요.|Tôi mua giày.
+3|모자|mũ|moja|모자를 써요.|Tôi đội mũ.
+3|우산|ô|usan|우산을 가져가요.|Tôi mang ô theo.
+3|휴대폰|điện thoại di động|hyudaepon|휴대폰이 비싸요.|Điện thoại đắt.
+3|컴퓨터|máy tính|keompyuteo|컴퓨터를 써요.|Tôi dùng máy tính.
+3|편의점|cửa hàng tiện lợi|pyeonuijeom|편의점에 가요.|Tôi đi cửa hàng tiện lợi.
+3|백화점|trung tâm thương mại|baekhwajeom|백화점에서 쇼핑해요.|Mua sắm ở trung tâm thương mại.
+4|은행|ngân hàng|eunhaeng|은행에 가요.|Tôi đến ngân hàng.
+4|우체국|bưu điện|ucheguk|우체국이 어디예요?|Bưu điện ở đâu?
+4|공원|công viên|gongwon|공원에서 걸어요.|Tôi đi bộ ở công viên.
+4|도서관|thư viện|doseogwan|도서관에서 공부해요.|Tôi học ở thư viện.
+4|화장실|nhà vệ sinh|hwajangsil|화장실은 저쪽이에요.|Nhà vệ sinh ở phía kia.
+4|앞|phía trước|ap|학교 앞에서 만나요.|Gặp nhau trước trường.
+4|뒤|phía sau|dwi|집 뒤에 공원이 있어요.|Sau nhà có công viên.
+4|옆|bên cạnh|yeop|은행 옆에 있어요.|Ở bên cạnh ngân hàng.
+4|위|trên|wi|책상 위에 책이 있어요.|Có sách trên bàn.
+4|아래|dưới|arae|의자 아래에 가방이 있어요.|Túi ở dưới ghế.
+4|안|trong|an|가방 안에 있어요.|Ở trong túi.
+4|밖|ngoài|bak|밖에 비가 와요.|Bên ngoài trời mưa.
+4|오른쪽|bên phải|oreunjjok|오른쪽으로 가세요.|Hãy đi sang phải.
+4|왼쪽|bên trái|oenjjok|왼쪽에 있어요.|Ở bên trái.
+5|한국어|tiếng Hàn|hangugeo|한국어가 재미있어요.|Tiếng Hàn thú vị.
+5|영어|tiếng Anh|yeongeo|영어를 잘해요.|Tôi giỏi tiếng Anh.
+5|베트남어|tiếng Việt|beteunameo|베트남어를 할 수 있어요.|Tôi nói được tiếng Việt.
+5|공책|vở|gongchaek|공책에 써요.|Tôi viết vào vở.
+5|연필|bút chì|yeonpil|연필이 있어요.|Có bút chì.
+5|펜|bút|pen|펜을 빌려 주세요.|Cho tôi mượn bút.
+5|책상|bàn học|chaeksang|책상이 커요.|Bàn học to.
+5|의자|ghế|uija|의자에 앉아요.|Tôi ngồi lên ghế.
+5|대학교|đại học|daehakgyo|대학교에 다녀요.|Tôi học đại học.
+5|직장|nơi làm việc|jikjang|직장이 멀어요.|Nơi làm việc xa.
+6|머리|đầu, tóc|meori|머리가 길어요.|Tóc dài.
+6|눈|mắt|nun|눈이 커요.|Mắt to.
+6|코|mũi|ko|코가 높아요.|Mũi cao.
+6|입|miệng|ip|입을 벌리세요.|Hãy há miệng.
+6|귀|tai|gwi|귀가 아파요.|Tai đau.
+6|손|tay|son|손을 씻어요.|Tôi rửa tay.
+6|발|chân|bal|발이 커요.|Chân to.
+6|배|bụng|bae|배가 아파요.|Tôi đau bụng.
+6|얼굴|khuôn mặt|eolgul|얼굴이 예뻐요.|Khuôn mặt xinh.
+6|방|phòng|bang|방이 깨끗해요.|Phòng sạch.
+6|문|cửa|mun|문을 열어요.|Tôi mở cửa.
+6|창문|cửa sổ|changmun|창문을 닫아요.|Tôi đóng cửa sổ.
+6|침대|giường|chimdae|침대에서 자요.|Tôi ngủ trên giường.
+6|강아지|chó con|gangaji|강아지가 귀여워요.|Chó con dễ thương.
+6|고양이|mèo|goyangi|고양이가 자요.|Mèo đang ngủ.
+6|꽃|hoa|kkot|꽃을 사요.|Tôi mua hoa.
+6|나무|cây|namu|나무가 커요.|Cây to.
+6|비|mưa|bi|비가 많이 왔어요.|Mưa nhiều.
+6|바람|gió|baram|바람이 불어요.|Gió thổi.
+7|월요일|thứ Hai|woryoil|월요일에 학교에 가요.|Thứ Hai tôi đi học.
+7|화요일|thứ Ba|hwayoil|화요일에 시험이 있어요.|Thứ Ba có kỳ thi.
+7|수요일|thứ Tư|suyoil|수요일에 만나요.|Thứ Tư gặp nhau.
+7|목요일|thứ Năm|mogyoil|목요일은 바빠요.|Thứ Năm tôi bận.
+7|금요일|thứ Sáu|geumyoil|금요일에 영화를 봐요.|Thứ Sáu tôi xem phim.
+7|토요일|thứ Bảy|toyoil|토요일에 쉬어요.|Thứ Bảy tôi nghỉ.
+7|일요일|Chủ nhật|iryoil|일요일에 교회에 가요.|Chủ nhật tôi đi nhà thờ.
+7|오전|buổi sáng (AM)|ojeon|오전에 수업이 있어요.|Buổi sáng có giờ học.
+7|오후|buổi chiều (PM)|ohu|오후에 만나요.|Chiều gặp nhé.
+7|밤|đêm|bam|밤에 자요.|Ban đêm tôi ngủ.
+7|올해|năm nay|olhae|올해 스무 살이에요.|Năm nay tôi hai mươi tuổi.
+7|작년|năm ngoái|jaknyeon|작년에 한국에 갔어요.|Năm ngoái tôi đã đến Hàn Quốc.
+7|내년|năm sau|naenyeon|내년에 또 만나요.|Năm sau gặp lại nhé.
+7|빨갛다|đỏ|ppalgata|사과가 빨개요.|Quả táo đỏ.
+7|파랗다|xanh dương|parata|하늘이 파래요.|Bầu trời xanh.
+7|하얗다|trắng|hayata|우유가 하얘요.|Sữa màu trắng.
+7|까맣다|đen|kkamata|머리가 까매요.|Tóc đen.
+7|길다|dài|gilda|강이 길어요.|Sông dài.
+7|짧다|ngắn|jjalpda|치마가 짧아요.|Váy ngắn.
+7|높다|cao|nopda|산이 높아요.|Núi cao.
+7|낮다|thấp|natda|건물이 낮아요.|Tòa nhà thấp.
+7|같다|giống|gatda|우리는 나이가 같아요.|Chúng tôi bằng tuổi.
+7|다르다|khác|dareuda|생각이 달라요.|Suy nghĩ khác nhau.
+7|쉽다|dễ|swipda|한국어가 쉬워요.|Tiếng Hàn dễ.
+7|어렵다|khó|eoryeopda|문법이 어려워요.|Ngữ pháp khó.
+7|재미있다|thú vị|jaemitda|영화가 재미있어요.|Phim thú vị.
+7|바쁘다|bận|bappeuda|요즘 바빠요.|Dạo này tôi bận.
+7|요즘|dạo này|yojeum|요즘 어때요?|Dạo này bạn thế nào?
+7|같이|cùng nhau|gachi|같이 가요.|Cùng đi nhé.
+7|혼자|một mình|honja|혼자 살아요.|Tôi sống một mình.
+7|조금|một chút|jogeum|조금 기다리세요.|Hãy đợi một chút.
+7|너무|quá|neomu|너무 비싸요.|Đắt quá.
+7|정말|thật sự|jeongmal|정말 고마워요.|Thật sự cảm ơn.
+7|모두|tất cả|modu|모두 왔어요.|Mọi người đều đến.
+#2
+0|연락|liên lạc|yeollak|연락해 주세요.|Hãy liên lạc với tôi.
+0|문제|vấn đề|munje|문제가 생겼어요.|Đã có vấn đề.
+0|이야기|câu chuyện|iyagi|이야기를 해요.|Chúng tôi trò chuyện.
+0|생각|suy nghĩ|saenggak|생각이 많아요.|Tôi nghĩ nhiều.
+1|어른|người lớn|eoreun|어른께 인사해요.|Chào người lớn.
+1|나이|tuổi|nai|나이가 몇 살이에요?|Bạn bao nhiêu tuổi?
+1|결혼식|đám cưới|gyeolhonsik|결혼식에 가요.|Tôi đi đám cưới.
+1|생일|sinh nhật|saengil|생일이 언제예요?|Sinh nhật bạn khi nào?
+2|라면|mì gói|ramyeon|라면을 끓여요.|Tôi nấu mì gói.
+2|비빔밥|bibimbap|bibimbap|비빔밥을 좋아해요.|Tôi thích bibimbap.
+2|불고기|bulgogi|bulgogi|불고기가 맛있어요.|Bulgogi ngon.
+2|냉장고|tủ lạnh|naengjanggo|냉장고에 우유가 있어요.|Trong tủ lạnh có sữa.
+2|숟가락|thìa|sutgarak|숟가락으로 먹어요.|Tôi ăn bằng thìa.
+2|젓가락|đũa|jeotgarak|젓가락을 사용해요.|Tôi dùng đũa.
+2|배부르다|no bụng|baeburuda|배불러요.|Tôi no rồi.
+3|입다|mặc|ipda|청바지를 입어요.|Tôi mặc quần jean.
+3|신다|mang (giày)|sinda|운동화를 신어요.|Tôi mang giày thể thao.
+3|팔다|bán|palda|시장에서 과일을 팔아요.|Chợ bán trái cây.
+3|바꾸다|đổi|bakkuda|색깔을 바꿔요.|Tôi đổi màu.
+3|색깔|màu sắc|saekkkal|무슨 색깔이 좋아요?|Bạn thích màu nào?
+4|지도|bản đồ|jido|지도를 봐요.|Tôi xem bản đồ.
+4|기차|tàu hỏa|gicha|기차를 타요.|Tôi đi tàu hỏa.
+4|비행기|máy bay|bihaenggi|비행기가 늦어요.|Máy bay trễ.
+4|자전거|xe đạp|jajeongeo|자전거를 타요.|Tôi đi xe đạp.
+4|운전|lái xe|unjeon|운전을 배워요.|Tôi học lái xe.
+4|건너다|băng qua|geonneoda|길을 건너요.|Tôi băng qua đường.
+4|돌아가다|quay về|doragada|집에 돌아가요.|Tôi quay về nhà.
+4|이사|chuyển nhà|isa|다음 달에 이사해요.|Tháng sau tôi chuyển nhà.
+5|전공|chuyên ngành|jeongong|전공이 뭐예요?|Chuyên ngành của bạn là gì?
+5|방학|kỳ nghỉ (học sinh)|banghak|방학에 여행 가요.|Kỳ nghỉ tôi đi du lịch.
+5|출근|đi làm|chulgeun|아침에 출근해요.|Sáng tôi đi làm.
+5|퇴근|tan làm|toegeun|여섯 시에 퇴근해요.|Tôi tan làm lúc sáu giờ.
+5|휴가|nghỉ phép|hyuga|휴가를 가요.|Tôi đi nghỉ phép.
+5|사장님|giám đốc|sajangnim|사장님이 오셨어요.|Giám đốc đã đến.
+5|연습|luyện tập|yeonseup|발음을 연습해요.|Tôi luyện phát âm.
+5|발음|phát âm|bareum|발음이 좋아요.|Phát âm tốt.
+5|문법|ngữ pháp|munbeop|문법을 공부해요.|Tôi học ngữ pháp.
+5|단어|từ vựng|daneo|단어를 외워요.|Tôi học thuộc từ vựng.
+5|외우다|học thuộc|oeuda|단어를 외웠어요.|Tôi đã học thuộc từ.
+5|이해하다|hiểu|ihaehada|잘 이해했어요.|Tôi đã hiểu rõ.
+6|병|bệnh|byeong|병이 나았어요.|Bệnh đã khỏi.
+6|뛰다|chạy|ttwida|공원에서 뛰어요.|Tôi chạy ở công viên.
+6|씻다|rửa|ssitda|얼굴을 씻어요.|Tôi rửa mặt.
+6|청소|dọn dẹp|cheongso|방을 청소해요.|Tôi dọn phòng.
+6|빨래|giặt đồ|ppallae|빨래를 해요.|Tôi giặt đồ.
+6|게임|trò chơi|geim|게임을 좋아해요.|Tôi thích chơi game.
+6|사랑|tình yêu|sarang|사랑해요.|Tôi yêu bạn.
+6|행복|hạnh phúc|haengbok|행복하게 살아요.|Sống hạnh phúc.
+6|기분|tâm trạng|gibun|기분이 좋아요.|Tâm trạng tốt.
+6|웃다|cười|utda|많이 웃어요.|Tôi cười nhiều.
+6|울다|khóc|ulda|아기가 울어요.|Em bé khóc.
+6|걱정|lo lắng|geokjeong|걱정하지 마세요.|Đừng lo lắng.
+6|무섭다|đáng sợ|museopda|호랑이는 무서워요.|Hổ đáng sợ.
+6|즐겁다|vui vẻ|jeulgeopda|주말이 즐거웠어요.|Cuối tuần vui vẻ.
+6|슬프다|buồn|seulpeuda|영화가 슬퍼요.|Phim buồn.
+7|지난주|tuần trước|jinanju|지난주에 만났어요.|Tuần trước tôi đã gặp.
+7|이번 주|tuần này|ibeon ju|이번 주에 바빠요.|Tuần này tôi bận.
+7|다음 주|tuần sau|daeum ju|다음 주에 봐요.|Tuần sau gặp nhé.
+7|언제|khi nào|eonje|언제 와요?|Khi nào bạn đến?
+7|벌써|đã… rồi|beolsseo|벌써 열 시예요.|Đã mười giờ rồi.
+7|먼저|trước tiên|meonjeo|먼저 갈게요.|Tôi đi trước nhé.
+7|다시|lại|dasi|다시 말해 주세요.|Hãy nói lại.
+7|함께|cùng nhau|hamkke|함께 공부해요.|Cùng học nhé.
+7|특별하다|đặc biệt|teukbyeolhada|특별한 날이에요.|Là ngày đặc biệt.
+7|중요하다|quan trọng|jungyohada|시간이 중요해요.|Thời gian quan trọng.
+7|필요하다|cần thiết|piryohada|도움이 필요해요.|Tôi cần giúp đỡ.
+8|나라|đất nước|nara|나라가 커요.|Nước lớn.
+8|도시|thành phố|dosi|도시가 복잡해요.|Thành phố phức tạp.
+8|뉴스|tin tức|nyuseu|뉴스를 봐요.|Tôi xem tin tức.
+8|인터넷|internet|inteonet|인터넷으로 찾아요.|Tôi tìm trên internet.
+8|사건|vụ việc|sageon|사건이 일어났어요.|Đã xảy ra vụ việc.
+8|규칙|quy tắc|gyuchik|규칙을 지켜요.|Tôi tuân thủ quy tắc.
+8|법|luật|beop|법을 지켜야 해요.|Phải tuân thủ luật.
+8|자연|thiên nhiên|jayeon|자연을 보호해요.|Bảo vệ thiên nhiên.
+8|역사|lịch sử|yeoksa|한국 역사를 배워요.|Tôi học lịch sử Hàn Quốc.
+8|전통|truyền thống|jeontong|전통 음식이에요.|Là món ăn truyền thống.
+#3
+0|대화|hội thoại|daehwa|친구와 대화해요.|Tôi trò chuyện với bạn.
+0|소식|tin tức|sosik|좋은 소식이 있어요.|Có tin vui.
+0|전하다|truyền đạt|jeonhada|말을 전해 주세요.|Hãy chuyển lời giúp tôi.
+0|반응|phản ứng|baneung|반응이 좋아요.|Phản ứng tốt.
+0|요청|yêu cầu|yocheong|도움을 요청했어요.|Tôi đã yêu cầu giúp đỡ.
+0|확인|xác nhận|hwagin|시간을 확인해요.|Tôi xác nhận thời gian.
+0|칭찬|khen ngợi|chingchan|선생님께 칭찬을 받았어요.|Tôi được thầy khen.
+0|인정|công nhận|injeong|실수를 인정해요.|Tôi thừa nhận sai sót.
+1|친척|họ hàng|chincheok|친척이 많아요.|Họ hàng nhiều.
+1|동료|đồng nghiệp|dongnyo|동료와 점심을 먹어요.|Ăn trưa với đồng nghiệp.
+1|선배|tiền bối|seonbae|선배가 도와줘요.|Tiền bối giúp tôi.
+1|후배|hậu bối|hubae|후배를 가르쳐요.|Tôi chỉ dạy hậu bối.
+1|부부|vợ chồng|bubu|부부가 같이 살아요.|Vợ chồng sống cùng nhau.
+1|어린이|trẻ em|eorini|어린이가 놀아요.|Trẻ em chơi.
+1|노인|người già|noin|노인을 도와요.|Giúp đỡ người già.
+1|외국인|người nước ngoài|oegugin|외국인 친구가 있어요.|Tôi có bạn người nước ngoài.
+2|식사|bữa ăn|siksa|식사하셨어요?|Bạn đã dùng bữa chưa?
+2|간식|đồ ăn vặt|gansik|간식을 먹어요.|Tôi ăn vặt.
+2|영양|dinh dưỡng|yeongyang|영양이 풍부해요.|Giàu dinh dưỡng.
+2|음료|đồ uống|eumryo|차가운 음료를 마셔요.|Tôi uống đồ lạnh.
+2|굽다|nướng|gupda|고기를 구워요.|Tôi nướng thịt.
+2|끓이다|đun sôi|kkeurida|물을 끓여요.|Tôi đun nước.
+2|신선하다|tươi|sinseonhada|채소가 신선해요.|Rau tươi.
+2|싱겁다|nhạt|singgeopda|국이 싱거워요.|Canh nhạt.
+3|절약|tiết kiệm|jeoryak|전기를 절약해요.|Tôi tiết kiệm điện.
+3|낭비|lãng phí|nangbi|시간을 낭비하지 마세요.|Đừng lãng phí thời gian.
+3|소비|tiêu dùng|sobi|소비가 늘었어요.|Tiêu dùng tăng.
+3|예산|ngân sách|yesan|예산이 부족해요.|Ngân sách không đủ.
+3|교환|đổi hàng|gyohwan|옷을 교환해요.|Tôi đổi quần áo.
+3|배송|vận chuyển|baesong|배송이 빨라요.|Giao hàng nhanh.
+3|포장|đóng gói|pojang|선물을 포장해요.|Tôi gói quà.
+3|품질|chất lượng|pumjil|품질이 좋아요.|Chất lượng tốt.
+3|수입|thu nhập|suip|수입이 늘었어요.|Thu nhập tăng.
+3|지출|chi tiêu|jichul|지출을 줄여요.|Tôi giảm chi tiêu.
+4|일정|lịch trình|iljeong|일정을 짜요.|Tôi lên lịch trình.
+4|숙소|chỗ ở|sukso|숙소를 예약해요.|Tôi đặt chỗ ở.
+4|여권|hộ chiếu|yeogwon|여권을 챙겨요.|Tôi chuẩn bị hộ chiếu.
+4|출장|đi công tác|chuljang|내일 출장을 가요.|Ngày mai tôi đi công tác.
+4|경치|phong cảnh|gyeongchi|경치가 아름다워요.|Phong cảnh đẹp.
+4|구경|ngắm, xem|gugyeong|시내를 구경해요.|Tôi đi ngắm nội thành.
+4|이동|di chuyển|idong|버스로 이동해요.|Di chuyển bằng xe buýt.
+4|정류장|trạm xe|jeongnyujang|정류장에서 기다려요.|Tôi đợi ở trạm xe.
+4|승객|hành khách|seunggaek|승객이 많아요.|Nhiều hành khách.
+4|짐|hành lý|jim|짐이 무거워요.|Hành lý nặng.
+5|면접|phỏng vấn|myeonjeop|내일 면접이 있어요.|Ngày mai có phỏng vấn.
+5|이력서|sơ yếu lý lịch|iryeokseo|이력서를 써요.|Tôi viết sơ yếu lý lịch.
+5|계약|hợp đồng|gyeyak|계약을 했어요.|Đã ký hợp đồng.
+5|업무|công việc, nghiệp vụ|eommu|업무가 많아요.|Nhiều công việc.
+5|부서|phòng ban|buseo|다른 부서로 옮겨요.|Chuyển sang phòng khác.
+5|승진|thăng chức|seungjin|올해 승진했어요.|Năm nay tôi được thăng chức.
+5|보고서|báo cáo|bogoseo|보고서를 제출해요.|Tôi nộp báo cáo.
+5|자료|tài liệu|jaryo|자료를 찾아요.|Tôi tìm tài liệu.
+5|과제|bài tập, nhiệm vụ|gwaje|과제를 끝냈어요.|Tôi đã xong bài tập.
+5|전문가|chuyên gia|jeonmunga|전문가의 의견을 들어요.|Nghe ý kiến chuyên gia.
+5|목표|mục tiêu|mokpyo|목표를 세워요.|Tôi đặt mục tiêu.
+5|능력|năng lực|neungnyeok|능력이 있어요.|Có năng lực.
+5|노력|nỗ lực|noryeok|노력하면 돼요.|Cứ nỗ lực là được.
+5|실수|sai sót|silsu|실수를 했어요.|Tôi đã mắc lỗi.
+5|성공|thành công|seonggong|성공을 빌어요.|Chúc bạn thành công.
+5|실패|thất bại|silpae|실패해도 괜찮아요.|Thất bại cũng không sao.
+5|도전|thử thách|dojeon|새로운 도전을 해요.|Tôi thử thách mới.
+5|학기|học kỳ|hakgi|새 학기가 시작돼요.|Học kỳ mới bắt đầu.
+5|장학금|học bổng|janghakgeum|장학금을 받았어요.|Tôi nhận học bổng.
+5|유학|du học|yuhak|한국으로 유학을 가요.|Tôi đi du học Hàn Quốc.
+6|증상|triệu chứng|jeungsang|증상이 심해요.|Triệu chứng nặng.
+6|체중|cân nặng|chejung|체중이 늘었어요.|Cân nặng tăng.
+6|수면|giấc ngủ|sumyeon|수면이 부족해요.|Thiếu ngủ.
+6|약국|hiệu thuốc|yakguk|약국에서 약을 사요.|Mua thuốc ở hiệu thuốc.
+6|회복|hồi phục|hoebok|빨리 회복하세요.|Chúc bạn mau hồi phục.
+6|부상|chấn thương|busang|부상을 입었어요.|Tôi bị chấn thương.
+6|공연|buổi biểu diễn|gongyeon|공연을 보러 가요.|Tôi đi xem biểu diễn.
+6|전시|triển lãm|jeonsi|전시회에 가요.|Tôi đi triển lãm.
+6|독서|đọc sách|dokseo|독서가 취미예요.|Sở thích là đọc sách.
+7|정도|mức độ|jeongdo|어느 정도 알아요.|Tôi biết ở mức nào đó.
+7|대부분|phần lớn|daebubun|대부분 학생이에요.|Phần lớn là học sinh.
+7|일부|một phần|ilbu|일부만 맞아요.|Chỉ đúng một phần.
+7|전체|toàn bộ|jeonche|전체 내용을 읽어요.|Tôi đọc toàn bộ nội dung.
+7|자주|thường xuyên|jaju|자주 만나요.|Chúng tôi gặp thường xuyên.
+7|거의|hầu như|geoui|거의 다 했어요.|Tôi làm gần xong rồi.
+7|이전|trước đây|ijeon|이전에 만났어요.|Chúng tôi đã gặp trước đây.
+7|이후|sau đó|ihu|졸업 이후에 일해요.|Sau tốt nghiệp tôi đi làm.
+7|동안|trong suốt|dongan|방학 동안 여행했어요.|Tôi du lịch suốt kỳ nghỉ.
+7|계속|liên tục|gyesok|계속 공부해요.|Tôi tiếp tục học.
+7|반드시|nhất định|bandeusi|반드시 올게요.|Tôi nhất định sẽ đến.
+7|아마|có lẽ|ama|아마 올 거예요.|Có lẽ sẽ đến.
+7|충분히|đầy đủ|chungbunhi|충분히 쉬세요.|Hãy nghỉ ngơi đầy đủ.
+7|복잡하다|phức tạp|bokjaphada|길이 복잡해요.|Đường phức tạp.
+7|간단하다|đơn giản|gandanhada|방법이 간단해요.|Cách làm đơn giản.
+7|편리하다|tiện lợi|pyeollihada|교통이 편리해요.|Giao thông tiện lợi.
+7|불편하다|bất tiện|bulpyeonhada|사용이 불편해요.|Sử dụng bất tiện.
+7|안전하다|an toàn|anjeonhada|이곳은 안전해요.|Nơi này an toàn.
+7|위험하다|nguy hiểm|wiheomhada|밤길은 위험해요.|Đường đêm nguy hiểm.
+7|유명하다|nổi tiếng|yumyeonghada|유명한 식당이에요.|Là nhà hàng nổi tiếng.
+7|다양하다|đa dạng|dayanghada|종류가 다양해요.|Chủng loại đa dạng.
+7|정확하다|chính xác|jeonghwakada|시간이 정확해요.|Thời gian chính xác.
+8|정부|chính phủ|jeongbu|정부가 발표했어요.|Chính phủ đã công bố.
+8|국가|quốc gia|gukga|국가를 위해 일해요.|Làm việc vì quốc gia.
+8|시민|công dân|simin|시민이 참여해요.|Người dân tham gia.
+8|지역|khu vực|jiyeok|이 지역은 조용해요.|Khu vực này yên tĩnh.
+8|세계|thế giới|segye|세계를 여행해요.|Tôi du lịch thế giới.
+8|국제|quốc tế|gukje|국제 대회가 열려요.|Giải quốc tế diễn ra.
+8|신문|báo|sinmun|신문을 읽어요.|Tôi đọc báo.
+8|방송|phát sóng|bangsong|방송이 시작돼요.|Chương trình bắt đầu phát.
+8|에너지|năng lượng|eneoji|에너지를 아껴요.|Tiết kiệm năng lượng.
+8|오염|ô nhiễm|oyeom|공기 오염이 심해요.|Ô nhiễm không khí nặng.
+8|쓰레기|rác|sseuregi|쓰레기를 버려요.|Tôi vứt rác.
+8|재활용|tái chế|jaehwalyong|종이를 재활용해요.|Tôi tái chế giấy.
+8|기후|khí hậu|gihu|기후가 변해요.|Khí hậu thay đổi.
+8|범죄|tội phạm|beomjoe|범죄가 줄었어요.|Tội phạm giảm.
+#4
+0|의도|ý đồ|uido|의도를 알겠어요.|Tôi hiểu ý đồ.
+0|강조|nhấn mạnh|gangjo|중요성을 강조해요.|Nhấn mạnh tầm quan trọng.
+0|언급|đề cập|eongeup|문제를 언급했어요.|Đã đề cập vấn đề.
+0|합의|đồng thuận|habui|합의에 도달했어요.|Đã đạt đồng thuận.
+0|지적|chỉ ra|jijeok|오류를 지적했어요.|Đã chỉ ra lỗi sai.
+0|인식|nhận thức|insik|인식이 바뀌었어요.|Nhận thức đã thay đổi.
+0|비판|phê phán|bipan|정책을 비판해요.|Phê phán chính sách.
+1|편견|định kiến|pyeongyeon|편견을 버려요.|Hãy bỏ định kiến.
+1|예의|lễ nghi|yeui|예의가 바르다.|Lễ phép.
+2|식습관|thói quen ăn uống|siksupgwan|식습관을 바꿔요.|Tôi thay đổi thói quen ăn.
+3|소비자|người tiêu dùng|sobija|소비자가 늘었어요.|Người tiêu dùng tăng.
+3|생산|sản xuất|saengsan|제품을 생산해요.|Sản xuất sản phẩm.
+3|가치|giá trị|gachi|가치가 높아요.|Giá trị cao.
+3|수요|nhu cầu|suyo|수요가 늘었어요.|Nhu cầu tăng.
+3|공급|cung cấp|gonggeup|공급이 부족해요.|Nguồn cung thiếu.
+3|이익|lợi ích, lợi nhuận|iik|이익이 났어요.|Có lợi nhuận.
+3|손해|thiệt hại|sonhae|손해를 봤어요.|Tôi bị thiệt hại.
+3|물가|vật giá|mulga|물가가 올랐어요.|Vật giá tăng.
+4|명소|danh thắng|myeongso|유명한 명소예요.|Là danh thắng nổi tiếng.
+4|체험|trải nghiệm|cheheom|전통 체험을 해요.|Trải nghiệm truyền thống.
+5|기업|doanh nghiệp|gieop|대기업에 다녀요.|Tôi làm ở tập đoàn lớn.
+5|직원|nhân viên|jigwon|직원이 열 명이에요.|Có mười nhân viên.
+5|채용|tuyển dụng|chaeyong|신입을 채용해요.|Tuyển người mới.
+5|역할|vai trò|yeokal|중요한 역할을 해요.|Đóng vai trò quan trọng.
+5|과정|quá trình|gwajeong|과정이 중요해요.|Quá trình quan trọng.
+5|결과|kết quả|gyeolgwa|결과가 나왔어요.|Đã có kết quả.
+5|원인|nguyên nhân|wonin|원인을 찾아요.|Tìm nguyên nhân.
+5|방법|phương pháp|bangbeop|좋은 방법이 있어요.|Có cách hay.
+5|목적|mục đích|mokjeok|목적이 뭐예요?|Mục đích là gì?
+5|기준|tiêu chuẩn|gijun|기준을 정해요.|Đặt ra tiêu chuẩn.
+5|대상|đối tượng|daesang|대상이 어린이예요.|Đối tượng là trẻ em.
+5|연구|nghiên cứu|yeongu|연구를 해요.|Tôi nghiên cứu.
+5|분석|phân tích|bunseok|자료를 분석해요.|Phân tích dữ liệu.
+5|평가|đánh giá|pyeongga|평가가 좋아요.|Đánh giá tốt.
+5|검토|xem xét|geomto|내용을 검토해요.|Xem xét nội dung.
+5|계기|cơ hội, bước ngoặt|gyegi|이 일이 계기가 됐어요.|Việc này là bước ngoặt.
+6|정신|tinh thần|jeongsin|정신이 건강해야 해요.|Tinh thần phải khỏe mạnh.
+6|감정|cảm xúc|gamjeong|감정을 조절해요.|Điều chỉnh cảm xúc.
+6|불안|bất an|buran|불안한 마음이에요.|Lòng bất an.
+6|피로|mệt mỏi|piro|피로가 쌓여요.|Mệt mỏi tích tụ.
+7|오히려|ngược lại|ohiryeo|오히려 더 좋아요.|Ngược lại còn tốt hơn.
+7|비록|dù là|birok|비록 작지만 좋아요.|Dù nhỏ nhưng tốt.
+7|더욱|hơn nữa|deouk|더욱 노력해요.|Càng nỗ lực hơn.
+7|훨씬|hơn nhiều|hwolssin|훨씬 쉬워요.|Dễ hơn nhiều.
+7|직접|trực tiếp|jikjeop|직접 만났어요.|Gặp trực tiếp.
+7|대체로|nói chung|daechero|대체로 만족해요.|Nói chung hài lòng.
+7|상당히|khá nhiều|sangdanghi|상당히 어려워요.|Khá khó.
+7|적절하다|thích hợp|jeokjeolhada|적절한 방법이에요.|Là cách thích hợp.
+7|분명하다|rõ ràng|bunmyeonghada|이유가 분명해요.|Lý do rõ ràng.
+7|심각하다|nghiêm trọng|simgakada|문제가 심각해요.|Vấn đề nghiêm trọng.
+8|현대|hiện đại|hyeondae|현대 사회는 빨라요.|Xã hội hiện đại nhanh.
+8|산업|công nghiệp|saneop|산업이 발전했어요.|Công nghiệp phát triển.
+8|노동|lao động|nodong|노동 시간이 길어요.|Thời gian lao động dài.
+8|실업|thất nghiệp|sireop|실업이 늘었어요.|Thất nghiệp tăng.
+8|범위|phạm vi|beomwi|범위를 넓혀요.|Mở rộng phạm vi.
+8|평등|bình đẳng|pyeongdeung|평등한 사회를 만들어요.|Xây dựng xã hội bình đẳng.
+8|자유|tự do|jayu|자유를 원해요.|Tôi muốn tự do.
+8|권리|quyền lợi|gwolli|권리를 지켜요.|Bảo vệ quyền lợi.
+8|의무|nghĩa vụ|uimu|의무를 다해요.|Làm tròn nghĩa vụ.
+8|개인|cá nhân|gaein|개인 정보를 보호해요.|Bảo vệ thông tin cá nhân.
+8|집단|tập thể|jipdan|집단에 속해요.|Thuộc về tập thể.
+8|국민|người dân|gungmin|국민이 투표해요.|Người dân bỏ phiếu.
+8|선거|bầu cử|seongeo|선거가 열려요.|Cuộc bầu cử diễn ra.
+8|세금|thuế|segeum|세금을 내요.|Tôi nộp thuế.
+8|복지|phúc lợi|bokji|복지가 좋아요.|Phúc lợi tốt.
+8|고령화|già hóa dân số|goryeonghwa|고령화가 진행돼요.|Già hóa đang diễn ra.
+8|저출산|tỷ lệ sinh thấp|jeochulsan|저출산이 문제예요.|Tỷ lệ sinh thấp là vấn đề.
+#5
+0|견해|quan điểm|gyeonhae|견해 차이가 커요.|Khác biệt quan điểm lớn.
+0|토론|thảo luận, tranh biện|toron|주제를 토론해요.|Thảo luận chủ đề.
+0|논쟁|tranh luận|nonjaeng|논쟁이 계속돼요.|Tranh luận tiếp diễn.
+0|반발|phản đối|banbal|주민이 반발했어요.|Người dân phản đối.
+0|항의|kháng nghị|hangui|서비스에 항의했어요.|Tôi khiếu nại dịch vụ.
+0|공감|đồng cảm|gonggam|많은 사람이 공감해요.|Nhiều người đồng cảm.
+0|해명|giải trình|haemyeong|사실을 해명했어요.|Đã giải trình sự thật.
+0|발언|phát ngôn|bareon|그의 발언이 논란이 됐어요.|Phát ngôn của anh ấy gây tranh cãi.
+1|배려|quan tâm chu đáo|baeryeo|서로 배려해야 해요.|Phải quan tâm lẫn nhau.
+1|육아|chăm con|yuka|육아가 힘들어요.|Chăm con vất vả.
+1|부양|phụng dưỡng|buyang|부모를 부양해요.|Phụng dưỡng cha mẹ.
+1|소외|bị xa lánh|soeoi|소외된 계층을 도와요.|Giúp tầng lớp bị bỏ rơi.
+2|식량|lương thực|singnyang|식량이 부족해요.|Thiếu lương thực.
+2|위생|vệ sinh|wisaeng|위생에 신경 써요.|Chú ý vệ sinh.
+3|경기|tình hình kinh tế|gyeonggi|경기가 나빠요.|Kinh tế xấu.
+3|불황|suy thoái kinh tế|bulhwang|불황이 길어져요.|Suy thoái kéo dài.
+3|투자|đầu tư|tuja|주식에 투자해요.|Đầu tư cổ phiếu.
+3|금융|tài chính|geumyung|금융 시장이 흔들려요.|Thị trường tài chính chao đảo.
+3|대출|khoản vay|daechul|대출을 받았어요.|Tôi đã vay tiền.
+3|이자|lãi suất|ija|이자가 올랐어요.|Lãi suất tăng.
+3|소득|thu nhập|sodeuk|소득이 줄었어요.|Thu nhập giảm.
+3|자산|tài sản|jasan|자산을 관리해요.|Quản lý tài sản.
+3|인상|tăng (giá, lương)|insang|임금을 인상했어요.|Đã tăng lương.
+3|인하|giảm (giá, lãi)|inha|금리를 인하했어요.|Đã giảm lãi suất.
+3|상승|tăng lên|sangseung|가격이 상승했어요.|Giá tăng lên.
+3|하락|giảm xuống|harak|주가가 하락했어요.|Giá cổ phiếu giảm.
+3|거래|giao dịch|georae|거래가 활발해요.|Giao dịch sôi động.
+5|기관|cơ quan|gigwan|공공 기관에서 일해요.|Tôi làm ở cơ quan nhà nước.
+5|단체|đoàn thể|danche|시민 단체가 모였어요.|Các tổ chức dân sự đã họp.
+5|조직|tổ chức|jojik|조직을 개편해요.|Cải tổ tổ chức.
+5|운영|vận hành|unyeong|가게를 운영해요.|Tôi điều hành cửa hàng.
+5|관리|quản lý|gwalli|건강을 관리해요.|Quản lý sức khỏe.
+5|구조|cấu trúc|gujo|사회 구조가 변해요.|Cơ cấu xã hội thay đổi.
+5|체계|hệ thống|chegye|체계를 갖춰요.|Xây dựng hệ thống.
+5|절차|thủ tục|jeolcha|절차가 복잡해요.|Thủ tục phức tạp.
+5|추진|thúc đẩy|chujin|사업을 추진해요.|Thúc đẩy dự án.
+5|실행|thực hiện|silhaeng|계획을 실행해요.|Thực hiện kế hoạch.
+5|달성|đạt được|dalseong|목표를 달성했어요.|Đã đạt mục tiêu.
+5|확보|đảm bảo|hwakbo|인력을 확보해요.|Đảm bảo nhân lực.
+5|개발|phát triển, khai phát|gaebal|새 기술을 개발해요.|Phát triển công nghệ mới.
+5|성장|tăng trưởng|seongjang|경제가 성장해요.|Kinh tế tăng trưởng.
+5|창출|tạo ra|changchul|일자리를 창출해요.|Tạo ra việc làm.
+5|경력|kinh nghiệm làm việc|gyeongnyeok|경력이 오 년이에요.|Có năm năm kinh nghiệm.
+5|인력|nhân lực|illyeok|인력이 부족해요.|Thiếu nhân lực.
+5|근로자|người lao động|geunroja|근로자를 보호해요.|Bảo vệ người lao động.
+5|임금|tiền lương|imgeum|임금이 올랐어요.|Tiền lương tăng.
+6|질환|bệnh tật|jilhwan|만성 질환이 늘어요.|Bệnh mạn tính tăng.
+6|의료|y tế|uiryo|의료 서비스가 좋아요.|Dịch vụ y tế tốt.
+6|진료|khám bệnh|jinryo|진료를 받아요.|Tôi được khám bệnh.
+6|심리|tâm lý|simni|심리 상태가 불안해요.|Tâm lý bất an.
+7|급격히|một cách đột ngột|geupgyeokhi|급격히 늘었어요.|Tăng đột ngột.
+7|점차|dần dần|jeomcha|점차 나아져요.|Dần dần tốt lên.
+7|다소|phần nào|daso|다소 어려워요.|Hơi khó.
+7|지나치게|quá mức|jinachige|지나치게 걱정해요.|Lo lắng quá mức.
+7|비교적|tương đối|bigyojeok|비교적 쉬워요.|Tương đối dễ.
+7|대체|thay thế|daeche|에너지를 대체해요.|Thay thế năng lượng.
+7|일시적|mang tính tạm thời|ilsijeok|일시적인 현상이에요.|Là hiện tượng tạm thời.
+7|지속적|mang tính liên tục|jisokjeok|지속적인 관심이 필요해요.|Cần sự quan tâm liên tục.
+7|궁극적|mang tính cuối cùng|gunggeukjeok|궁극적인 목표예요.|Là mục tiêu cuối cùng.
+7|장기적|dài hạn|janggijeok|장기적인 계획이에요.|Là kế hoạch dài hạn.
+7|단기적|ngắn hạn|dangijeok|단기적 효과가 있어요.|Có hiệu quả ngắn hạn.
+7|불가피하다|không thể tránh khỏi|bulgapihada|변화는 불가피해요.|Thay đổi là điều không thể tránh.
+7|막대하다|to lớn|makdaehada|막대한 비용이 들어요.|Tốn chi phí khổng lồ.
+7|뚜렷하다|rõ rệt|tturyeotada|차이가 뚜렷해요.|Khác biệt rõ rệt.
+7|엄격하다|nghiêm ngặt|eomgyeokada|규정이 엄격해요.|Quy định nghiêm ngặt.
+7|합리적|hợp lý|hapnijeok|합리적인 가격이에요.|Giá hợp lý.
+7|효과적|hiệu quả|hyogwajeok|효과적인 방법이에요.|Là cách hiệu quả.
+7|가능하다|khả thi|ganeunghada|가능한 일이에요.|Là việc khả thi.
+8|공공|công cộng|gonggong|공공 장소에서 조용히 해요.|Giữ yên lặng nơi công cộng.
+8|재난|thảm họa|jaenan|재난에 대비해요.|Chuẩn bị cho thảm họa.
+8|인권|nhân quyền|ingwon|인권을 존중해요.|Tôn trọng nhân quyền.
+8|차별|phân biệt đối xử|chabyeol|차별을 없애요.|Xóa bỏ phân biệt đối xử.
+8|다문화|đa văn hóa|damunhwa|다문화 가정이 늘어요.|Gia đình đa văn hóa tăng.
+8|이민|di cư|imin|이민자가 늘었어요.|Người nhập cư tăng.
+8|세계화|toàn cầu hóa|segyehwa|세계화가 진행돼요.|Toàn cầu hóa đang diễn ra.
+8|디지털|kỹ thuật số|dijiteol|디지털 시대예요.|Là thời đại số.
+8|인공지능|trí tuệ nhân tạo|ingongjineung|인공지능이 발달해요.|Trí tuệ nhân tạo phát triển.
+8|보안|bảo mật|boan|보안을 강화해요.|Tăng cường bảo mật.
+8|검증|kiểm chứng|geomjeung|사실을 검증해요.|Kiểm chứng sự thật.
+8|허용|cho phép|heoyong|사용을 허용해요.|Cho phép sử dụng.
+8|금지|cấm|geumji|출입을 금지해요.|Cấm ra vào.
+8|단속|kiểm soát, xử lý|dansok|불법 주차를 단속해요.|Xử lý đỗ xe trái phép.
+8|처벌|xử phạt|cheobeol|법으로 처벌해요.|Xử phạt theo luật.
+8|법안|dự luật|beoban|법안이 통과됐어요.|Dự luật đã được thông qua.
+8|시행|thi hành|sihaeng|새 법을 시행해요.|Thi hành luật mới.
+8|개정|sửa đổi|gaejeong|법을 개정해요.|Sửa đổi luật.
+8|폐지|bãi bỏ|pyeji|제도를 폐지해요.|Bãi bỏ chế độ.
+8|정착|định hình, an cư|jeongchak|새 문화가 정착됐어요.|Văn hóa mới đã định hình.
+8|파급|lan tỏa|pageup|영향이 파급돼요.|Ảnh hưởng lan tỏa.
+8|현실|thực tế|hyeonsil|현실을 직시해요.|Nhìn thẳng thực tế.
+8|문명|văn minh|munmyeong|고대 문명을 연구해요.|Nghiên cứu văn minh cổ đại.
+8|생태계|hệ sinh thái|saengtaegye|생태계가 파괴돼요.|Hệ sinh thái bị phá hủy.
+8|멸종|tuyệt chủng|myeoljong|동물이 멸종 위기예요.|Động vật có nguy cơ tuyệt chủng.
+8|자원|tài nguyên|jawon|자원을 아껴요.|Tiết kiệm tài nguyên.
+8|보전|bảo tồn|bojeon|자연을 보전해요.|Bảo tồn thiên nhiên.`;
+(()=>{let L=1;const have=new Set(ALL.map(w=>w[0]));NW.split("\n").forEach(l=>{if(l[0]=="#"){L=+l.slice(1);return}const a=l.split("|");if(have.has(a[1]))return;have.add(a[1]);ALL.push([a[1],a[2],a[3],a[4],a[5],L,+a[0]])})})();
+const DK0=[1,2,3,4,5,6].map(l=>({id:"l"+l,g:"Theo cấp độ",n:LN[l],w:ALL.filter(w=>w[5]==l)})).concat(Object.entries(TP).map(([n,t],i)=>{const q=t.split(" ");return{id:"t"+i,g:"Theo lĩnh vực",n,w:ALL.filter(w=>q.includes(w[0])||w[6]===i)}}));
+let DK=DK0;function bd(){DK=DK0.concat((S.imp||[]).map(d=>({id:d.id,g:"Bộ từ của tôi",n:d.n,w:d.w,imp:1})))}
+const ALLG=[];for(const l in G)G[l].forEach(g=>ALLG.push([...g,+l]));
+const GR=[["🔤 Trợ từ","Gắn sau danh từ để chỉ vai trò trong câu: chủ đề, chủ ngữ, tân ngữ, nơi chốn. Danh từ có patchim dùng dạng trước (은, 이, 을), không có patchim dùng dạng sau (는, 가, 를).",["이에요 / 예요","은 / 는","이 / 가","을 / 를","에"]],
+["🗣 Đuôi câu & kính ngữ","Quyết định mức độ lịch sự. Đuôi -아/어요 dùng hằng ngày; -(으)세요 dùng khi mời, đề nghị hoặc tỏ kính trọng; 안 đặt trước động từ để phủ định.",["-아/어요","-(으)세요","안 + động từ"]],
+["🎯 Ý định & dự định","Diễn đạt mong muốn, kế hoạch hoặc lời rủ rê: muốn làm, sẽ làm, định làm, cùng làm nhé.",["-고 싶다","-(으)ㄹ 거예요","-(으)려고","-(으)ㄹ까요?"]],
+["🔗 Nguyên nhân & kết quả","Nối hai vế để nêu lý do và hệ quả. -아/어서 không dùng với câu đề nghị hay mệnh lệnh ở vế sau, còn -(으)니까 thì dùng được.",["-아/어서","-(으)니까","-기 때문에","-는 바람에","-게 되다"]],
+["⚖ Điều kiện & tương phản","Nối hai vế có điều kiện hoặc đối lập: nếu, nhưng, dù cho, trái lại.",["-(으)면","-지만","-는데","-(으)ㄴ/는 반면에","-더라도","-아/어 봤자"]],
+["💪 Khả năng, nghĩa vụ, kinh nghiệm","Nói về việc phải làm, có thể làm hoặc đã từng làm.",["-아/어야 하다","-(으)ㄹ 수 있다","-(으)ㄴ 적이 있다"]],
+["💭 Phỏng đoán & đánh giá","Nêu suy đoán, nhận định, đánh giá hoặc quy luật chung.",["-(으)ㄴ/는 것 같다","-(으)ㄹ 텐데","-(으)ㄹ 만하다","-기 마련이다"]],
+["✨ Mục đích & bổ sung","Thêm thông tin: mục đích, trạng thái giữ nguyên, bổ sung ý.",["-도록","-(으)ㄴ 채로","-(으)ㄹ 뿐만 아니라"]]];
+const TABS=[["home","⌂","Tổng quan"],["vocab","✿","Từ vựng"],["quiz","✎","Luyện tập"],["gram","❀","Ngữ pháp"],["hangul","ㄱ","Bảng chữ"]];
+const MODES=[["flash","🃏","Thẻ ghi nhớ","Lật thẻ, tự đánh giá nhớ hoặc chưa nhớ","Từ vựng: +2 mỗi từ nhớ"],["mc","✅","Trắc nghiệm","Hàn ↔ Việt, 4 đáp án","Luyện tập: +1 mỗi câu đúng"],["match","🔗","Nối từ với nghĩa","Ghép 5 cặp từ và nghĩa","Luyện tập: +1 mỗi cặp"],["type","⌨","Gõ từ vựng","Đọc nghĩa, gõ lại từ tiếng Hàn","Luyện tập: +2 mỗi từ"],["ls","🎧","Nghe & chọn nghĩa","Nghe từ, chọn nghĩa đúng","Nghe & nói: +2 mỗi câu"],["dict","✍","Nghe viết","Nghe từ, gõ lại bằng Hangul","Nghe & nói: +3 mỗi từ"]];
+const CAP={v:30,g:20,p:25,l:25},CN={v:"Từ vựng",g:"Ngữ pháp",p:"Luyện tập",l:"Nghe & nói"};
+let S={deck:"l1",known:{},hist:{},day:null,mimi:1,voice:"",rate:.85,rv:{}};
+try{Object.assign(S,JSON.parse(localStorage.getItem("hanbit")||"{}"))}catch(e){}
+S.hist=S.hist||{};S.rv=S.rv||{};
+let tab="home",vw="list",fi=0,flip=false,R=null,TY=null,MT=null,PM=null,VO=null;
+const $=id=>document.getElementById(id),save=()=>{try{localStorage.setItem("hanbit",JSON.stringify(S))}catch(e){}},rnd=a=>[...a].sort(()=>Math.random()-.5);
+const deck=()=>DK.find(d=>d.id==S.deck)||DK[0],words=()=>deck().w,cw=()=>words()[fi%words().length];
+function day(){const d=new Date().toDateString();if(!S.day||S.day.d!=d)S.day={d,v:0,g:0,p:0,l:0,u:{}};return S.day}
+const tot=()=>{const D=day();return D.v+D.g+D.p+D.l};
+function pt(c,n,k){const D=day();if(k&&D.u[k])return 0;const a=Math.min(n,CAP[c]-D[c]);if(a<=0)return 0;D[c]+=a;if(k)D.u[k]=1;S.hist[D.d]=tot();save();head();return a}
+function streak(){let n=0,d=new Date();if((S.hist[d.toDateString()]||0)<30)d.setDate(d.getDate()-1);while((S.hist[d.toDateString()]||0)>=30){n++;d.setDate(d.getDate()-1)}return n}
+function kv(){try{return speechSynthesis.getVoices().filter(v=>/^ko([-_]|$)/i.test(v.lang)||/korean|한국/i.test(v.name))}catch(e){return[]}}
+function pick(){const l=kv();VO=l.find(v=>v.name==S.voice)||l[0]||null}
+try{pick();speechSynthesis.onvoiceschanged=()=>{pick();if(tab=="home")home()}}catch(e){}
+function say(t,r,n=1){r=r||S.rate||.85;if(!("speechSynthesis" in window)){cat("Trình duyệt này chưa hỗ trợ đọc giọng nói 😿");return}
+pick();if(!VO&&speechSynthesis.getVoices().length)cat("Máy bạn chưa có giọng tiếng Hàn. Hãy cài giọng Korean trong Cài đặt nhé 🐾");
+speechSynthesis.cancel();setTimeout(()=>{for(let i=0;i<n;i++){const u=new SpeechSynthesisUtterance(t);u.lang="ko-KR";if(VO)u.voice=VO;u.rate=r;speechSynthesis.speak(u)}},80)}
+function head(){$("xp").textContent="⭐ "+tot()+"/100 · 🔥 "+streak()+" ngày";$("mt").textContent=S.mimi===0?"🐱 Hiện Mimi":"🐱 Ẩn Mimi";$("cat").style.display=S.mimi===0?"none":"";
+$("nav").innerHTML=TABS.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="go('${t[0]}')"><span class="kr">${t[1]}</span>${t[2]}</button>`).join("")}
+function togMimi(){S.mimi=S.mimi===0?1:0;save();head();if(S.mimi)tip()}
+function go(t){tab=t;vw="list";R=TY=MT=null;render()}
+function back(){go(PM=="gram"?"gram":"quiz")}
+function render(){head();({home,vocab,quiz:practice,gram,hangul})[tab]();scrollTo(0,0);tip()}
+function home(){const D=day(),t=tot();
+const wk=[...Array(7)].map((_,i)=>{const x=new Date();x.setDate(x.getDate()-6+i);return[["CN","T2","T3","T4","T5","T6","T7"][x.getDay()],S.hist[x.toDateString()]||0]});
+$("m").innerHTML=`<div class="card hero" style="display:flex;gap:16px;align-items:center"><div class="ring" style="--v:${t}"><b>${t}</b></div><div><h2>Điểm chuyên cần hôm nay</h2><p style="margin:0">${t}/100 · chuỗi ${streak()} ngày (đạt từ 30 điểm/ngày)</p></div></div>
+<div class="card"><b>Chi tiết hôm nay</b>${Object.keys(CAP).map(c=>`<div style="margin-top:10px"><div style="display:flex;justify-content:space-between"><span>${CN[c]}</span><span class="hint">${D[c]}/${CAP[c]}</span></div><div class="bar pb"><i style="width:${D[c]/CAP[c]*100}%"></i></div></div>`).join("")}</div>
+<div class="card"><b>7 ngày gần đây</b><div class="wk">${wk.map(w=>`<div><small>${w[1]}</small><i style="height:${Math.max(4,w[1]*.6)}px"></i><small>${w[0]}</small></div>`).join("")}</div></div>
+<div class="card"><b>Cách tính điểm (tối đa 100/ngày)</b><p class="hint" style="margin:6px 0 0">• Từ vựng (30): +2 mỗi từ bấm Đã nhớ.<br>• Luyện tập (25): +1 mỗi câu trắc nghiệm hoặc cặp nối đúng, +2 mỗi từ gõ đúng.<br>• Nghe & nói (25): +2 nghe chọn nghĩa, +3 nghe viết, +1 mỗi từ nhại phát âm (nút Lặp 3 lần).<br>• Ngữ pháp (20): +1 mỗi mẫu ôn xong, +2 mỗi câu hỏi đúng.<br>Mỗi từ hoặc mẫu chỉ tính điểm một lần mỗi ngày.</p></div>
+<div class="card"><b>Giọng đọc tiếng Hàn</b><p class="hint" style="margin:6px 0 10px">${kv().length?"Chọn giọng và chỉnh tốc độ đọc:":"Máy chưa có giọng Hàn. Cài giọng Korean trong Cài đặt > Chuyển văn bản thành giọng nói, rồi tải lại trang."}</p>${kv().length?`<select class="opt" onchange="S.voice=this.value;save();pick();say('안녕하세요')">${kv().map(v=>`<option ${VO&&v.name==VO.name?"selected":""}>${v.name}</option>`).join("")}</select>`:""}<div class="hint">Tốc độ đọc</div><input type="range" min=".5" max="1.2" step=".05" value="${S.rate||.85}" style="width:100%;accent-color:var(--p)" onchange="S.rate=+this.value;save()"><button class="btn alt" style="width:100%;margin-top:10px" onclick="say('안녕하세요, 저는 미미예요')">🔊 Nghe thử giọng Hàn</button></div>`}
+function vocab(){vw=="list"?vlist():study()}
+function vlist(){const g={};DK.forEach(d=>(g[d.g]=g[d.g]||[]).push(d));
+$("m").innerHTML=`<div class="card mode" onclick="impv()"><span class="ic">➕</span><div><b>Nhập từ vựng của bạn</b><p class="hint" style="margin:0">Dán hoặc tải danh sách từ TOPIK để tạo bộ từ riêng</p></div></div>`+Object.entries(g).map(([n,a])=>`<h3 class="sec">${n}</h3><div class="grid">${a.map(d=>{const k=d.w.filter(w=>S.known[w[0]]).length;return`<div class="card deck" onclick="openD('${d.id}')"><b>${d.n}</b><small class="hint">${k}/${d.w.length} từ đã nhớ</small><div class="bar pb"><i style="width:${k/d.w.length*100}%"></i></div></div>`}).join("")}</div>`).join("")}
+function impv(){$("m").innerHTML=`<button class="btn alt" onclick="vw='list';vocab()">← Các bộ từ</button><div class="card" style="margin-top:12px"><b>Nhập từ vựng</b><p class="hint">Mỗi dòng một từ, các cột cách nhau bằng dấu | hoặc Tab hoặc dấu phẩy:<br><span class="kr">한국어 | nghĩa | phiên âm | câu ví dụ | nghĩa câu ví dụ</span><br>Chỉ cần 2 cột đầu (từ và nghĩa), các cột sau có thể bỏ trống. Có thể dán thẳng từ Excel hoặc Google Sheets, hoặc tải file .txt/.csv.<br>Nếu nghĩa có dấu phẩy, hãy dùng dấu | để ngăn cách.</p><input id="dn" class="inp" placeholder="Tên bộ từ (vd: TOPIK I - Bài 1)"><select id="dl" class="opt" style="margin-bottom:8px">${[1,2,3,4,5,6].map(l=>`<option value="${l}">${LN[l]}</option>`).join("")}</select><textarea id="dt" class="inp kr" rows="9" placeholder="물 | nước | mul | 물을 마셔요. | Tôi uống nước.&#10;학교 | trường học"></textarea><input type="file" id="df" accept=".txt,.csv,.tsv" onchange="impf(this)" style="margin-bottom:10px"><button class="btn" style="width:100%" onclick="impgo()">Tạo bộ từ</button><p class="hint" id="im"></p></div>`}
+function impf(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("dt").value=r.result;if(!$("dn").value)$("dn").value=f.name.replace(/\.[^.]+$/,"")};r.readAsText(f)}
+function impgo(){const w=$("dt").value.split(/\r?\n/).map(l=>{if(!l.includes("|")&&!l.includes("\t")){const m=l.trim().match(/^([가-힣()~/ ]+?)\s+([A-Za-zÀ-ỹ].*)$/);if(m)return[m[1].trim(),m[2].trim()]}return l.split(l.includes("|")?"|":l.includes("\t")?"\t":",").map(x=>x.trim())}).filter(a=>a[0]&&a[1]).map(a=>[a[0],a[1],a[2]||"",a[3]||"",a[4]||"",+$("dl").value]);
+if(!w.length){$("im").textContent="Chưa có dòng hợp lệ. Mỗi dòng cần ít nhất: từ tiếng Hàn và nghĩa.";return}
+const n=$("dn").value.trim()||"Bộ từ của tôi";S.imp=S.imp||[];const id="i"+Date.now();S.imp.push({id,n,w});save();bd();cat("Đã tạo bộ "+n+" với "+w.length+" từ 🎉");openD(id)}
+function delD(id,b){if(!b.dataset.c){b.dataset.c=1;b.textContent="Bấm lại để xóa";return}S.imp=(S.imp||[]).filter(d=>d.id!=id);S.deck="l1";save();bd();vw="list";vocab()}
+function openD(id){S.deck=id;save();fi=0;flip=false;vw="study";vocab()}
+function study(){const d=deck(),w=d.w,c=cw();
+$("m").innerHTML=`<div style="display:flex;align-items:center;gap:10px"><button class="btn alt" onclick="vw='list';vocab()">← Các bộ từ</button><b>${d.n}</b>${d.imp?`<button class="btn alt" style="margin-left:auto" onclick="delD('${d.id}',this)">🗑 Xóa bộ</button>`:""}</div>
+<div class="hint" style="margin:10px 0 8px">Thẻ ${fi%w.length+1}/${w.length} · bấm thẻ để lật, mặt sau có câu ví dụ</div>
+<div class="flash ${flip?"f":""}" onclick="this.classList.toggle('f');flip=!flip"><div class="fi"><div class="face"><span class="chip" style="margin-bottom:8px">Cấp ${c[5]}</span><div class="big kr">${c[0]}</div><div class="hint">${c[2]}</div></div><div class="face b"><div class="mean">${c[1]}</div><div class="kr" style="margin-top:12px;font-weight:700">${c[3]}</div><div class="hint">${c[4]}</div></div></div></div>
+<div class="row" style="margin-bottom:10px"><button class="btn alt" onclick="sp(0)">🔊 Nghe</button><button class="btn alt" onclick="sp(1)">🔁 Lặp 3 lần</button><button class="btn alt" onclick="sp(2)">💬 Câu mẫu</button></div>
+<div class="row" style="margin-bottom:10px"><button class="btn alt" onclick="fi=Math.max(0,fi-1);flip=false;study()">Trước</button><button class="btn alt" onclick="fi++;flip=false;study()">Bỏ qua</button></div>
+<div class="row"><button class="btn no" onclick="mark(false)">Chưa nhớ</button><button class="btn ok" onclick="mark(true)">Đã nhớ</button></div>
+<div class="card" style="margin-top:14px"><b>Danh sách ${w.length} từ</b>${w.map(x=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)"><span class="kr">${S.known[x[0]]?"✓ ":""}${x[0]}</span><span class="hint">${x[1]}</span></div>`).join("")}</div>`}
+function sp(k){const c=cw();if(k==0)say(c[0]);else if(k==1){say(c[0],.6,3);if(pt("l",1,"sp"+c[0]))cat("Nhại phát âm: +1 điểm ⭐")}else say(c[3]||c[0],.8)}
+function mark(ok){const c=cw();if(ok){S.known[c[0]]=1;cat(pt("v",2,"v"+c[0])?"Đã nhớ! +2 điểm chuyên cần ⭐":"Đã nhớ! 🎀")}else{delete S.known[c[0]];cat("Không sao, mình sẽ cho bạn gặp lại từ này nhé 🐾")}save();fi++;flip=false;study()}
+function dsel(cb){const g={};DK.forEach(d=>(g[d.g]=g[d.g]||[]).push(d));return`<select class="opt" style="margin-top:8px" onchange="S.deck=this.value;save();${cb}">${Object.entries(g).map(([n,a])=>`<optgroup label="${n}">${a.map(d=>`<option value="${d.id}" ${d.id==S.deck?"selected":""}>${d.n} (${d.w.length})</option>`).join("")}</optgroup>`).join("")}</select>`}
+function practice(){R=TY=MT=null;$("m").innerHTML=`<div class="card"><b>Bộ từ luyện tập</b>${dsel("practice()")}</div>`+MODES.map(m=>`<div class="card mode" onclick="start('${m[0]}')"><span class="ic">${m[1]}</span><div><b>${m[2]}</b><p class="hint" style="margin:0">${m[3]}</p><small style="color:var(--p)">${m[4]}</small></div></div>`).join("")}
+function start(m){PM=m;const w=words();
+if(m=="flash"){tab="vocab";vw="study";fi=0;flip=false;return render()}
+if(m=="gram")return gq();
+if(m=="mc"||m=="ls")return runQ(mkQ(m,w,Math.min(10,w.length)));
+if(m=="match")return matchStart();
+TY={m,items:rnd(w).slice(0,Math.min(10,w.length)),i:0,s:0,chk:0};ts()}
+function mkQ(m,w,n){const pool=w.length>=4?w:ALL;return rnd(w).slice(0,n).map(c=>{const vk=m=="mc"&&Math.random()<.5,o=rnd([c,...rnd(pool.filter(x=>x[0]!=c[0]&&x[1]!=c[1])).slice(0,3)]);
+return{kr:vk,o:o.map(x=>vk?x[0]:x[1]),a:o.indexOf(c),w:c[0],pre:m=="ls",stem:m=="ls"?`<div style="text-align:center;margin:8px 0 16px"><button class="btn" onclick="say('${c[0]}')">🔊 Nghe lại</button></div>`:vk?`<div class="q" style="font-size:26px">${c[1]}</div>`:`<div class="q kr">${c[0]}</div>`,aw:()=>pt(m=="ls"?"l":"p",m=="ls"?2:1,m+c[0])}})}
+function runQ(items){R={items,i:0,s:0,lock:0};qs()}
+function hdr(i,n,s){return`<div class="row" style="align-items:center;margin-bottom:8px"><button class="btn alt" style="flex:none" onclick="back()">← Thoát</button><span class="hint" style="text-align:right">Câu ${i+1}/${n} · đúng ${s}</span></div><div class="bar pb" style="margin-bottom:10px"><i style="width:${i/n*100}%"></i></div>`}
+function qs(){const r=R;if(r.i>=r.items.length)return fin(r.s,r.items.length);const it=r.items[r.i];r.lock=0;
+$("m").innerHTML=hdr(r.i,r.items.length,r.s)+`<div class="card">${it.stem}${it.o.map((o,j)=>`<button class="opt ${it.kr?"kr":""}" id="o${j}" onclick="ans(${j})">${o}</button>`).join("")}</div>`;if(it.pre)say(it.w)}
+function ans(j){const r=R;if(r.lock)return;r.lock=1;const it=r.items[r.i],ok=j==it.a;it.o.forEach((_,k)=>{const b=$("o"+k);b.disabled=true;if(k==it.a)b.classList.add("ok")});
+if(!ok)$("o"+j).classList.add("no");else{r.s++;it.aw()}cheer(ok);say(it.w);setTimeout(()=>{r.i++;qs()},it.long?2400:1200)}
+function fin(s,n){$("m").innerHTML=`<div class="card hero" style="text-align:center"><h2>Hoàn thành! 🎉</h2><p>Đúng ${s}/${n} · điểm chuyên cần hôm nay ${tot()}/100</p><div class="row"><button class="btn w" onclick="start(PM)">Làm lại</button><button class="btn w" onclick="back()">Xong</button></div></div>`}
+function matchStart(){const set=rnd(words()).slice(0,Math.min(5,words().length));MT={set,L:rnd(set),Rr:rnd(set),sel:null,done:{},wrong:0};ms()}
+function ms(){const t=MT,fn=Object.keys(t.done).length==t.set.length;
+$("m").innerHTML=`<div class="row" style="align-items:center;margin-bottom:12px"><button class="btn alt" style="flex:none" onclick="back()">← Thoát</button><span class="hint">Chọn từ Hàn, rồi chọn nghĩa tương ứng</span></div><div class="grid"><div>${t.L.map((c,i)=>`<button class="opt kr ${t.done[c[0]]?"ok":""} ${t.sel==i?"sel":""}" ${t.done[c[0]]?"disabled":""} onclick="mL(${i})">${c[0]}</button>`).join("")}</div><div>${t.Rr.map((c,i)=>`<button class="opt ${t.done[c[0]]?"ok":""}" ${t.done[c[0]]?"disabled":""} onclick="mR(${i})">${c[1]}</button>`).join("")}</div></div>${fn?`<div class="card hero" style="text-align:center"><h2>Nối xong! 🎉</h2><p>Nối sai ${t.wrong} lần</p><div class="row"><button class="btn w" onclick="matchStart()">Bộ khác</button><button class="btn w" onclick="back()">Xong</button></div></div>`:""}`}
+function mL(i){MT.sel=i;say(MT.L[i][0]);ms()}
+function mR(i){const t=MT;if(t.sel==null)return cat("Hãy chọn từ tiếng Hàn trước nhé 🐾");const a=t.L[t.sel],b=t.Rr[i];if(a[0]==b[0]){t.done[a[0]]=1;pt("p",1,"m"+a[0]);cheer(1)}else{t.wrong++;cheer(0)}t.sel=null;ms()}
+function ts(){const t=TY;if(t.i>=t.items.length)return fin(t.s,t.items.length);const c=t.items[t.i],d=t.m=="dict";t.chk=0;
+$("m").innerHTML=hdr(t.i,t.items.length,t.s)+`<div class="card">${d?`<div style="text-align:center;margin:8px 0 12px"><button class="btn" onclick="say(TY.items[TY.i][0])">🔊 Nghe lại</button> <button class="btn alt" onclick="say(TY.items[TY.i][0],.55)">🐢 Chậm</button></div>`:`<div class="q" style="font-size:26px">${c[1]}</div>`}<input id="ans" class="inp kr" autocomplete="off" autocapitalize="off" placeholder="Gõ tiếng Hàn (hoặc phiên âm Latin)" onkeydown="if(event.key=='Enter')chk()"><p class="hint" id="fb">${d?"Nghe và gõ lại từ bạn nghe được.":"Gõ từ tiếng Hàn có nghĩa ở trên."} Chưa có bàn phím Hàn? Gõ phiên âm cũng được.</p><button class="btn" style="width:100%" id="cb" onclick="chk()">Kiểm tra</button></div>`;$("ans").focus();if(d)say(c[0])}
+function chk(){const t=TY;if(t.chk){t.i++;return ts()}const c=t.items[t.i],n=x=>x.toLowerCase().replace(/[\s.,!?]/g,""),a=n($("ans").value);if(!a)return;t.chk=1;const ok=a==n(c[0])||a==n(c[2]);
+if(ok){t.s++;t.m=="dict"?pt("l",3,"d"+c[0]):pt("p",2,"t"+c[0])}
+$("fb").innerHTML=`<b style="color:var(--${ok?"ok":"no"})">${ok?"Chính xác!":"Chưa đúng."}</b> Đáp án: <span class="kr">${c[0]}</span> ${c[2]?"("+c[2]+") ":""}· ${c[1]}`;$("cb").textContent="Tiếp";cheer(ok);say(c[0])}
+function gram(){const grs=GR.map(g=>[g[0],g[1],g[2].map(p=>ALLG.find(x=>x[0]==p)).filter(Boolean)]),rv=ALLG.filter(x=>S.rv[x[0]]).length;
+$("m").innerHTML=`<div class="card hero"><h2>Ngữ pháp TOPIK</h2><p>${ALLG.length} mẫu · ${GR.length} nhóm · đã ôn ${rv}/${ALLG.length}</p><button class="btn w" onclick="start('gram')">Luyện câu hỏi ngữ pháp</button></div>`+grs.map((g,gi)=>`<details class="card g" ${gi==0?"open":""}><summary><b>${g[0]}</b> <span class="hint">· ${g[2].length} mẫu</span><p class="hint" style="margin:4px 0 0">${g[1]}</p></summary>${g[2].map(x=>{const i=ALLG.indexOf(x),d=S.rv[x[0]];return`<div class="gi"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${x[0]}</h3><span class="chip">Cấp ${x[4]}</span></div><p><b>Nghĩa:</b> ${x[1]}</p><div class="ex"><small class="hint">Ví dụ</small><p class="kr" style="font-weight:700">${x[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${i}][2],.8)">🔊</button></p><p class="hint">${x[3]}</p></div><button class="btn ${d?"ok":"alt"}" style="margin-top:8px" onclick="rev(${i},this)">${d?"✓ Đã ôn":"Đánh dấu đã ôn"}</button></div>`}).join("")}</details>`).join("")}
+function rev(i,b){S.rv[ALLG[i][0]]=1;save();b.className="btn ok";b.textContent="✓ Đã ôn";cat(pt("g",1,"r"+i)?"Ôn xong mẫu này: +1 điểm ⭐":"Đã ôn mẫu này!")}
+function gq(){runQ(rnd(ALLG).slice(0,8).map(x=>{const o=rnd([x,...rnd(ALLG.filter(y=>y[0]!=x[0])).slice(0,3)]);return{kr:1,o:o.map(y=>y[0]),a:o.indexOf(x),w:x[2],long:1,stem:`<p class="hint" style="margin:0">Câu này dùng mẫu ngữ pháp nào?</p><div class="q kr" style="font-size:22px;margin:8px 0">${x[2]}</div><p class="hint" style="text-align:center;margin:0 0 12px">${x[3]}</p>`,aw:()=>pt("g",2,"gq"+x[0])}}))}
+function hangul(){$("m").innerHTML=`<p class="hint">Bấm vào từng chữ để nghe phát âm. 14 phụ âm và 8 nguyên âm cơ bản.</p><div class="hg">${H.map(h=>`<button onclick="say('${h[2]}')"><b class="kr">${h[0]}</b><small>${h[1]}</small></button>`).join("")}</div>`}
+const TIPS={home:["Chào bạn, mình là Mimi! Học đều 10 phút mỗi ngày tốt hơn học dồn cuối tuần 🐱","Đạt 30 điểm chuyên cần mỗi ngày để giữ chuỗi nhé!","Hãy thử học theo lĩnh vực: gom từ cùng chủ đề sẽ dễ nhớ hơn."],vocab:["Chọn bộ từ theo cấp độ hoặc theo lĩnh vực bạn thích nhé.","Bấm 🔁 để nghe lặp chậm rồi nhại theo, được cộng điểm nghe & nói.","Đọc to câu ví dụ, nhớ cả cụm dễ hơn nhớ từng từ."],quiz:["Mỗi dạng bài cộng điểm vào một mục khác nhau, thử đủ cả sáu nhé!","Chưa có bàn phím Hàn? Cứ gõ phiên âm, Mimi vẫn chấm đúng.","Sai là cách nhớ lâu nhất, đừng ngại!"],gram:["Học ngữ pháp theo nhóm: các mẫu cùng nhóm hay bị nhầm với nhau đó.","Thử thay danh từ trong câu ví dụ bằng từ bạn biết.","Bấm Đánh dấu đã ôn để ghi điểm và theo dõi tiến độ."],hangul:["Hangul rất logic, vài ngày là thuộc!","Ghép phụ âm với ㅏ để luyện đọc: 가, 나, 다, 라…"]};
+const CHEER=["Giỏi quá! 🎉","Chuẩn luôn! Meo~","Tuyệt vời, tiếp nào! ✨"],OOPS=["Không sao, sai là cách nhớ lâu nhất 🐾","Gần đúng rồi, lần sau sẽ được!","Meo~ cố lên, đừng bỏ cuộc!"];
+function cat(t){if(S.mimi===0)return;const b=$("cb");b.textContent=t;b.style.display="block";clearTimeout(cat.t);cat.t=setTimeout(()=>b.style.display="none",9000)}
+function tip(){const a=TIPS[tab];cat(a[Math.floor(Math.random()*a.length)])}
+function cheer(ok){const a=ok?CHEER:OOPS;cat(a[Math.floor(Math.random()*a.length)])}
+(function(){const c=$("cat");let d=null,mv=false,ox=0,oy=0;
+function place(x,y){x=Math.max(0,Math.min(innerWidth-c.offsetWidth,x));y=Math.max(0,Math.min(innerHeight-c.offsetHeight,y));c.style.left=x+"px";c.style.top=y+"px";c.style.right="auto";c.style.bottom="auto";c.classList.toggle("dn",y<110);c.classList.toggle("lf",x<180)}
+c.addEventListener("pointerdown",e=>{const r=c.getBoundingClientRect();d=[e.clientX,e.clientY];ox=e.clientX-r.left;oy=e.clientY-r.top;mv=false;c.setPointerCapture(e.pointerId)});
+c.addEventListener("pointermove",e=>{if(!d)return;if(Math.abs(e.clientX-d[0])+Math.abs(e.clientY-d[1])>6)mv=true;if(mv)place(e.clientX-ox,e.clientY-oy)});
+c.addEventListener("pointerup",()=>{if(!d)return;d=null;if(mv){const r=c.getBoundingClientRect();S.cat=[r.left,r.top];save()}else tip()});
+if(S.cat)place(S.cat[0],S.cat[1]);
+addEventListener("resize",()=>{const r=c.getBoundingClientRect();if(c.style.left)place(r.left,r.top)})})();
+bd();render();
+</script></body></html>
