@@ -52,7 +52,7 @@ nav button{flex:1;border:0;background:none;color:var(--mute);font:inherit;font-s
 nav button.on{color:var(--p);background:var(--soft)}nav button span{display:block;font-size:20px}
 button:focus-visible{outline:3px solid var(--p);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-.flash{height:270px}
+.flash{height:340px}.face.b{justify-content:flex-start;align-items:stretch;text-align:left;gap:10px;overflow:auto;padding:16px}.bk-h{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding-bottom:10px;border-bottom:1px solid var(--line)}.bk-h .mean{font-size:26px;line-height:1.25;text-align:center}.bk-h .chip{flex:none;font-size:12px}.bk-s{background:var(--soft);border-radius:14px;padding:10px 12px}.bk-l{display:block;font-size:11px;font-weight:700;color:var(--p);margin-bottom:4px}.bk-s p{margin:0;line-height:1.55}.bk-s .kr{font-size:15px}
 #cat{position:fixed;right:10px;bottom:calc(72px + env(safe-area-inset-bottom,0px));width:64px;z-index:5;cursor:grab;touch-action:none;user-select:none}#cat:active{cursor:grabbing}#cat svg{display:block}#cat.dn #cb{bottom:auto;top:100%;margin:4px 0 0}#cat.lf #cb{right:auto;left:0}
 #cb{display:none;position:absolute;right:0;bottom:100%;margin-bottom:4px;width:max-content;max-width:min(240px,70vw);background:var(--card);color:var(--ink);border:1.5px solid var(--p2);border-radius:16px 16px 4px 16px;padding:9px 12px;font-size:13px;box-shadow:0 6px 18px rgba(255,79,154,.25)}
 #cat svg{filter:drop-shadow(0 4px 6px rgba(255,79,154,.35))}
@@ -1155,7 +1155,7 @@ const GR=[["🔤 Trợ từ","Gắn sau danh từ để chỉ vai trò trong câ
 ["✨ Mục đích & bổ sung","Thêm thông tin: mục đích, trạng thái giữ nguyên, bổ sung ý.",["-도록","-(으)ㄴ 채로","-(으)ㄹ 뿐만 아니라"]]];
 GR[3][2].push("-(으)ㄴ 나머지","-(으)ㄴ/는 탓에","-(으)ㄴ/는 덕분에");GR[4][2].push("-는 한","-고도","-(으)ㄹ지라도");GR[6][2].push("-(으)ㄹ 뻔하다","-(으)ㄴ/는 셈이다","-(으)ㄹ 리가 없다");GR[7][2].push("-(으)ㄹ수록","-(으)ㄹ 만큼","-(으)ㄹ 뿐이다");
 const TABS=[["home","⌂","Tổng quan"],["vocab","✿","Từ vựng"],["quiz","✎","Luyện tập"],["gram","❀","Ngữ pháp"],["goal","◎","Tiến độ"],["hangul","ㄱ","Bảng chữ"]];
-const MODES=[["flash","🃏","Thẻ ghi nhớ","Lật thẻ, tự đánh giá nhớ hoặc chưa nhớ","Từ vựng: +2 mỗi từ nhớ"],["mc","✅","Trắc nghiệm","Hàn ↔ Việt, 4 đáp án","Luyện tập: +1 mỗi câu đúng"],["match","🔗","Nối từ với nghĩa","Ghép 5 cặp từ và nghĩa","Luyện tập: +1 mỗi cặp"],["type","⌨","Gõ từ vựng","Đọc nghĩa, gõ lại từ tiếng Hàn","Luyện tập: +2 mỗi từ"],["ls","🎧","Nghe & chọn nghĩa","Nghe từ, chọn nghĩa đúng","Nghe & nói: +2 mỗi câu"],["dict","✍","Nghe viết","Nghe từ, gõ lại bằng Hangul","Nghe & nói: +3 mỗi từ"]];
+const MODES=[["flash","🃏","Thẻ ghi nhớ","Lật thẻ, tự đánh giá nhớ hoặc chưa nhớ","Từ vựng: +2 mỗi từ nhớ"],["mc","✅","Trắc nghiệm","Hàn ↔ Việt, 4 đáp án","Luyện tập: +1 mỗi câu đúng"],["match","🔗","Nối từ với nghĩa","Ghép 5 cặp từ và nghĩa","Luyện tập: +1 mỗi cặp"],["type","⌨","Gõ từ vựng","Đọc nghĩa, gõ lại từ tiếng Hàn","Luyện tập: +2 mỗi từ"],["ls","🎧","Nghe & chọn nghĩa","Nghe từ, chọn nghĩa đúng","Nghe & nói: +2 mỗi câu"],["dict","✍","Nghe viết","Nghe từ, gõ lại bằng Hangul","Nghe & nói: +3 mỗi từ"],["cloze","📄","Điền từ vào đoạn văn","Chọn từ hợp ngữ cảnh trong đoạn văn ngắn","Luyện tập: +1 mỗi chỗ trống"],["trans","🔤","Dịch câu Hàn → Việt","Chọn bản dịch đúng của câu tiếng Hàn","Luyện tập: +1 mỗi câu"],["build","🧩","Dịch câu Việt → Hàn","Ghép hoặc gõ câu tiếng Hàn từ câu tiếng Việt","Luyện tập: +2 mỗi câu"]];
 const CAP={v:30,g:20,p:25,l:25},CN={v:"Từ vựng",g:"Ngữ pháp",p:"Luyện tập",l:"Nghe & nói"};
 let S={deck:"l1",known:{},hist:{},day:null,mimi:1,voice:"",rate:.85,rv:{}};
 try{Object.assign(S,JSON.parse(localStorage.getItem("hanbit")||"{}"))}catch(e){}
@@ -1177,7 +1177,7 @@ function head(){$("xp").textContent="⭐ "+tot()+"/100 · 🔥 "+streak()+" ngà
 $("nav").innerHTML=TABS.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="go('${t[0]}')"><span class="kr">${t[1]}</span>${t[2]}</button>`).join("")}
 function togMimi(){S.mimi=S.mimi===0?1:0;save();head();if(S.mimi)tip()}
 function go(t){stopT();tab=t;vw="list";R=TY=MT=RW=null;render()}
-function back(){go(PM=="gram"?"gram":"quiz")}
+function back(){go(PM=="gram"||PM=="gbuild"?"gram":"quiz")}
 function render(){head();({home,vocab,quiz:practice,gram,goal:goalv,dict:dictv,hangul})[tab]();scrollTo(0,0);tip()}
 function home(){const D=day(),t=tot();
 const wk=[...Array(7)].map((_,i)=>{const x=new Date();x.setDate(x.getDate()-6+i);return[["CN","T2","T3","T4","T5","T6","T7"][x.getDay()],S.hist[x.toDateString()]||0]});
@@ -1189,9 +1189,9 @@ ${goalCard()}<div class="card"><b>Chi tiết hôm nay</b>${Object.keys(CAP).map(
 function vocab(){vw=="list"?vlist():study()}
 function vlist(){const g={};DK.forEach(d=>(g[d.g]=g[d.g]||[]).push(d));
 $("m").innerHTML=`<div class="card mode" onclick="go('dict')"><span class="ic">🔎</span><div><b>Từ điển tra nhanh</b><p class="hint" style="margin:0">Tra theo tiếng Hàn, phiên âm hoặc nghĩa tiếng Việt</p></div></div><div class="card mode" onclick="impv()"><span class="ic">➕</span><div><b>Nhập từ vựng của bạn</b><p class="hint" style="margin:0">Dán hoặc tải danh sách từ TOPIK để tạo bộ từ riêng</p></div></div>`+Object.entries(g).map(([n,a])=>`<h3 class="sec">${n}</h3><div class="grid">${a.map(d=>{const k=d.w.filter(w=>S.known[w[0]]).length;return`<div class="card deck" onclick="openD('${d.id}')"><b>${d.n}</b><small class="hint">${k}/${d.w.length} từ đã nhớ</small><div class="bar pb"><i style="width:${k/d.w.length*100}%"></i></div></div>`}).join("")}</div>`).join("")}
-function impv(){$("m").innerHTML=`<button class="btn alt" onclick="vw='list';vocab()">← Các bộ từ</button><div class="card" style="margin-top:12px"><b>Nhập từ vựng</b><p class="hint">Mỗi dòng một từ, các cột cách nhau bằng dấu | hoặc Tab hoặc dấu phẩy:<br><span class="kr">한국어 | nghĩa | phiên âm | câu ví dụ | nghĩa câu ví dụ</span><br>Chỉ cần 2 cột đầu (từ và nghĩa), các cột sau có thể bỏ trống. Có thể dán thẳng từ Excel hoặc Google Sheets, hoặc tải file .txt/.csv.<br>Nếu nghĩa có dấu phẩy, hãy dùng dấu | để ngăn cách.</p><input id="dn" class="inp" placeholder="Tên bộ từ (vd: TOPIK I - Bài 1)"><select id="dl" class="opt" style="margin-bottom:8px">${[1,2,3,4,5,6].map(l=>`<option value="${l}">${LN[l]}</option>`).join("")}</select><textarea id="dt" class="inp kr" rows="9" placeholder="물 | nước | mul | 물을 마셔요. | Tôi uống nước.&#10;학교 | trường học"></textarea><input type="file" id="df" accept=".txt,.csv,.tsv" onchange="impf(this)" style="margin-bottom:10px"><button class="btn" style="width:100%" onclick="impgo()">Tạo bộ từ</button><p class="hint" id="im"></p></div>`}
+function impv(){$("m").innerHTML=`<button class="btn alt" onclick="vw='list';vocab()">← Các bộ từ</button><div class="card" style="margin-top:12px"><b>Nhập từ vựng</b><p class="hint">Mỗi dòng một từ, các cột cách nhau bằng dấu | hoặc Tab hoặc dấu phẩy:<br><span class="kr">한국어 | nghĩa | phiên âm | câu ví dụ | nghĩa câu ví dụ | giải thích tiếng Hàn</span><br>Chỉ cần 2 cột đầu (từ và nghĩa), các cột sau có thể bỏ trống. Có thể dán thẳng từ Excel hoặc Google Sheets, hoặc tải file .txt/.csv.<br>Nếu nghĩa có dấu phẩy, hãy dùng dấu | để ngăn cách.</p><input id="dn" class="inp" placeholder="Tên bộ từ (vd: TOPIK I - Bài 1)"><select id="dl" class="opt" style="margin-bottom:8px">${[1,2,3,4,5,6].map(l=>`<option value="${l}">${LN[l]}</option>`).join("")}</select><textarea id="dt" class="inp kr" rows="9" placeholder="물 | nước | mul | 물을 마셔요. | Tôi uống nước.&#10;학교 | trường học"></textarea><input type="file" id="df" accept=".txt,.csv,.tsv" onchange="impf(this)" style="margin-bottom:10px"><button class="btn" style="width:100%" onclick="impgo()">Tạo bộ từ</button><p class="hint" id="im"></p></div>`}
 function impf(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("dt").value=r.result;if(!$("dn").value)$("dn").value=f.name.replace(/\.[^.]+$/,"")};r.readAsText(f)}
-function impgo(){const w=$("dt").value.split(/\r?\n/).map(l=>{if(!l.includes("|")&&!l.includes("\t")){const m=l.trim().match(/^([가-힣()~/ ]+?)\s+([A-Za-zÀ-ỹ].*)$/);if(m)return[m[1].trim(),m[2].trim()]}return l.split(l.includes("|")?"|":l.includes("\t")?"\t":",").map(x=>x.trim())}).filter(a=>a[0]&&a[1]).map(a=>[a[0],a[1],a[2]||"",a[3]||"",a[4]||"",+$("dl").value]);
+function impgo(){const w=$("dt").value.split(/\r?\n/).map(l=>{if(!l.includes("|")&&!l.includes("\t")){const m=l.trim().match(/^([가-힣()~/ ]+?)\s+([A-Za-zÀ-ỹ].*)$/);if(m)return[m[1].trim(),m[2].trim()]}return l.split(l.includes("|")?"|":l.includes("\t")?"\t":",").map(x=>x.trim())}).filter(a=>a[0]&&a[1]).map(a=>[a[0],a[1],a[2]||"",a[3]||"",a[4]||"",+$("dl").value,null,a[5]||""]);
 if(!w.length){$("im").textContent="Chưa có dòng hợp lệ. Mỗi dòng cần ít nhất: từ tiếng Hàn và nghĩa.";return}
 const n=$("dn").value.trim()||"Bộ từ của tôi";S.imp=S.imp||[];const id="i"+Date.now();S.imp.push({id,n,w});save();bd();cat("Đã tạo bộ "+n+" với "+w.length+" từ 🎉");openD(id)}
 function delD(id,b){if(!b.dataset.c){b.dataset.c=1;b.textContent="Bấm lại để xóa";return}S.imp=(S.imp||[]).filter(d=>d.id!=id);S.deck="l1";save();bd();vw="list";vocab()}
@@ -1199,7 +1199,7 @@ function openD(id){S.deck=id;save();fi=0;flip=false;vw="study";vocab()}
 function study(){const d=deck(),w=d.w,c=cw();
 $("m").innerHTML=`<div style="display:flex;align-items:center;gap:10px"><button class="btn alt" onclick="vw='list';vocab()">← Các bộ từ</button><b>${d.n}</b>${d.imp?`<button class="btn alt" style="margin-left:auto" onclick="delD('${d.id}',this)">🗑 Xóa bộ</button>`:""}</div>
 <div class="hint" style="margin:10px 0 8px">Thẻ ${fi%w.length+1}/${w.length} · bấm thẻ để lật, mặt sau có câu ví dụ</div>
-<div class="flash ${flip?"f":""}" onclick="this.classList.toggle('f');flip=!flip"><div class="fi"><div class="face"><span class="chip" style="margin-bottom:8px">Cấp ${c[5]}</span><div class="big kr">${c[0]}</div><div class="hint">${c[2]}</div></div><div class="face b"><div class="mean">${c[1]}</div><div class="kr" style="margin-top:12px;font-weight:700">${c[3]}</div><div class="hint">${c[4]}</div></div></div></div>
+<div class="flash ${flip?"f":""}" onclick="this.classList.toggle('f');flip=!flip"><div class="fi"><div class="face"><span class="chip" style="margin-bottom:8px">Cấp ${c[5]}</span><div class="big kr">${c[0]}</div><div class="hint">${c[2]}</div></div><div class="face b"><div class="bk-h"><span class="mean">${c[1]}</span><span class="chip">${dparts(c)[0]||"Cấp "+c[5]}</span></div><div class="bk-s"><span class="bk-l">뜻풀이 · Giải thích tiếng Hàn</span><p class="kr">${dparts(c)[1]||"<span class='hint'>Chưa có giải thích tiếng Hàn cho từ này</span>"}</p></div><div class="bk-s"><span class="bk-l">Ví dụ</span><p class="kr" style="font-weight:700">${c[3]||"—"}</p><p class="hint">${c[4]||""}</p></div></div></div></div>
 <div class="row" style="margin-bottom:10px"><button class="btn alt" onclick="sp(0)">🔊 Nghe</button><button class="btn alt" onclick="sp(1)">🔁 Lặp 3 lần</button><button class="btn alt" onclick="sp(2)">💬 Câu mẫu</button></div>
 <div class="row" style="margin-bottom:10px"><button class="btn alt" onclick="fi=Math.max(0,fi-1);flip=false;study()">Trước</button><button class="btn alt" onclick="fi++;flip=false;study()">Bỏ qua</button></div>
 <div class="row"><button class="btn no" onclick="mark(false)">Chưa nhớ</button><button class="btn ok" onclick="mark(true)">Đã nhớ</button></div>
@@ -1208,25 +1208,25 @@ function sp(k){const c=cw();if(k==0)say(c[0]);else if(k==1){say(c[0],.6,3);if(pt
 function mark(ok){const c=cw();if(ok){S.known[c[0]]=1;cat(pt("v",2,"v"+c[0])?rp(["Đã nhớ! +2 điểm chuyên cần ⭐","Thêm một từ vào túi rồi, +2 điểm nè 🎒","Đỉnh quá, từ này của bạn rồi! +2 ⭐"]):rp(["Đã nhớ! 🎀","Từ này ôn lại hôm nay rồi nhé 🌸"]))}else{delete S.known[c[0]];cat(rp(["Không sao, mình sẽ cho bạn gặp lại từ này nhé 🐾","Từ này hơi khó thôi, lát gặp lại nha 💪","Chưa nhớ thì học lại, Mimi ở đây mà 🐱"]))}save();fi++;flip=false;study()}
 function dsel(cb){const g={};DK.forEach(d=>(g[d.g]=g[d.g]||[]).push(d));return`<select class="opt" style="margin-top:8px" onchange="S.deck=this.value;save();${cb}">${Object.entries(g).map(([n,a])=>`<optgroup label="${n}">${a.map(d=>`<option value="${d.id}" ${d.id==S.deck?"selected":""}>${d.n} (${d.w.length})</option>`).join("")}</optgroup>`).join("")}</select>`}
 function practice(){R=TY=MT=RW=null;$("m").innerHTML=`<div class="card"><b>⚙️ Cài đặt luyện tập</b><div class="hint" style="margin:10px 0 4px">Số câu mỗi lượt</div><div class="lv" style="margin:0">${[5,10,20,30,50,0].map(n=>`<button class="${curQn()==n?"on":""}" onclick="setQn(${n})">${n||"Tất cả"}</button>`).join("")}</div><div class="hint" style="margin:12px 0 4px">Công bố đáp án</div><div class="row"><button class="btn ${S.fb=="end"?"alt":""}" style="padding:10px" onclick="setFb('now')">Ngay sau mỗi câu</button><button class="btn ${S.fb=="end"?"":"alt"}" style="padding:10px" onclick="setFb('end')">Khi làm xong</button></div><p class="hint" style="margin:10px 0 0">${S.fb=="end"?"Làm hết bài rồi xem đáp án và đối chiếu từng câu.":"Chọn xong là biết đúng hay sai ngay."} Nếu bộ từ ít hơn số câu đã chọn, app dùng hết số từ của bộ. Cài đặt này không áp dụng cho Nối từ và Thi thử.</p></div><div class="card mode" onclick="exv()"><span class="ic">📝</span><div><b>Thi thử TOPIK</b><p class="hint" style="margin:0">Mô phỏng cấu trúc đề thật: TOPIK I và TOPIK II</p><small style="color:var(--p)">Có bấm giờ, chấm điểm, xếp cấp</small></div></div><div class="card mode" onclick="revv()"><span class="ic">🔁</span><div><b>Ôn lại bài làm sai</b><p class="hint" style="margin:0">${wl().length} mục cần ôn (từ và ngữ pháp)</p></div></div><div class="card"><b>Bộ từ luyện tập</b>${dsel("practice()")}</div>`+MODES.map(m=>`<div class="card mode" onclick="start('${m[0]}')"><span class="ic">${m[1]}</span><div><b>${m[2]}</b><p class="hint" style="margin:0">${m[3]}</p><small style="color:var(--p)">${m[4]}</small></div></div>`).join("")}
-function start(m){PM=m;R=TY=MT=null;const w=RW||words();
+function start(m){PM=m;R=TY=MT=BD=null;const w=RW||words();
 if(m=="flash"){tab="vocab";vw="study";fi=0;flip=false;return render()}
-if(m=="gram")return gq();if(m=="revg")return gq(wgram());
+if(m=="gram")return gq();if(m=="cloze")return clozePick();if(m=="trans")return runQ(mkT(w));if(m=="build")return buildStart("w");if(m=="gbuild")return buildStart("g");if(m=="revg")return gq(wgram());
 if(m=="mc"||m=="ls")return runQ(mkQ(m,w,cnt(w.length)));
 if(m=="match")return matchStart();
 TY={m,items:rnd(w).slice(0,cnt(w.length)),i:0,s:0,chk:0};ts()}
 function mkQ(m,w,n){const pool=w.length>=4?w:ALL;return rnd(w).slice(0,n).map(c=>{const vk=m=="mc"&&Math.random()<.5,o=rnd([c,...rnd(pool.filter(x=>x[0]!=c[0]&&x[1]!=c[1])).slice(0,3)]);
 return{m:m,wk:["w",c[0]],kr:vk,o:o.map(x=>vk?x[0]:x[1]),a:o.indexOf(c),w:c[0],pre:m=="ls",stem:m=="ls"?`<div style="text-align:center;margin:8px 0 16px"><button class="btn" onclick="say('${c[0]}')">🔊 Nghe lại</button></div>`:vk?`<div class="q" style="font-size:26px">${c[1]}</div>`:`<div class="q kr">${c[0]}</div>`,aw:()=>pt(m=="ls"?"l":"p",m=="ls"?2:1,m+c[0])}})}
 function runQ(items){R={items,i:0,s:0,lock:0};qs()}
-function hdr(i,n,s){return`<div class="row" style="align-items:center;margin-bottom:8px"><button class="btn alt" style="flex:none" onclick="back()">← Thoát</button><span class="hint" style="text-align:right">Câu ${i+1}/${n} · đúng ${s}</span></div><div class="bar pb" style="margin-bottom:10px"><i style="width:${i/n*100}%"></i></div>`}
+function hdr(i,n,s){return`<div class="row" style="align-items:center;margin-bottom:8px"><button class="btn alt" style="flex:none" onclick="back()">← Thoát</button><span class="hint" style="text-align:right">Câu ${i+1}/${n}</span></div><div class="bar pb" style="margin-bottom:10px"><i style="width:${i/n*100}%"></i></div>`}
 function qs(){const r=R;if(r.i>=r.items.length)return fin(r.s,r.items.length);const it=r.items[r.i];r.lock=0;
-$("m").innerHTML=hdr(r.i,r.items.length,r.s)+`<div class="card">${it.stem}${it.o.map((o,j)=>`<button class="opt ${it.kr?"kr":""}" id="o${j}" onclick="ans(${j})">${o}</button>`).join("")}</div>`;if(it.pre)say(it.w)}
+$("m").innerHTML=hdr(r.i,r.items.length,r.s)+`<div class="card">${it.stem}${it.o.map((o,j)=>`<button class="opt ${it.kr?"kr":""}" id="o${j}" onclick="ans(${j})">${o}</button>`).join("")}<div id="xp"></div></div>`;if(it.pre)say(it.w)}
 function ans(j){const r=R;if(r.lock)return;r.lock=1;const it=r.items[r.i],ok=j==it.a,end=S.fb=="end";(r.log=r.log||[])[r.i]=j;
 stat(it.m,ok);if(ok){r.s++;it.aw();if(it.wk)okW(it.wk[0],it.wk[1])}else if(it.wk)addW(it.wk[0],it.wk[1]);
 it.o.forEach((_,k)=>{const b=$("o"+k);b.disabled=true;if(end){if(k==j)b.classList.add("sel")}else{if(k==it.a)b.classList.add("ok");if(k==j&&!ok)b.classList.add("no")}});
 if(end){setTimeout(()=>{r.i++;qs()},350);return}
-cheer(ok);say(it.w);setTimeout(()=>{r.i++;qs()},it.long?2400:1200)}
+cheer(ok);say(it.w);if(it.xp){$("xp").innerHTML=`<div class="ex" style="margin-top:8px">${it.xp}</div><button class="btn" style="width:100%;margin-top:8px" onclick="nx()">Câu tiếp →</button>`;return}setTimeout(()=>{r.i++;qs()},it.long?2400:1200)}
 function fin(s,n){const rv=S.fb=="end"?(R&&R.log?rvQ():TY&&TY.log?rvT():""):"";$("m").innerHTML=`<div class="card hero" style="text-align:center"><h2>Hoàn thành! 🎉</h2><p>Đúng ${s}/${n} · điểm chuyên cần hôm nay ${tot()}/100</p><div class="row"><button class="btn w" onclick="start(PM)">Làm lại</button><button class="btn w" onclick="back()">Xong</button></div></div>`+rv}
-function rvQ(){const r=R;return`<div class="card"><b>Công bố đáp án</b>${r.items.map((it,i)=>{const j=r.log[i],ok=j==it.a;return`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><small class="hint">Câu ${i+1} ${ok?"✅ đúng":"❌ sai"}</small><div>${it.stem}</div><small class="hint">Bạn chọn: ${j!=null?it.o[j]:"(bỏ trống)"} · Đáp án: <b>${it.o[it.a]}</b></small></div>`}).join("")}</div>`}
+function rvQ(){const r=R;return`<div class="card"><b>Công bố đáp án</b>${r.items.map((it,i)=>{const j=r.log[i],ok=j==it.a;return`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><small class="hint">Câu ${i+1} ${ok?"✅ đúng":"❌ sai"}</small><div>${it.stem}</div><small class="hint">Bạn chọn: ${j!=null?it.o[j]:"(bỏ trống)"} · Đáp án: <b>${it.o[it.a]}</b></small>${it.xp?`<div class="ex" style="margin-top:6px">${it.xp}</div>`:""}</div>`}).join("")}</div>`}
 function rvT(){const t=TY;return`<div class="card"><b>Công bố đáp án</b>${t.items.map((c,i)=>{const l=t.log[i]||{};return`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><small class="hint">Câu ${i+1} ${l.ok?"✅ đúng":"❌ sai"}</small><div class="kr" style="font-weight:700">${c[0]} <small class="hint">${c[2]}</small></div><small class="hint">${c[1]} · Bạn gõ: ${esc(l.a||"(trống)")}</small></div>`}).join("")}</div>`}
 function setFb(v){S.fb=v;save();practice();cat(v=="end"?"Mình sẽ công bố đáp án sau khi bạn làm xong cả bài 📋":"Mình sẽ cho biết đáp án ngay sau mỗi câu ✅")}
 function matchStart(){const ws=RW||words(),set=rnd(ws).slice(0,Math.min(5,ws.length));MT={set,L:rnd(set),Rr:rnd(set),sel:null,done:{},wrong:0};ms()}
@@ -1240,7 +1240,7 @@ function chk(){const t=TY;if(t.chk){t.i++;return ts()}const c=t.items[t.i],n=x=>
 if(ok){t.s++;t.m=="dict"?pt("l",3,"d"+c[0]):pt("p",2,"t"+c[0]);okW("w",c[0])}else addW("w",c[0]);(t.log=t.log||[])[t.i]={a:$("ans").value,ok:ok};if(S.fb=="end"){t.i++;return ts()}
 $("fb").innerHTML=`<b style="color:var(--${ok?"ok":"no"})">${ok?"Chính xác!":"Chưa đúng."}</b> Đáp án: <span class="kr">${c[0]}</span> ${c[2]?"("+c[2]+") ":""}· ${c[1]}`;$("cb").textContent="Tiếp";cheer(ok);say(c[0])}
 function gram(){const grs=GR.map(g=>[g[0],g[1],g[2].map(p=>ALLG.find(x=>x[0]==p)).filter(Boolean)]),rv=ALLG.filter(x=>S.rv[x[0]]).length;
-$("m").innerHTML=`<div class="card hero"><h2>Ngữ pháp TOPIK</h2><p>${ALLG.length} mẫu · ${GR.length} nhóm · đã ôn ${rv}/${ALLG.length}</p><button class="btn w" onclick="start('gram')">Luyện câu hỏi ngữ pháp</button></div>`+grs.map((g,gi)=>`<details class="card g" ${gi==0?"open":""}><summary><b>${g[0]}</b> <span class="hint">· ${g[2].length} mẫu</span><p class="hint" style="margin:4px 0 0">${g[1]}</p></summary>${g[2].map(x=>{const i=ALLG.indexOf(x),d=S.rv[x[0]];return`<div class="gi"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${x[0]}</h3><span class="chip">Cấp ${x[4]}</span></div><p><b>Nghĩa:</b> ${x[1]}</p><div class="ex"><small class="hint">Ví dụ</small><p class="kr" style="font-weight:700">${x[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${i}][2],.8)">🔊</button></p><p class="hint">${x[3]}</p></div><button class="btn ${d?"ok":"alt"}" style="margin-top:8px" onclick="rev(${i},this)">${d?"✓ Đã ôn":"Đánh dấu đã ôn"}</button></div>`}).join("")}</details>`).join("")}
+$("m").innerHTML=`<div class="card hero"><h2>Ngữ pháp TOPIK</h2><p>${ALLG.length} mẫu · ${GR.length} nhóm · đã ôn ${rv}/${ALLG.length}</p><div class="row"><button class="btn w" onclick="start('gram')">Câu hỏi ngữ pháp</button><button class="btn w" onclick="start('gbuild')">Dịch Việt → Hàn</button></div></div>`+grs.map((g,gi)=>`<details class="card g" ${gi==0?"open":""}><summary><b>${g[0]}</b> <span class="hint">· ${g[2].length} mẫu</span><p class="hint" style="margin:4px 0 0">${g[1]}</p></summary>${g[2].map(x=>{const i=ALLG.indexOf(x),d=S.rv[x[0]];return`<div class="gi"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${x[0]}</h3><span class="chip">Cấp ${x[4]}</span></div><p><b>Nghĩa:</b> ${x[1]}</p>${gxp(x[0])}<div class="ex"><small class="hint">Ví dụ</small><p class="kr" style="font-weight:700">${x[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${i}][2],.8)">🔊</button></p><p class="hint">${x[3]}</p></div><button class="btn ${d?"ok":"alt"}" style="margin-top:8px" onclick="rev(${i},this)">${d?"✓ Đã ôn":"Đánh dấu đã ôn"}</button></div>`}).join("")}</details>`).join("")}
 function rev(i,b){S.rv[ALLG[i][0]]=1;save();b.className="btn ok";b.textContent="✓ Đã ôn";cat(pt("g",1,"r"+i)?"Ôn xong mẫu này: +1 điểm ⭐":"Đã ôn mẫu này!")}
 let RW=null;
 const allw=()=>ALL.concat((S.imp||[]).flatMap(d=>d.w));
@@ -1314,7 +1314,7 @@ function goalv(){if(GT=="ana")return anav();const g=S.goal||{},lv=g.lv||0;
 $("m").innerHTML=segs()+`<div class="card"><b>🎯 Mục tiêu của bạn</b><div class="hint" style="margin:8px 0 4px">Cấp muốn đạt</div><select class="opt" id="gl" style="margin:0">${[1,2,3,4,5,6].map(l=>`<option value="${l}" ${l==lv?"selected":""}>TOPIK ${l<=2?"I":"II"} · Cấp ${l} (từ ${CUT[l]} điểm)</option>`).join("")}</select><div class="hint" style="margin:10px 0 4px">Trình độ hiện tại</div><select class="opt" id="gc" style="margin:0">${[0,1,2,3,4,5,6].map(l=>`<option value="${l}" ${l==(g.cur||0)?"selected":""}>${l?"Cấp "+l:"Mới bắt đầu"}</option>`).join("")}</select><div class="hint" style="margin:10px 0 4px">Ngày thi</div><input type="date" class="inp" id="gd" value="${g.date||""}"><button class="btn" style="width:100%" onclick="saveGoal()">Lưu mục tiêu</button></div>`+(lv?goalbody(lv):`<div class="card hint">Chọn cấp mục tiêu và ngày thi, rồi bấm Lưu để xem kế hoạch học mỗi ngày.</div>`)}
 function goalbody(lv){const tid=lv<=2?1:2,E=EX[tid],d=dleft(),ws=ALL.filter(w=>w[5]<=lv),kn=ws.filter(w=>S.known[w[0]]).length,gs=ALLG.filter(x=>x[4]<=lv),gr=gs.filter(x=>S.rv[x[0]]).length,rw=ws.length-kn,rg=gs.length-gr,mn=Math.round(CUT[lv]/E.pts*100),n=Math.max(d||1,1);
 let plan;if(d==null)plan="Hãy chọn ngày thi rồi bấm Lưu để Mimi tính kế hoạch.";else if(d<0)plan="Ngày thi đã qua. Hãy đặt ngày thi mới.";else{const pd=Math.ceil(rw/n);plan=`<p style="margin:0 0 6px">• <b>Từ vựng:</b> ${rw?`còn ${rw} từ trong phạm vi cấp 1 đến ${lv} của app, khoảng <b>${pd} từ mỗi ngày</b>.`:"bạn đã nhớ hết từ trong phạm vi này, hãy ôn lại bài làm sai."}</p><p style="margin:0 0 6px">• <b>Ngữ pháp:</b> ${rg?`còn ${rg} mẫu chưa ôn, khoảng <b>${Math.max(1,Math.ceil(rg/(n/7)))} mẫu mỗi tuần</b>.`:"bạn đã ôn hết mẫu trong phạm vi này."}</p><p style="margin:0 0 6px">• <b>Thi thử:</b> gợi ý 1 bài rút gọn mỗi tuần, và 2 bài đầy đủ trong 2 tuần cuối.</p><p style="margin:0">• <b>Điểm chuyên cần:</b> giữ từ 30 điểm mỗi ngày để không đứt chuỗi.</p>${pd>30?`<p class="hint" style="margin:8px 0 0">Mức này khá nặng (hơn 30 từ mỗi ngày). Bạn có thể dời ngày thi hoặc hạ mục tiêu.</p>`:""}`}
-const sk=[["Từ vựng",ws.length?Math.round(kn/ws.length*100):0,80,kn+"/"+ws.length+" từ đã nhớ (vạch: mục tiêu 80%)"],["Ngữ pháp",gs.length?Math.round(gr/gs.length*100):0,80,gr+"/"+gs.length+" mẫu đã ôn (vạch: mục tiêu 80%)"],["Nghe",av(lastEx("L"),acc(["ls","dict"])),mn,"Từ bài thi thử gần nhất và luyện tập nghe (vạch: mức tối thiểu "+mn+"%)"],["Đọc",av(lastEx("R"),acc(["mc","match","type","gram"])),mn,"Từ bài thi thử gần nhất và luyện tập đọc (vạch: mức tối thiểu "+mn+"%)"]];
+const sk=[["Từ vựng",ws.length?Math.round(kn/ws.length*100):0,80,kn+"/"+ws.length+" từ đã nhớ (vạch: mục tiêu 80%)"],["Ngữ pháp",gs.length?Math.round(gr/gs.length*100):0,80,gr+"/"+gs.length+" mẫu đã ôn (vạch: mục tiêu 80%)"],["Nghe",av(lastEx("L"),acc(["ls","dict"])),mn,"Từ bài thi thử gần nhất và luyện tập nghe (vạch: mức tối thiểu "+mn+"%)"],["Đọc",av(lastEx("R"),acc(["mc","match","type","gram","cloze","trans","build","gbuild"])),mn,"Từ bài thi thử gần nhất và luyện tập đọc (vạch: mức tối thiểu "+mn+"%)"]];
 if(tid==2)sk.push(["Viết",lastEx("W"),mn,"Từ điểm tự chấm trong thi thử (vạch: mức tối thiểu "+mn+"%)"]);
 const h=(S.exh||[]).filter(x=>x.id==tid).slice(-8).reverse();
 return`<div class="card hero"><h2>Cấp ${lv} · từ ${CUT[lv]}/${E.pts} điểm</h2><p style="margin:0">${dtxt(d)}${g_cur()}</p></div><div class="card"><b>Kế hoạch mỗi ngày</b><p class="hint" style="margin:6px 0 10px">Tính theo kho từ trong app (${ws.length} từ ở cấp 1 đến ${lv}), chưa phải toàn bộ vốn từ TOPIK.</p>${plan}</div><div class="card"><b>Năng lực hiện tại</b>${sk.map(x=>brow(x[0],x[1],x[2],x[3])).join("")}</div><div class="card"><b>Điểm thi thử ${E.n}</b>${h.length?h.map(x=>brow(new Date(x.d).toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit"})+" · "+(x.short?"rút gọn":"đầy đủ"),Math.round(x.t/E.pts*100),mn,x.t+"/"+E.pts+" điểm"+(x.id==2&&x.W==null?" (chưa tính phần viết)":""))).join(""):`<p class="hint" style="margin:6px 0 0">Chưa có bài thi thử. Làm một bài ở tab Luyện tập để theo dõi tiến bộ.</p>`}<button class="btn alt" style="width:100%;margin-top:12px" onclick="go('quiz')">Đến Luyện tập</button></div>`}
@@ -1322,8 +1322,8 @@ function g_cur(){const g=S.goal||{};return g.cur?" · hiện tại cấp "+g.cur
 let GT="goal";
 const segs=()=>`<div class="row" style="margin-bottom:12px"><button class="btn ${GT=="goal"?"":"alt"}" onclick="GT='goal';goalv()">🎯 Mục tiêu</button><button class="btn ${GT=="ana"?"":"alt"}" onclick="GT='ana';goalv()">📊 Phân tích</button></div>`;
 const TYN={LA:"Nghe từ, chọn nghĩa",LB:"Nghe câu, chọn bản dịch",RA:"Điền từ vào chỗ trống",RB:"Nhận biết mẫu ngữ pháp",RC:"Nghĩa của từ trong câu",RD:"Dịch câu",RE:"Nghĩa của mẫu ngữ pháp"};
-const MON={mc:"Trắc nghiệm",match:"Nối từ với nghĩa",type:"Gõ từ vựng",ls:"Nghe và chọn nghĩa",dict:"Nghe viết",gram:"Câu hỏi ngữ pháp"};
-const WADV={LA:["Luyện nghe","quiz"],LB:["Luyện nghe","quiz"],ls:["Luyện nghe","quiz"],dict:["Luyện nghe","quiz"],RA:["Ôn từ vựng","vocab"],mc:["Ôn từ vựng","vocab"],type:["Ôn từ vựng","vocab"],match:["Ôn từ vựng","vocab"],RC:["Ôn từ vựng","vocab"],RD:["Ôn từ vựng","vocab"],RB:["Ôn ngữ pháp","gram"],RE:["Ôn ngữ pháp","gram"],gram:["Ôn ngữ pháp","gram"]};
+const MON={cloze:"Điền từ vào đoạn văn",trans:"Dịch Hàn → Việt",build:"Ghép câu Việt → Hàn",gbuild:"Dịch Việt → Hàn (ngữ pháp)",mc:"Trắc nghiệm",match:"Nối từ với nghĩa",type:"Gõ từ vựng",ls:"Nghe và chọn nghĩa",dict:"Nghe viết",gram:"Câu hỏi ngữ pháp"};
+const WADV={cloze:["Ôn từ vựng","vocab"],trans:["Ôn từ vựng","vocab"],build:["Ôn từ vựng","vocab"],gbuild:["Ôn ngữ pháp","gram"],LA:["Luyện nghe","quiz"],LB:["Luyện nghe","quiz"],ls:["Luyện nghe","quiz"],dict:["Luyện nghe","quiz"],RA:["Ôn từ vựng","vocab"],mc:["Ôn từ vựng","vocab"],type:["Ôn từ vựng","vocab"],match:["Ôn từ vựng","vocab"],RC:["Ôn từ vựng","vocab"],RD:["Ôn từ vựng","vocab"],RB:["Ôn ngữ pháp","gram"],RE:["Ôn ngữ pháp","gram"],gram:["Ôn ngữ pháp","gram"]};
 const mean=a=>{a=a.filter(x=>x!=null);return a.length?Math.round(a.reduce((p,c)=>p+c,0)/a.length):null};
 function anav(){const H=S.exh||[],P=S.st||{},tys={};
 H.forEach(h=>Object.entries(h.ty||{}).forEach(([k,v])=>{const a=tys[k]||[0,0];a[0]+=v[0];a[1]+=v[1];tys[k]=a}));
@@ -1363,8 +1363,8 @@ else{if(vs.includes(fq))sc=3.5;else if(!viq&&rom&&rom==rq)sc=4;else if(!viq&&rom
 if(sc<99)out.push([sc,w])});
 out.sort((a,b)=>a[0]-b[0]||a[1][0].length-b[1][0].length);return out.slice(0,25).map(x=>x[1])}
 function dgram(q){q=q.trim();if(!q)return[];const fq=fold(q),n=x=>x.replace(/\s/g,"");return ALLG.filter(g=>n(g[0]).includes(n(q))||(fq.length>=2&&fold(g[1]).includes(fq))||g[2].includes(q)).slice(0,8)}
-function dcard(w,i){const t=DK.find(d=>d.id[0]=="t"&&d.w.some(x=>x[0]==w[0])),k=S.known[w[0]];return`<div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div><span class="kr" style="font-size:26px;font-weight:700;color:var(--p)">${w[0]}</span> <small class="hint">${w[2]||""}</small><div style="font-weight:700;margin-top:2px">${w[1]}</div></div><span class="chip">Cấp ${w[5]||"?"}</span></div>${t?`<small class="hint">${t.n}</small>`:""}${w[3]?`<div class="ex" style="margin-top:8px"><p class="kr" style="margin:0;font-weight:700">${w[3]}</p><small class="hint">${w[4]||""}</small></div>`:""}<div class="row" style="margin-top:10px"><button class="btn alt" onclick="say(DR[${i}][0])">🔊 Từ</button>${w[3]?`<button class="btn alt" onclick="say(DR[${i}][3],.8)">💬 Câu</button>`:""}<button class="btn ${k?"ok":"alt"}" onclick="dknow(${i},this)">${k?"✓ Đã nhớ":"Đã nhớ"}</button><button class="btn alt" onclick="dwrong(${i})">📌 Cần ôn</button></div></div>`}
-function dgc(g){return`<div class="card g"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${g[0]}</h3><span class="chip">Cấp ${g[4]}</span></div><p><b>Nghĩa:</b> ${g[1]}</p><div class="ex"><p class="kr" style="margin:0;font-weight:700">${g[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${ALLG.indexOf(g)}][2],.8)">🔊</button></p><small class="hint">${g[3]}</small></div></div>`}
+function dcard(w,i){const t=DK.find(d=>d.id[0]=="t"&&d.w.some(x=>x[0]==w[0])),k=S.known[w[0]];return`<div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div><span class="kr" style="font-size:26px;font-weight:700;color:var(--p)">${w[0]}</span> <small class="hint">${w[2]||""}</small><div style="font-weight:700;margin-top:2px">${w[1]}</div></div><span class="chip">Cấp ${w[5]||"?"}</span></div>${t?`<small class="hint">${t.n}</small>`:""}${defOf(w)?`<div class="kr" style="margin-top:6px;font-size:14px;line-height:1.5"><small class="hint">뜻풀이</small><br>${defOf(w)}</div>`:""}${w[3]?`<div class="ex" style="margin-top:8px"><p class="kr" style="margin:0;font-weight:700">${w[3]}</p><small class="hint">${w[4]||""}</small></div>`:""}<div class="row" style="margin-top:10px"><button class="btn alt" onclick="say(DR[${i}][0])">🔊 Từ</button>${w[3]?`<button class="btn alt" onclick="say(DR[${i}][3],.8)">💬 Câu</button>`:""}<button class="btn ${k?"ok":"alt"}" onclick="dknow(${i},this)">${k?"✓ Đã nhớ":"Đã nhớ"}</button><button class="btn alt" onclick="dwrong(${i})">📌 Cần ôn</button></div></div>`}
+function dgc(g){return`<div class="card g"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${g[0]}</h3><span class="chip">Cấp ${g[4]}</span></div><p><b>Nghĩa:</b> ${g[1]}</p>${gxp(g[0])}<div class="ex"><p class="kr" style="margin:0;font-weight:700">${g[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${ALLG.indexOf(g)}][2],.8)">🔊</button></p><small class="hint">${g[3]}</small></div></div>`}
 function dknow(i,b){const w=DR[i];if(S.known[w[0]]){delete S.known[w[0]];b.className="btn alt";b.textContent="Đã nhớ"}else{S.known[w[0]]=1;b.className="btn ok";b.textContent="✓ Đã nhớ";if(pt("v",2,"v"+w[0]))cat("Đã nhớ! +2 điểm ⭐")}save()}
 function dwrong(i){addW("w",DR[i][0]);cat("Đã thêm vào danh sách Ôn bài sai 📌")}
 function dadd(){const k=$("nk").value.trim(),v=$("nv").value.trim();if(!k||!v)return cat("Hãy nhập cả từ tiếng Hàn và nghĩa nhé");S.imp=S.imp||[];let d=S.imp.find(x=>x.id=="inote");if(!d){d={id:"inote",n:"Sổ tay của tôi",w:[]};S.imp.push(d)}d.w.push([k,v,"","","",1]);save();bd();cat("Đã thêm vào Sổ tay của tôi 📒");$("dq").value=k;dsearch()}
@@ -1379,7 +1379,256 @@ function setQn(n){S.qn=n;save();practice();cat(n?"Mỗi lượt "+n+" câu nhé 
 const FACTS=["Hangul do vua Sejong sáng tạo năm 1443 và công bố năm 1446. Đây là một trong số ít hệ chữ viết mà người sáng tạo và thời điểm ra đời đều được biết rõ.", "Ngày Hangeul ở Hàn Quốc là 9/10 hằng năm, để kỷ niệm việc công bố chữ Hàn.", "Hình dạng các phụ âm Hangul mô phỏng vị trí lưỡi và miệng khi phát âm. Ví dụ ㄱ giống lưỡi chặn ở cuống họng.", "Bảng chữ Hangul cơ bản có 24 chữ: 14 phụ âm và 10 nguyên âm.", "Tiếng Hàn có trật tự Chủ ngữ - Tân ngữ - Động từ, nên động từ luôn đứng cuối câu.", "Tiếng Hàn có hai hệ số đếm: số thuần Hàn (하나, 둘, 셋) và số Hán Hàn (일, 이, 삼).", "Khoảng 60% từ vựng tiếng Hàn có gốc Hán, nên người Việt học rất có lợi nhờ từ Hán Việt.", "Mẹo Hán Việt: 경제 = kinh tế, 문화 = văn hóa, 정치 = chính trị, 교육 = giáo dục.", "Mẹo Hán Việt: 학생 = học sinh, 병원 = bệnh viện, 은행 = ngân hàng, 교통 = giao thông.", "Mẹo Hán Việt: 전화 = điện thoại, 운동 = vận động, 시간 = thời gian, 사회 = xã hội.", "안녕하세요 có gốc nghĩa là “bạn có bình an không”, với 안녕 là từ Hán Hàn nghĩa là bình an.", "Phụ âm cuối âm tiết (patchim) chỉ phát ra 7 âm: ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ, dù chữ viết có nhiều phụ âm hơn.", "Tiếng Hàn không có giống ngữ pháp và không có mạo từ như a hay the.", "Chữ ㅇ đứng đầu âm tiết là âm câm, giúp mọi âm tiết đều có đủ khối chữ.", "Mỗi âm tiết Hangul được ghép thành một khối vuông, nên chữ Hàn trông gọn dù ghép từ nhiều nét.", "Khi tra từ điển, động từ và tính từ tiếng Hàn luôn kết thúc bằng 다, như 먹다 hay 가다.", "Người Hàn hay hỏi thăm bằng câu “밥 먹었어요?” (bạn ăn cơm chưa?), giống cách hỏi thăm của người Việt.", "Tiếng Hàn có ba từ cho lúa gạo: 쌀 là gạo, 밥 là cơm đã nấu, 벼 là cây lúa.", "Tiếng Hàn có 5 phụ âm đôi (ㄲ ㄸ ㅃ ㅆ ㅉ) và 4 phụ âm bật hơi (ㅋ ㅌ ㅍ ㅊ). Phân biệt chúng là chìa khóa để phát âm chuẩn.", "Tiếng Hàn có rất nhiều từ tượng thanh và tượng hình để diễn tả âm thanh, trạng thái và cảm xúc sinh động.", "에서 dùng cho nơi diễn ra hành động (학교에서 공부해요), còn 에 dùng cho điểm đến hoặc nơi tồn tại (학교에 가요).", "Muốn nói kính ngữ, thêm -(으)시- vào động từ, như 가다 thành 가세요.", "Từ 28/6/2023, Hàn Quốc thống nhất dùng tuổi quốc tế (만 나이) trong các thủ tục hành chính và pháp lý.", "Kimjang, tục muối kim chi chung của cộng đồng, được UNESCO ghi nhận là di sản văn hóa phi vật thể năm 2013.", "Ở Hàn Quốc người ta dùng đũa kim loại và thìa, và thường không nhấc bát cơm lên khi ăn.", "온돌 là hệ thống sưởi sàn truyền thống của Hàn Quốc, nên người Hàn quen ngồi và ngủ trên sàn.", "Tết Âm lịch Hàn Quốc là 설날 và Tết Trung thu là 추석, hai dịp đoàn tụ gia đình lớn nhất năm.", "눈치 là khả năng nhìn sắc mặt và đoán không khí xung quanh, một kỹ năng xã giao quan trọng ở Hàn Quốc.", "TOPIK do Viện Giáo dục Quốc tế Quốc gia Hàn Quốc (NIIED) tổ chức. TOPIK I gồm cấp 1 đến 2, TOPIK II gồm cấp 3 đến 6.", "Chứng chỉ TOPIK có giá trị trong 2 năm kể từ ngày công bố kết quả.", "TOPIK I tối đa 200 điểm (Nghe và Đọc), TOPIK II tối đa 300 điểm (Nghe, Viết và Đọc).", "Câu 54 phần Viết TOPIK II là bài luận 600 đến 700 chữ, còn câu 53 là đoạn văn miêu tả biểu đồ 200 đến 300 chữ.", "Văn viết trong TOPIK dùng đuôi -ㄴ/는다 (한다체), không dùng -요 hoặc -습니다.", "Học từ trong câu ví dụ giúp nhớ lâu hơn học từ đơn lẻ, vì não nhớ cả ngữ cảnh.", "Ôn lại từ sau 1 ngày, 3 ngày rồi 7 ngày là cách lặp lại ngắt quãng giúp nhớ lâu hơn rất nhiều.", "Ngủ đủ giấc sau khi học giúp não củng cố trí nhớ, nên học buổi tối rồi ôn lại sáng hôm sau rất hiệu quả.", "Đọc to và nhại theo người bản xứ khoảng 5 phút mỗi ngày là cách luyện ngữ điệu và tốc độ nói rất tốt.", "Bộ phim Ký sinh trùng (기생충) thắng giải Phim hay nhất Oscar năm 2020, là phim phi tiếng Anh đầu tiên làm được điều này.", "Tên thủ đô 서울 trong tiếng Hàn cổ được cho là có nghĩa là “kinh đô”."];
 let LF="";
 function fact(){let f,i=0;do f=rp(FACTS);while(f==LF&&i++<9);LF=f;cat("💡 Bạn có biết? "+f)}
-function gq(L){runQ(rnd(L||ALLG).slice(0,cnt((L||ALLG).length)).map(x=>{const o=rnd([x,...rnd(ALLG.filter(y=>y[0]!=x[0])).slice(0,3)]);return{m:"gram",wk:["g",x[0]],kr:1,o:o.map(y=>y[0]),a:o.indexOf(x),w:x[2],long:1,stem:`<p class="hint" style="margin:0">Câu này dùng mẫu ngữ pháp nào?</p><div class="q kr" style="font-size:22px;margin:8px 0">${x[2]}</div><p class="hint" style="text-align:center;margin:0 0 12px">${x[3]}</p>`,aw:()=>pt("g",2,"gq"+x[0])}}))}
+const GX={"이에요 / 예요": ["Nói ‘A là B’ một cách lịch sự: giới thiệu tên, nghề nghiệp, quốc tịch.", "Danh từ có patchim dùng 이에요, không có patchim dùng 예요. Phủ định dùng 이/가 아니에요."], "은 / 는": ["Nêu chủ đề của câu, hoặc đối chiếu hai đối tượng với nhau.", "Có patchim dùng 은, không có dùng 는. Hay dùng để nói thêm thông tin mới về chủ đề đã biết."], "이 / 가": ["Đánh dấu chủ ngữ, nhất là thông tin mới hoặc câu trả lời cho ‘ai, cái gì’.", "Có patchim dùng 이, không có dùng 가. Đi với 있다, 없다, 되다, 아니다."], "을 / 를": ["Đánh dấu tân ngữ, thứ chịu tác động của hành động.", "Có patchim dùng 을, không có dùng 를. Trong văn nói thường được lược bỏ."], "에": ["Chỉ điểm đến, nơi tồn tại hoặc mốc thời gian.", "Đi với 가다, 오다, 있다. Nơi diễn ra hành động phải dùng 에서, không dùng 에."], "-아/어요": ["Nói chuyện hằng ngày một cách lịch sự với người quen, đồng nghiệp, người lớn tuổi.", "Gốc từ có ㅏ/ㅗ dùng -아요, còn lại dùng -어요, 하다 thành 해요. Một đuôi dùng cho câu kể, hỏi, rủ tùy ngữ điệu."], "-(으)세요": ["Mời, đề nghị, hoặc hỏi người bậc trên một cách lịch sự.", "Gốc có patchim thêm 으세요. Một số từ đặc biệt: 먹다 thành 드세요, 있다 thành 계세요. Không dùng cho bản thân mình."], "안 + động từ": ["Phủ định đơn giản: không làm việc gì đó.", "Đặt 안 trước động từ. Với 하다 thì 안 đứng trước 하다 (공부 안 해요). Ý ‘không thể’ phải dùng 못."], "-고 싶다": ["Nói mong muốn của chính mình.", "Chủ ngữ ngôi thứ ba dùng -고 싶어 하다. Tân ngữ có thể dùng 을/를 hoặc 이/가."], "-(으)ㄹ 거예요": ["Nói dự định, kế hoạch hoặc dự đoán về tương lai.", "Có patchim thêm 을 거예요. Hỏi người nghe thường dùng -(으)실 거예요?"], "-지만": ["Nối hai vế tương phản: ‘nhưng’.", "Gắn thẳng vào gốc từ, không đổi theo chủ ngữ. Quá khứ là -았/었지만."], "-(으)ㄹ까요?": ["Rủ ai cùng làm, hỏi ý kiến hoặc đề xuất.", "Khi rủ cùng làm, chủ ngữ là ‘chúng ta’. Trả lời bằng -아/어요 hoặc -(으)ㅂ시다."], "-아/어서": ["Nêu lý do, hoặc hai hành động nối tiếp (đi rồi gặp).", "Vế sau không dùng đề nghị hay mệnh lệnh, và trước nó không gắn đuôi quá khứ. Cần đề nghị thì dùng -(으)니까."], "-(으)니까": ["Nêu lý do để rủ rê, đề nghị hoặc ra lệnh ở vế sau.", "Khác -아/어서, vế sau dùng được đề nghị và mệnh lệnh. Gốc có patchim thêm 으니까."], "-아/어야 하다": ["Nói nghĩa vụ, điều bắt buộc phải làm.", "Có thể thay bằng -아/어야 되다. ‘Không được’ là -(으)면 안 되다."], "-(으)면": ["Nêu điều kiện giả định: ‘nếu’.", "Gốc có patchim thêm 으면. Không dùng cho sự thật đã xảy ra."], "-(으)ㄴ 적이 있다": ["Nói về kinh nghiệm đã từng làm.", "Phủ định là -(으)ㄴ 적이 없다. Chỉ đi với động từ."], "-(으)려고": ["Nêu ý định, mục đích của hành động ở vế sau.", "Chỉ đi với động từ và hai vế cùng chủ ngữ. Vế sau là hành động, không dùng mệnh lệnh."], "-(으)ㄹ 수 있다": ["Nói khả năng hoặc việc có thể làm.", "Phủ định là -(으)ㄹ 수 없다. Gốc có patchim ㄹ thì gắn trực tiếp."], "-는데": ["Nêu bối cảnh trước khi nói ý chính, hoặc tương phản nhẹ.", "Động từ dùng -는데, tính từ dùng -(으)ㄴ데, quá khứ -았/었는데. Cuối câu mang sắc thái ngập ngừng."], "-게 되다": ["Nói sự thay đổi, kết quả mà hoàn cảnh đưa đến.", "Nhấn mạnh việc xảy ra không do ý định của chủ thể."], "-기 때문에": ["Nêu nguyên nhân khách quan, hơi trang trọng.", "Danh từ dùng N 때문에. Vế sau không dùng đề nghị hay mệnh lệnh."], "-도록": ["Nêu mục đích, mức độ, hoặc để ai làm gì.", "Hay gặp trong thông báo, dặn dò: -도록 하세요."], "-(으)ㄴ/는 것 같다": ["Phỏng đoán hoặc nhận định một cách mềm mại.", "Động từ hiện tại -는 것 같다, tính từ -(으)ㄴ 것 같다, quá khứ -(으)ㄴ 것 같다, tương lai -(으)ㄹ 것 같다."], "-(으)ㄹ 텐데": ["Phỏng đoán rồi nêu lời khuyên hoặc sự lo lắng.", "Vế sau thường là đề nghị hoặc nhận xét liên quan."], "-는 바람에": ["Nêu nguyên nhân dẫn đến kết quả tiêu cực, bất ngờ.", "Chỉ dùng cho kết quả xấu. Vế sau không dùng đề nghị hay mệnh lệnh."], "-(으)ㄴ/는 반면에": ["Đối chiếu hai mặt trái ngược của cùng một đối tượng.", "Dùng nhiều trong văn nghị luận, ví dụ ưu và nhược điểm."], "-더라도": ["Nhượng bộ: ‘dù cho… thì vẫn…’.", "Vế sau thường là ý chí hoặc lời khuyên, không dùng cho sự thật đã có."], "-(으)ㄹ 만하다": ["Đánh giá việc đáng làm, đáng xem.", "Đi sau động từ như 보다, 먹다, 읽다."], "-(으)ㄴ 나머지": ["Nêu hậu quả (thường không tốt) do trạng thái quá mức.", "Hay đi với cảm xúc hoặc hành động quá mức, ví dụ 긴장한 나머지."], "-(으)ㄴ/는 탓에": ["Quy lỗi cho nguyên nhân gây ra hậu quả xấu.", "Gần với -는 바람에 nhưng nhấn mạnh nguyên nhân. Danh từ dùng N 탓에."], "-(으)ㄴ/는 덕분에": ["Biết ơn nguyên nhân tốt dẫn đến kết quả tốt.", "Danh từ dùng N 덕분에. Đối lập với 탓에."], "-는 한": ["Nêu điều kiện hoặc phạm vi: ‘chừng nào còn’.", "Hay gặp trong lời hứa hoặc quyết tâm."], "-고도": ["Nói ‘mặc dù đã… vẫn…’.", "Vế sau trái với mong đợi, ví dụ 알고도 모른 척하다."], "-(으)ㄹ지라도": ["Giả định nhượng bộ mạnh: ‘dù có… đi nữa’.", "Văn trang trọng, mạnh hơn -더라도. Hay đi với ý chí."], "-(으)ㄹ 뻔하다": ["Nói ‘suýt nữa thì’ xảy ra điều xấu (nhưng không xảy ra).", "Chỉ dùng ở quá khứ: -(으)ㄹ 뻔했다."], "-(으)ㄴ/는 셈이다": ["Nêu kết luận ‘coi như là’.", "Hay đi với 거의 hoặc 결국."], "-(으)ㄹ 리가 없다": ["Phủ nhận mạnh một khả năng: ‘không đời nào’.", "Dùng khi thấy khó tin, ví dụ 그럴 리가 없어요."], "-(으)ㄹ수록": ["Diễn tả ‘càng… càng…’.", "Hai vế thường cùng xu hướng, dùng được với tính từ."], "-(으)ㄹ 만큼": ["So sánh mức độ: ‘đến mức’, ‘tương xứng với’.", "Danh từ dùng N 만큼."], "-(으)ㄹ 뿐이다": ["Nhấn mạnh ‘chỉ là…’.", "Danh từ dùng N일 뿐이다, hàm ý không còn gì khác."], "-(으)ㄹ 뿐만 아니라": ["Bổ sung thêm ý: ‘không chỉ… mà còn…’.", "Vế sau thường có 도. Dùng nhiều trong văn viết."], "-기 마련이다": ["Nói quy luật tự nhiên, điều hiển nhiên.", "Dùng cho điều chắc chắn xảy ra theo lẽ thường."], "-(으)ㄴ 채로": ["Giữ nguyên một trạng thái trong khi làm việc khác.", "Chỉ đi với động từ ở dạng -(으)ㄴ, hay kèm 그대로."], "-아/어 봤자": ["Nói ‘dù có làm cũng vô ích’.", "Vế sau thường phủ định hoặc vô nghĩa, ví dụ 소용없다."]};
+const CL=[{"c": "Ở nhà hàng", "lv": 1, "t": "어제 친구와 {1}에 갔습니다. 먼저 {2}를 보고 음식을 {3}했습니다. 음식이 정말 {4}.", "b": [["식당", "병원", "학교", "은행"], ["메뉴", "지도", "표", "약"], ["주문", "예약", "출발", "운전"], ["맛있었습니다", "바빴습니다", "추웠습니다", "아팠습니다"]], "vi": "Hôm qua tôi đến nhà hàng với bạn. Trước tiên xem thực đơn rồi gọi món. Đồ ăn thật sự rất ngon.", "n": "Tại nhà hàng: 식당 (nhà hàng), 메뉴 (thực đơn), 주문하다 (gọi món). -았/었습니다 là thì quá khứ trang trọng."}, {"c": "Mua sắm", "lv": 1, "t": "주말에 친구와 {1}에서 쇼핑을 했습니다. 가방이 예뻤지만 너무 {2}. 그래서 {3} 가방을 샀습니다.", "b": [["백화점", "도서관", "병원", "교실"], ["비쌌습니다", "쌌습니다", "아팠습니다", "바빴습니다"], ["싼", "먼", "높은", "아픈"]], "vi": "Cuối tuần tôi đi mua sắm ở trung tâm thương mại với bạn. Chiếc túi đẹp nhưng đắt quá. Vì vậy tôi mua chiếc túi rẻ hơn.", "n": "Mua sắm: 백화점, 비싸다 đối lập với 싸다. 싼 là dạng bổ nghĩa cho danh từ (chiếc túi rẻ)."}, {"c": "Khi bị ốm", "lv": 2, "t": "어제부터 머리가 {1} 열도 났습니다. 그래서 {2}에 갔습니다. 의사 선생님은 약을 먹고 푹 {3} 하셨습니다.", "b": [["아팠고", "컸고", "쌌고", "길었고"], ["병원", "공원", "식당", "우체국"], ["쉬라고", "가라고", "사라고", "읽으라고"]], "vi": "Từ hôm qua tôi đau đầu và còn bị sốt. Vì vậy tôi đến bệnh viện. Bác sĩ dặn uống thuốc và nghỉ ngơi thật nhiều.", "n": "Khi ốm: 아프다, 열이 나다, 병원, 약, 쉬다. -(으)라고 하다 dùng để thuật lại lời dặn."}, {"c": "Ở công sở", "lv": 2, "t": "저는 {1}에서 일합니다. 월요일 아침마다 {2}가 있습니다. 일이 많아서 가끔 {3}을 합니다.", "b": [["회사", "시험", "약속", "노래"], ["회의", "방학", "졸업", "휴가"], ["야근", "결혼", "졸업", "방학"]], "vi": "Tôi làm việc ở công ty. Mỗi sáng thứ Hai có cuộc họp. Vì nhiều việc nên thỉnh thoảng tôi làm đêm.", "n": "Công sở: 회사, 회의 (cuộc họp), 야근 (làm đêm). 일이 많아서 nghĩa là vì nhiều việc."}, {"c": "Chuẩn bị đi du lịch", "lv": 2, "t": "다음 주에 제주도로 여행을 갑니다. 비행기 {1}을 사고 호텔도 {2}했습니다. 아침 일찍 {3}에 가야 합니다.", "b": [["표", "약", "책", "옷"], ["예약", "계산", "청소", "연습"], ["공항", "도서관", "시장", "교실"]], "vi": "Tuần sau tôi đi du lịch đảo Jeju. Tôi mua vé máy bay và đặt khách sạn. Sáng sớm tôi phải đến sân bay.", "n": "Du lịch: 표 (vé), 예약 (đặt chỗ), 공항 (sân bay). -아/어야 하다 nghĩa là phải."}, {"c": "Việc học", "lv": 2, "t": "저는 한국어를 {1}고 있는 학생입니다. 매일 새 {2}를 외우고 {3}을 연습합니다. 다음 달에 {4}이 있어서 열심히 공부합니다.", "b": [["배우", "가르치", "사", "팔"], ["단어", "우유", "커피", "바다"], ["발음", "월급", "휴식", "연락"], ["시험", "방학", "졸업", "결혼식"]], "vi": "Tôi là học sinh đang học tiếng Hàn. Mỗi ngày tôi học thuộc từ mới và luyện phát âm. Tháng sau có kỳ thi nên tôi học chăm chỉ.", "n": "Học tập: 배우다, 단어, 발음, 시험. -고 있다 diễn tả hành động đang tiếp diễn."}, {"c": "Liên lạc với bạn", "lv": 2, "t": "어제 친구에게 {1}를 걸었는데 받지 않았습니다. 그래서 {2}를 보냈습니다. 저녁에 친구가 {3}해 주었습니다.", "b": [["전화", "커피", "사과", "바나나"], ["메시지", "바다", "우유", "나무"], ["연락", "청소", "요리", "운전"]], "vi": "Hôm qua tôi gọi điện cho bạn nhưng bạn không nghe. Vì vậy tôi gửi tin nhắn. Buổi tối bạn đã liên lạc lại cho tôi.", "n": "Liên lạc: 전화를 걸다 (gọi điện), 메시지를 보내다 (gửi tin nhắn), 연락하다 (liên lạc)."}, {"c": "Ngày lễ gia đình", "lv": 2, "t": "추석에는 가족이 모두 {1}에 모입니다. 할머니가 맛있는 {2}을 만들어 주십니다. 우리는 함께 식사하고 {3}를 합니다.", "b": [["고향", "은행", "공항", "병원"], ["음식", "신발", "가방", "옷"], ["이야기", "우유", "나무", "사과"]], "vi": "Vào Chuseok cả gia đình tụ họp ở quê. Bà nấu món ăn ngon cho chúng tôi. Chúng tôi cùng dùng bữa và trò chuyện.", "n": "Ngày lễ: 추석, 고향 (quê), 음식, 이야기하다 (trò chuyện). 모이다 (tụ họp) đi với 에 chỉ nơi chốn."}, {"c": "Xin việc", "lv": 3, "t": "이번 달에 회사 {1}이 있습니다. 먼저 {2}를 써서 {3}했고, 이제 질문에 대한 대답을 준비하고 있습니다.", "b": [["면접", "방학", "졸업", "결혼식"], ["이력서", "우유", "사과", "나무"], ["제출", "취소", "연장", "변경"]], "vi": "Tháng này tôi có buổi phỏng vấn công ty. Trước hết tôi viết sơ yếu lý lịch rồi nộp, bây giờ đang chuẩn bị câu trả lời.", "n": "Xin việc: 면접 (phỏng vấn), 이력서 (sơ yếu lý lịch), 제출하다 (nộp)."}, {"c": "Kinh tế đời sống", "lv": 3, "t": "요즘 {1}가 계속 올라서 생활비 부담이 커졌습니다. 많은 사람들이 불필요한 {2}을 줄이고 {3}을 늘리려고 합니다.", "b": [["물가", "나무", "바다", "사과"], ["지출", "졸업", "방학", "식당"], ["저축", "졸업", "출장", "결혼"]], "vi": "Dạo này vật giá liên tục tăng nên gánh nặng chi phí sinh hoạt lớn hơn. Nhiều người giảm chi tiêu không cần thiết và muốn tăng tiền tiết kiệm.", "n": "Kinh tế đời sống: 물가 (vật giá), 지출 (chi tiêu), 저축 (tiết kiệm). -(으)려고 하다 nghĩa là định làm."}, {"c": "Môi trường", "lv": 4, "t": "기후 변화와 {1}이 심각한 문제가 되고 있습니다. 쓰레기를 줄이고 종이를 {2}하는 것이 도움이 됩니다. 정부와 시민 모두의 {3}이 필요합니다.", "b": [["오염", "광고", "연습", "방학"], ["재활용", "취소", "연습", "계산"], ["노력", "시험", "방학", "졸업"]], "vi": "Biến đổi khí hậu và ô nhiễm đang trở thành vấn đề nghiêm trọng. Giảm rác và tái chế giấy sẽ giúp ích. Cần nỗ lực của cả chính phủ và người dân.", "n": "Môi trường: 오염 (ô nhiễm), 재활용 (tái chế), 노력 (nỗ lực). -는 것이 도움이 되다 nghĩa là việc… có ích."}, {"c": "Bản tin xã hội", "lv": 5, "t": "정부는 저출산 문제를 해결하기 위해 새로운 {1}을 발표했습니다. 하지만 일부 전문가들은 이 정책의 {2}이 낮다고 {3}했습니다.", "b": [["대책", "취향", "일상", "풍경"], ["실효성", "일상", "풍경", "취향"], ["지적", "취소", "연습", "이사"]], "vi": "Chính phủ đã công bố đối sách mới để giải quyết vấn đề tỷ lệ sinh thấp. Tuy nhiên một số chuyên gia chỉ ra rằng tính hiệu lực của chính sách này thấp.", "n": "Văn phong bản tin: 대책을 발표하다 (công bố đối sách), 실효성이 낮다 (tính hiệu lực thấp), 지적하다 (chỉ ra)."}, {"c": "Văn viết học thuật", "lv": 6, "t": "기술의 발전은 우리 생활을 편리하게 만들었지만, 동시에 기술에 대한 {1}도 커지고 있다. 따라서 기술의 {2}을 정확히 이해하고 {3}으로 활용하는 태도가 필요하다.", "b": [["의존", "휴가", "출장", "졸업"], ["양면성", "영수증", "간식", "출장"], ["합리적", "간식", "출장", "방학"]], "vi": "Sự phát triển công nghệ làm cuộc sống tiện lợi hơn, nhưng đồng thời sự phụ thuộc vào công nghệ cũng tăng lên. Do đó cần thái độ hiểu đúng tính hai mặt của công nghệ và sử dụng một cách hợp lý.", "n": "Văn viết dùng đuôi -다 (한다체) như 필요하다, 커지고 있다, không dùng -요 hay -습니다."}, {"c": "Văn nghị luận", "lv": 6, "t": "많은 나라에서 소득 {1}가 심해지면서 사회적 {2}도 커지고 있다. 이를 해소하려면 {3}한 분배와 지속적인 노력이 필요하다.", "b": [["격차", "나무", "우유", "사과"], ["갈등", "연락", "졸업", "방학"], ["공정", "간식", "졸업", "방학"]], "vi": "Ở nhiều nước, khi chênh lệch thu nhập trầm trọng thì xung đột xã hội cũng tăng. Để giải tỏa cần phân phối công bằng và nỗ lực liên tục.", "n": "Nghị luận: 소득 격차, 사회적 갈등, 공정한 분배. -(으)려면 nghĩa là nếu muốn."}];
+const DEFT=`안녕하세요|[인사말] 사람을 만났을 때 서로 건네는 인사.
+감사합니다|[인사말] 도움을 받았을 때 고마운 마음을 전하는 말.
+네|[대답] 질문에 맞다고 하거나 그렇게 하겠다고 답할 때 쓰는 말.
+아니요|[대답] 질문에 그렇지 않다고 답할 때 쓰는 말.
+물|[명사] 마시거나 씻을 때 쓰는, 색과 맛이 없는 투명한 액체.
+밥|[명사] 쌀을 끓이거나 쪄서 익힌 음식. 또는 때가 되어 먹는 식사.
+학교|[명사] 학생이 선생님에게 배우는 곳.
+친구|[명사] 서로 가깝게 지내며 마음을 나누는 사람.
+사람|[명사] 생각하고 말하는 능력이 있는 존재.
+오늘|[명사] 지금 지나고 있는 이날.
+내일|[명사] 오늘의 바로 다음 날.
+집|[명사] 사람이 살면서 먹고 자고 쉬는 건물.
+책|[명사] 글이나 그림을 인쇄하여 묶어 놓은 것.
+먹다|[동사] 음식을 입에 넣어 삼키다.
+가다|[동사] 지금 있는 곳에서 다른 곳으로 움직이다.
+오다|[동사] 다른 곳에서 말하는 사람이 있는 곳으로 움직이다.
+좋다|[형용사] 마음에 들거나 상태가 훌륭하다.
+크다|[형용사] 크기나 양이 보통보다 많거나 넓다.
+학생|[명사] 학교에서 공부하는 사람.
+선생님|[명사] 학생을 가르치는 사람. 또는 그 사람을 높여 부르는 말.
+한국|[명사] 아시아 동쪽에 있는 나라. 수도는 서울이다.
+하나|[수사] 숫자 1. 둘보다 하나 적은 수.
+커피|[명사] 볶은 커피콩으로 만든 쓴맛이 나는 갈색 음료.
+어머니|[명사] 자식을 낳아 기르는 여자. 엄마를 높여 부르는 말.
+아버지|[명사] 자식을 낳아 기르는 남자. 아빠를 높여 부르는 말.
+이름|[명사] 사람이나 물건을 다른 것과 구별하여 부르는 말.
+시장|[명사] 여러 가지 물건을 사고파는 곳.
+사다|[동사] 돈을 주고 물건을 자기 것으로 만들다.
+마시다|[동사] 물이나 차 같은 액체를 입으로 넘기다.
+공부하다|[동사] 지식이나 기술을 배우고 익히다.
+예쁘다|[형용사] 보기에 아름답고 귀엽다.
+맛있다|[형용사] 음식의 맛이 좋다.
+지금|[명사] 말하고 있는 바로 이때.
+어디|[대명사] 모르는 장소를 물을 때 쓰는 말.
+안녕히 가세요|[인사말] 떠나는 사람에게 건네는 작별 인사.
+죄송합니다|[인사말] 잘못을 했을 때 미안한 마음을 정중하게 전하는 말.
+괜찮아요|[표현] 문제가 없거나 걱정하지 않아도 된다는 뜻으로 하는 말.
+처음 뵙겠습니다|[인사말] 처음 만난 사람에게 하는 정중한 인사.
+여보세요|[감탄사] 전화를 걸거나 받을 때 상대를 부르는 말.
+말하다|[동사] 생각이나 느낌을 소리 내어 다른 사람에게 전하다.
+이것|[대명사] 말하는 사람과 가까이 있는 물건을 가리키는 말.
+누구|[대명사] 모르는 사람이 누구인지 물을 때 쓰는 말.
+뭐|[대명사] 모르는 일이나 물건이 무엇인지 물을 때 쓰는 말.
+왜|[부사] 이유나 까닭을 물을 때 쓰는 말.
+형제|[명사] 같은 부모에게서 태어난 형과 동생.
+언니|[명사] 여자가 손위 여자 형제나 나이가 많은 여자를 부르는 말.
+오빠|[명사] 여자가 손위 남자 형제나 친한 나이 많은 남자를 부르는 말.
+동생|[명사] 나이가 자기보다 어린 형제.
+아이|[명사] 나이가 어린 사람.
+남자|[명사] 남성인 사람.
+여자|[명사] 여성인 사람.
+할머니|[명사] 아버지나 어머니의 어머니. 나이 많은 여자를 높여 부르는 말.
+김치|[명사] 배추나 무에 양념을 넣어 발효시킨 한국 음식.
+과일|[명사] 나무나 풀에서 열리는, 먹을 수 있고 달거나 신 열매.
+고기|[명사] 동물의 살로 먹는 것.
+빵|[명사] 밀가루를 반죽해서 구운 음식.
+우유|[명사] 소에게서 얻는 흰색 음료.
+차|[명사] 나뭇잎이나 곡식을 끓여 마시는 따뜻한 음료.
+맵다|[형용사] 고추처럼 입안이 얼얼할 만큼 자극적인 맛이 나다.
+배고프다|[형용사] 배 속이 비어서 먹고 싶다.
+주다|[동사] 물건을 다른 사람에게 건네다.
+돈|[명사] 물건을 사거나 값을 치를 때 쓰는 것.
+옷|[명사] 사람이 몸에 입는 것.
+가방|[명사] 물건을 넣어서 들거나 메고 다니는 것.
+싸다|[형용사] 물건의 값이 보통보다 낮다.
+얼마|[명사] 값이나 양이 어느 정도인지 물을 때 쓰는 말.
+버스|[명사] 많은 사람이 함께 타는 큰 자동차.
+지하철|[명사] 땅속에 길을 만들어 다니는 전철.
+택시|[명사] 요금을 받고 손님을 목적지까지 태워 주는 자동차.
+공항|[명사] 비행기가 뜨고 내리는 곳.
+역|[명사] 기차나 전철이 서서 사람이 타고 내리는 곳.
+타다|[동사] 버스나 자전거 같은 탈것 위에 올라 이동하다.
+멀다|[형용사] 두 곳 사이의 거리가 길다.
+가깝다|[형용사] 두 곳 사이의 거리가 짧다.
+회사원|[명사] 회사에서 일하고 월급을 받는 사람.
+의사|[명사] 병을 진찰하고 치료하는 사람.
+일|[명사] 직업이나 직장에서 하는 활동. 해야 하는 것.
+숙제|[명사] 학생이 집에서 해 오라고 받은 공부.
+교실|[명사] 학교에서 수업을 하는 방.
+읽다|[동사] 글을 보고 그 뜻을 이해하거나 소리 내어 말하다.
+쓰다|[동사] 펜이나 연필로 글자를 적다.
+듣다|[동사] 귀로 소리를 알아차리다.
+배우다|[동사] 다른 사람에게서 지식이나 기술을 익히다.
+가르치다|[동사] 지식이나 기술을 다른 사람이 알도록 알려 주다.
+아프다|[형용사] 몸이나 마음에 괴로운 느낌이 있다.
+약|[명사] 병을 낫게 하거나 아픈 것을 줄이려고 먹는 것.
+자다|[동사] 눈을 감고 몸과 정신을 쉬게 하다.
+일어나다|[동사] 누웠다가 몸을 세우다. 잠에서 깨다.
+산책|[명사] 기분 전환이나 운동을 위해 천천히 걷는 일.
+영화|[명사] 움직이는 모습을 화면으로 보여 주는 이야기.
+음악|[명사] 소리를 아름답게 어울리게 하여 즐기는 예술.
+보다|[동사] 눈으로 사물을 알아보다.
+아침|[명사] 날이 밝아 오는 때부터 점심이 되기 전까지의 시간.
+저녁|[명사] 해가 지고 밤이 되기 전까지의 시간. 그때 먹는 밥.
+어제|[명사] 오늘의 바로 전날.
+매일|[부사] 하루도 빠짐없이 날마다.
+많다|[형용사] 수나 양이 보통보다 크다.
+적다|[형용사] 수나 양이 보통보다 작다.
+작다|[형용사] 크기가 보통보다 덜하다.
+덥다|[형용사] 날씨나 기온이 높아서 땀이 날 정도이다.
+춥다|[형용사] 날씨나 기온이 낮아서 몸이 떨릴 정도이다.
+둘|[수사] 숫자 2. 하나에 하나를 더한 수.
+셋|[수사] 숫자 3. 둘에 하나를 더한 수.
+빨리|[부사] 걸리는 시간이 짧게.
+천천히|[부사] 속도가 느리게.
+감사해요|[인사말] 고마운 마음을 부드럽게 전하는 말.
+미안해요|[인사말] 잘못에 대해 미안한 마음을 부드럽게 전하는 말.
+알다|[동사] 어떤 사실이나 방법을 머릿속에 가지고 있다.
+모르다|[동사] 어떤 사실이나 방법을 알지 못하다.
+있다|[형용사] 사람이나 물건이 어떤 곳에 존재하다. 가지고 있다.
+없다|[형용사] 사람이나 물건이 존재하지 않다. 가지고 있지 않다.
+하다|[동사] 어떤 일이나 행동을 실제로 이루다.
+만나다|[동사] 약속하거나 우연히 사람을 마주하다.
+아들|[명사] 부모에게서 태어난 남자 아이.
+딸|[명사] 부모에게서 태어난 여자 아이.
+아저씨|[명사] 결혼한 남자를 친근하게 부르는 말.
+아기|[명사] 태어난 지 얼마 안 된 어린아이.
+사과|[명사] 둥글고 빨갛거나 노란 껍질을 가진 달콤한 과일.
+바나나|[명사] 길고 노란 껍질을 벗겨 먹는 부드럽고 단 과일.
+쌀|[명사] 벼에서 나온, 밥을 짓는 하얀 곡식.
+국|[명사] 고기나 채소를 넣고 물을 많이 부어 끓인 음식.
+계란|[명사] 닭이 낳은 알.
+생선|[명사] 먹으려고 잡은 물고기.
+야채|[명사] 밭에서 기르는 먹을 수 있는 식물.
+점심|[명사] 하루의 한낮에 먹는 밥.
+술|[명사] 마시면 취하는 알코올이 든 음료.
+맛없다|[형용사] 음식의 맛이 좋지 않다.
+뜨겁다|[형용사] 온도가 아주 높아서 만지기 힘들다.
+차갑다|[형용사] 온도가 낮아서 시원하거나 춥게 느껴지다.
+신발|[명사] 발에 신는 물건.
+모자|[명사] 머리에 쓰는 물건.
+우산|[명사] 비를 가리려고 손에 들고 펴는 물건.
+휴대폰|[명사] 들고 다니며 전화를 걸고 받는 기계.
+컴퓨터|[명사] 정보를 저장하고 계산하며 여러 가지 일을 하는 기계.
+편의점|[명사] 늦은 시간까지 문을 열고 생활용품을 파는 작은 가게.
+백화점|[명사] 여러 종류의 상품을 한곳에서 파는 큰 건물.
+은행|[명사] 돈을 맡기거나 빌려주는 일을 하는 곳.
+우체국|[명사] 편지나 물건을 보내고 받는 일을 하는 곳.
+공원|[명사] 사람들이 쉬고 놀 수 있게 꾸민 넓은 장소.
+도서관|[명사] 책을 모아 두고 빌려주거나 읽을 수 있게 한 곳.
+화장실|[명사] 대소변을 보거나 손을 씻는 곳.
+앞|[명사] 향하고 있는 쪽이나 먼저인 곳.
+뒤|[명사] 향하고 있는 반대쪽이나 나중인 곳.
+옆|[명사] 어떤 것의 왼쪽이나 오른쪽에 가까운 곳.
+위|[명사] 높은 쪽이나 어떤 것보다 높은 곳.
+아래|[명사] 낮은 쪽이나 어떤 것보다 낮은 곳.
+안|[명사] 어떤 곳의 속이나 경계의 안쪽.
+밖|[명사] 어떤 곳의 겉이나 경계의 바깥쪽.
+오른쪽|[명사] 보통 밥을 먹을 때 숟가락을 잡는 손이 있는 쪽.
+왼쪽|[명사] 오른쪽과 반대되는 쪽.
+한국어|[명사] 한국 사람이 쓰는 말과 글.
+영어|[명사] 영국과 미국 등에서 쓰는 말과 글.
+베트남어|[명사] 베트남 사람이 쓰는 말과 글.
+공책|[명사] 글씨를 쓸 수 있게 종이를 묶어 만든 물건.
+연필|[명사] 흑연으로 만든 심이 들어 있어 글씨를 쓰는 도구.
+펜|[명사] 잉크로 글씨를 쓰는 도구.
+책상|[명사] 앉아서 공부하거나 일을 할 때 쓰는 평평한 가구.
+의자|[명사] 사람이 앉을 수 있게 만든 가구.
+대학교|[명사] 고등학교를 마치고 전문적인 공부를 하는 학교.
+직장|[명사] 돈을 받고 일하는 곳.
+머리|[명사] 목 위의 얼굴과 머리카락이 있는 부분.
+눈|[명사] 얼굴에 있는, 사물을 보는 신체 부분.
+코|[명사] 얼굴 가운데에 있는, 냄새를 맡고 숨을 쉬는 부분.
+입|[명사] 얼굴에 있는, 음식을 먹고 말을 하는 부분.
+귀|[명사] 얼굴 양옆에 있는, 소리를 듣는 부분.
+손|[명사] 팔 끝에 있는, 물건을 잡는 신체 부분.
+발|[명사] 다리 끝에 있는, 서거나 걸을 때 쓰는 부분.
+배|[명사] 가슴 아래에 있는, 음식물이 들어가는 몸의 부분.
+얼굴|[명사] 눈, 코, 입이 있는 머리의 앞부분.
+방|[명사] 집 안에서 벽으로 나뉜 공간.
+문|[명사] 사람이 드나들거나 열고 닫을 수 있게 만든 것.
+창문|[명사] 공기와 빛이 들어오도록 벽에 만든 문.
+침대|[명사] 누워서 잠을 잘 수 있게 만든 가구.
+강아지|[명사] 어린 개.
+고양이|[명사] 부드러운 털과 날카로운 발톱이 있는, 집에서 기르는 작은 동물.
+꽃|[명사] 식물에서 피는, 보통 색이 곱고 향기가 나는 부분.
+나무|[명사] 줄기가 단단하고 키가 크게 자라는 식물.
+비|[명사] 하늘의 구름에서 물방울이 되어 떨어지는 것.
+바람|[명사] 공기가 움직이는 것.
+월요일|[명사] 한 주의 첫째 날. 일요일 다음 날.
+화요일|[명사] 월요일 다음 날.
+수요일|[명사] 화요일 다음 날.
+목요일|[명사] 수요일 다음 날.
+금요일|[명사] 목요일 다음 날.
+토요일|[명사] 금요일 다음 날. 한 주의 여섯째 날.
+일요일|[명사] 한 주의 마지막 날. 토요일 다음 날.
+오전|[명사] 밤 열두 시부터 낮 열두 시까지의 시간.
+오후|[명사] 낮 열두 시부터 밤 열두 시까지의 시간.
+밤|[명사] 해가 져서 어두운 시간.
+올해|[명사] 지금 지나고 있는 해.
+작년|[명사] 올해의 바로 앞의 해.
+내년|[명사] 올해의 바로 다음 해.
+빨갛다|[형용사] 피나 딸기처럼 밝고 짙은 붉은색이다.
+파랗다|[형용사] 맑은 하늘이나 바다처럼 푸른색이다.
+하얗다|[형용사] 눈이나 우유처럼 밝고 흰색이다.
+까맣다|[형용사] 숯이나 밤하늘처럼 매우 어두운 검은색이다.
+길다|[형용사] 두 끝 사이의 거리나 시간이 보통보다 많다.
+짧다|[형용사] 두 끝 사이의 거리나 시간이 보통보다 적다.
+높다|[형용사] 아래에서 위까지의 거리가 길다.
+낮다|[형용사] 아래에서 위까지의 거리가 짧다.
+같다|[형용사] 서로 다르지 않고 한가지이다.
+다르다|[형용사] 서로 같지 않다.
+쉽다|[형용사] 하기 어렵지 않고 간단하다.
+어렵다|[형용사] 하기가 힘들고 복잡하다.
+재미있다|[형용사] 즐겁고 흥미가 있다.
+바쁘다|[형용사] 할 일이 많아서 여유가 없다.
+요즘|[명사] 얼마 전부터 지금까지의 동안.
+같이|[부사] 다른 사람과 함께.
+혼자|[명사] 다른 사람 없이 자기 한 사람.
+조금|[부사] 양이나 정도가 적게.
+너무|[부사] 정도가 지나치게 심하게.
+정말|[부사] 거짓이 없이 참으로.
+모두|[명사] 빠짐없이 전부.`;
+const DEF={};DEFT.split("\n").forEach(l=>{const i=l.indexOf("|");DEF[l.slice(0,i)]=l.slice(i+1)});
+const defOf=w=>w[7]||DEF[w[0]]||"";
+const POS={"명사":"danh từ","동사":"động từ","형용사":"tính từ","부사":"phó từ","대명사":"đại từ","수사":"số từ","감탄사":"thán từ","인사말":"lời chào","표현":"cách nói","대답":"câu đáp"};
+function dparts(w){const d=defOf(w),m=d.match(/^\[(.+?)\]\s*(.*)$/);return m?[m[1]+(POS[m[1]]?" · "+POS[m[1]]:""),m[2]]:["",d]}
+let BD=null;
+const gxp=k=>GX[k]?`<p><b>Dùng khi:</b> ${GX[k][0]}</p><p><b>Lưu ý:</b> ${GX[k][1]}</p>`:"";
+function gxh(k){const g=ALLG.find(x=>x[0]==k),e=GX[k];return g?`<b class="kr">${g[0]}</b> · ${g[1]}`+(e?`<br><b>Dùng khi:</b> ${e[0]}<br><b>Lưu ý:</b> ${e[1]}`:"")+`<br><span class="kr">${g[2]}</span> <small class="hint">(${g[3]})</small>`:""}
+function mc4(c,ps,f){const st=new Set([f(c)]);for(const y of rnd(ps)){if(st.size>=4)break;st.add(f(y))}const o=rnd([...st]);return{o,a:o.indexOf(f(c))}}
+function nx(){R.i++;qs()}
+function mkT(w){const ws=w.filter(x=>x[3]),pool=ws.length>=4?ws:ALL.filter(x=>x[3]);return rnd(ws).slice(0,cnt(ws.length)).map(c=>({m:"trans",wk:["w",c[0]],...mc4(c,pool,x=>x[4]),w:c[3],long:1,stem:`<div class="q kr" style="font-size:22px">${c[3]}</div><p>Chọn bản dịch tiếng Việt đúng.</p>`,xp:`Từ khóa: <b class="kr">${c[0]}</b> = ${c[1]}`,aw:()=>pt("p",1,"tr"+c[0])}))}
+function clozePick(){$("m").innerHTML=`<button class="btn alt" onclick="practice()">← Luyện tập</button><div class="card" style="margin-top:12px"><b>Điền từ vào đoạn văn</b><p class="hint">Đọc đoạn văn ngắn theo từng hoàn cảnh rồi chọn từ thích hợp cho mỗi chỗ trống. Sau mỗi câu có bản dịch và lưu ý cách dùng.</p>${[["a","Cơ bản (TOPIK I)"],["b","Trung cấp (cấp 3 đến 4)"],["c","Nâng cao (cấp 5 đến 6)"],["x","Tất cả"]].map(x=>`<button class="opt" onclick="clozeRun('${x[0]}')">${x[1]}</button>`).join("")}</div>`}
+function clozeRun(b){const P=CL.filter(p=>b=="x"||(b=="a"?p.lv<=2:b=="b"?p.lv>=3&&p.lv<=4:p.lv>=5)),q=curQn(),ps=rnd(P).slice(0,q?Math.max(1,Math.ceil(q/3)):P.length),items=[];
+ps.forEach(p=>{for(let k=1;k<=p.b.length;k++){const ans=p.b[k-1][0],o=rnd(p.b[k-1]),txt=p.t.replace(/\{(\d)\}/g,(m,d)=>{d=+d;return d<k?`<b style="color:var(--ok)">${p.b[d-1][0]}</b>`:d==k?`<b style="color:var(--p)">［ ${k} ］</b>`:`<b>（${d}）</b>`});
+items.push({m:"cloze",kr:1,o,a:o.indexOf(ans),w:ans,long:1,stem:`<span class="chip">${p.c}</span><div class="ex kr" style="line-height:1.9;margin:10px 0">${txt}</div><p>Chọn từ thích hợp cho chỗ trống <b>(${k})</b>.</p>`,xp:`<b>Dịch:</b> ${p.vi}<br><b>Lưu ý:</b> ${p.n}`,wk:allw().some(w=>w[0]==ans)?["w",ans]:null,aw:()=>pt("p",1,"cl"+p.c+k)})}});runQ(items)}
+function buildStart(k){PM=k=="g"?"gbuild":"build";const src=k=="g"?rnd(ALLG).slice(0,cnt(ALLG.length)).map(x=>({t:x[2],v:x[3],h:"Gợi ý ngữ pháp: "+x[0]+" ("+x[1]+")",wk:["g",x[0]]})):rnd(words().filter(w=>w[3]&&w[3].split(" ").length>=2)).slice(0,cnt(words().length)).map(w=>({t:w[3],v:w[4],h:"Từ gợi ý: "+w[0]+" = "+w[1],wk:["w",w[0]]}));
+if(!src.length){cat("Bộ từ này chưa có câu ví dụ đủ dài để ghép câu 🐾");return}BD={k,items:src,i:0,s:0,mode:S.bm||"chip",log:[]};bs()}
+function bs(){const b=BD;if(b.i>=b.items.length)return bfin();const it=b.items[b.i];
+if(!it.ch){const tk=it.t.split(" "),ds=[...new Set([].concat(...rnd(b.items.filter(x=>x!=it)).slice(0,3).map(x=>x.t.split(" "))).filter(x=>!tk.includes(x)))].slice(0,2);it.ch=rnd([...tk,...ds].map((t,i)=>({t,i})));it.sel=[]}
+b.done=0;brender()}
+function brender(){const b=BD,it=b.items[b.i],ch=b.mode=="chip";
+$("m").innerHTML=hdr(b.i,b.items.length,b.s)+`<div class="card"><div class="q" style="font-size:22px">${it.v}</div><p class="hint" style="text-align:center;margin:0 0 10px">${it.h}</p>${ch?`<div class="ex kr" style="min-height:48px;display:flex;flex-wrap:wrap;gap:6px">${it.sel.map((c,j)=>`<button class="btn" style="padding:8px 12px" onclick="bun(${j})">${c.t}</button>`).join("")||"<span class='hint'>Chạm các từ bên dưới để ghép câu</span>"}</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0">${it.ch.filter(c=>!it.sel.includes(c)).map(c=>`<button class="btn alt kr" style="padding:8px 12px" onclick="bpk(${c.i})">${c.t}</button>`).join("")}</div>`:`<input id="bt" class="inp kr" placeholder="Gõ câu tiếng Hàn" autocomplete="off">`}<div id="xp"></div><div class="row"><button class="btn" id="bk" onclick="bck()">Kiểm tra</button><button class="btn alt" onclick="bmode()">${ch?"⌨ Gõ chữ":"🧩 Ghép từ"}</button></div></div>`}
+function bpk(i){const it=BD.items[BD.i];if(BD.done)return;it.sel.push(it.ch.find(c=>c.i==i));brender()}
+function bun(j){const it=BD.items[BD.i];if(BD.done)return;it.sel.splice(j,1);brender()}
+function bmode(){BD.mode=BD.mode=="chip"?"type":"chip";S.bm=BD.mode;save();brender()}
+function bck(){const b=BD,it=b.items[b.i];if(b.done){b.i++;return bs()}const got=b.mode=="chip"?it.sel.map(c=>c.t).join(" "):$("bt").value;if(!got.trim())return cat("Hãy ghép hoặc gõ câu trả lời trước nhé");
+const n=x=>x.replace(/[\s.,!?]/g,""),ok=n(got)==n(it.t);b.done=1;stat(b.k=="g"?"gbuild":"build",ok);if(ok){b.s++;pt("p",2,"bd"+it.t);if(it.wk)okW(it.wk[0],it.wk[1])}else if(it.wk)addW(it.wk[0],it.wk[1]);b.log[b.i]={got,ok};
+if(S.fb=="end"){b.i++;return bs()}
+$("xp").innerHTML=`<div class="ex" style="margin-top:8px"><b style="color:var(--${ok?"ok":"no"})">${ok?"Chính xác!":"Chưa đúng."}</b><p class="kr" style="margin:4px 0 0;font-weight:700">${it.t}</p>${ok?"":`<small class="hint">Bạn: ${esc(got)}</small>`}</div>`;$("bk").textContent="Câu tiếp →";cheer(ok);say(it.t)}
+function bfin(){const b=BD,n=b.items.length;$("m").innerHTML=`<div class="card hero" style="text-align:center"><h2>Hoàn thành! 🎉</h2><p>Đúng ${b.s}/${n} · điểm chuyên cần hôm nay ${tot()}/100</p><div class="row"><button class="btn w" onclick="start(PM)">Làm lại</button><button class="btn w" onclick="back()">Xong</button></div></div>`+(S.fb=="end"?`<div class="card"><b>Công bố đáp án</b>${b.items.map((it,i)=>{const l=b.log[i]||{};return`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><small class="hint">Câu ${i+1} ${l.ok?"✅ đúng":"❌ sai"}</small><div>${it.v}</div><div class="kr" style="font-weight:700">${it.t}</div><small class="hint">Bạn: ${esc(l.got||"(trống)")}</small></div>`}).join("")}</div>`:"")}
+function gq(L){const base=L||ALLG;runQ(rnd(base).slice(0,cnt(base.length)).map(x=>{const t=GX[x[0]]?rp([0,0,1,2,3]):0,up=ALLG.filter(y=>GX[y[0]]);let q;
+if(t==0)q={kr:1,stem:`<p class="hint" style="margin:0">Câu này dùng mẫu ngữ pháp nào?</p><div class="q kr" style="font-size:22px;margin:8px 0">${x[2]}</div><p class="hint" style="text-align:center;margin:0 0 12px">${x[3]}</p>`,...mc4(x,ALLG,y=>y[0])};
+else if(t==1)q={stem:`<p>Mẫu <b class="kr">${x[0]}</b> có nghĩa là gì?</p>`,...mc4(x,ALLG,y=>y[1])};
+else if(t==2)q={stem:`<p>Mẫu <b class="kr">${x[0]}</b> thường dùng trong hoàn cảnh nào?</p>`,...mc4(x,up,y=>GX[y[0]][0])};
+else q={stem:`<p>Lưu ý nào đúng với mẫu <b class="kr">${x[0]}</b>?</p>`,...mc4(x,up,y=>GX[y[0]][1])};
+return{...q,m:"gram",wk:["g",x[0]],w:x[2],long:1,xp:gxh(x[0]),aw:()=>pt("g",2,"gq"+t+x[0])}}))}
 function hangul(){$("m").innerHTML=`<p class="hint">Bấm vào từng chữ để nghe phát âm. 14 phụ âm và 8 nguyên âm cơ bản.</p><div class="hg">${H.map(h=>`<button onclick="say('${h[2]}')"><b class="kr">${h[0]}</b><small>${h[1]}</small></button>`).join("")}</div>`}
 const TIPS={home:["Chào bạn, mình là Mimi! Học đều 10 phút mỗi ngày tốt hơn học dồn cuối tuần 🐱","Đạt 30 điểm chuyên cần mỗi ngày để giữ chuỗi nhé!","Hãy thử học theo lĩnh vực: gom từ cùng chủ đề sẽ dễ nhớ hơn."],vocab:["Chọn bộ từ theo cấp độ hoặc theo lĩnh vực bạn thích nhé.","Bấm 🔁 để nghe lặp chậm rồi nhại theo, được cộng điểm nghe & nói.","Đọc to câu ví dụ, nhớ cả cụm dễ hơn nhớ từng từ."],quiz:["Mỗi dạng bài cộng điểm vào một mục khác nhau, thử đủ cả sáu nhé!","Chưa có bàn phím Hàn? Cứ gõ phiên âm, Mimi vẫn chấm đúng.","Sai là cách nhớ lâu nhất, đừng ngại!"],gram:["Học ngữ pháp theo nhóm: các mẫu cùng nhóm hay bị nhầm với nhau đó.","Thử thay danh từ trong câu ví dụ bằng từ bạn biết.","Bấm Đánh dấu đã ôn để ghi điểm và theo dõi tiến độ."],hangul:["Hangul rất logic, vài ngày là thuộc!","Ghép phụ âm với ㅏ để luyện đọc: 가, 나, 다, 라…"]};
 const rp=a=>a[Math.floor(Math.random()*a.length)];
