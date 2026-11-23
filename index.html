@@ -1155,7 +1155,7 @@ const GR=[["🔤 Trợ từ","Gắn sau danh từ để chỉ vai trò trong câ
 ["✨ Mục đích & bổ sung","Thêm thông tin: mục đích, trạng thái giữ nguyên, bổ sung ý.",["-도록","-(으)ㄴ 채로","-(으)ㄹ 뿐만 아니라"]]];
 GR[3][2].push("-(으)ㄴ 나머지","-(으)ㄴ/는 탓에","-(으)ㄴ/는 덕분에");GR[4][2].push("-는 한","-고도","-(으)ㄹ지라도");GR[6][2].push("-(으)ㄹ 뻔하다","-(으)ㄴ/는 셈이다","-(으)ㄹ 리가 없다");GR[7][2].push("-(으)ㄹ수록","-(으)ㄹ 만큼","-(으)ㄹ 뿐이다");
 const TABS=[["home","⌂","Tổng quan"],["vocab","✿","Từ vựng"],["quiz","✎","Luyện tập"],["gram","❀","Ngữ pháp"],["goal","◎","Tiến độ"],["hangul","ㄱ","Bảng chữ"]];
-const MODES=[["flash","🃏","Thẻ ghi nhớ","Lật thẻ, tự đánh giá nhớ hoặc chưa nhớ","Từ vựng: +2 mỗi từ nhớ"],["mc","✅","Trắc nghiệm","Hàn ↔ Việt, 4 đáp án","Luyện tập: +1 mỗi câu đúng"],["match","🔗","Nối từ với nghĩa","Ghép 5 cặp từ và nghĩa","Luyện tập: +1 mỗi cặp"],["type","⌨","Gõ từ vựng","Đọc nghĩa, gõ lại từ tiếng Hàn","Luyện tập: +2 mỗi từ"],["ls","🎧","Nghe & chọn nghĩa","Nghe từ, chọn nghĩa đúng","Nghe & nói: +2 mỗi câu"],["dict","✍","Nghe viết","Nghe từ, gõ lại bằng Hangul","Nghe & nói: +3 mỗi từ"],["cloze","📄","Điền từ vào đoạn văn","Chọn từ hợp ngữ cảnh trong đoạn văn ngắn","Luyện tập: +1 mỗi chỗ trống"],["trans","🔤","Dịch câu Hàn → Việt","Chọn bản dịch đúng của câu tiếng Hàn","Luyện tập: +1 mỗi câu"],["build","🧩","Dịch câu Việt → Hàn","Ghép hoặc gõ câu tiếng Hàn từ câu tiếng Việt","Luyện tập: +2 mỗi câu"]];
+const MODES=[["flash","🃏","Thẻ ghi nhớ","Lật thẻ, tự đánh giá nhớ hoặc chưa nhớ","Từ vựng: +2 mỗi từ nhớ"],["mc","✅","Trắc nghiệm","Hàn ↔ Việt, 4 đáp án","Luyện tập: +1 mỗi câu đúng"],["match","🔗","Nối từ với nghĩa","Ghép 5 cặp từ và nghĩa","Luyện tập: +1 mỗi cặp"],["type","⌨","Gõ từ vựng","Đọc nghĩa, gõ lại từ tiếng Hàn","Luyện tập: +2 mỗi từ"],["ls","🎧","Nghe & chọn nghĩa","Nghe từ, chọn nghĩa đúng","Nghe & nói: +2 mỗi câu"],["dict","✍","Nghe viết","Nghe từ, gõ lại bằng Hangul","Nghe & nói: +3 mỗi từ"],["cloze","📄","Điền từ vào đoạn văn","Chọn từ hợp ngữ cảnh trong đoạn văn ngắn","Luyện tập: +1 mỗi chỗ trống"],["trans","🔤","Dịch câu Hàn → Việt","Chọn bản dịch đúng của câu tiếng Hàn","Luyện tập: +1 mỗi câu"],["gpick","🧠","Bài tập ngữ pháp","8 dạng bài, 4 mức độ từ cơ bản đến thử thách","Ngữ pháp: +2 mỗi câu"],["build","🧩","Dịch câu Việt → Hàn","Ghép hoặc gõ câu tiếng Hàn từ câu tiếng Việt","Luyện tập: +2 mỗi câu"]];
 const CAP={v:30,g:20,p:25,l:25},CN={v:"Từ vựng",g:"Ngữ pháp",p:"Luyện tập",l:"Nghe & nói"};
 let S={deck:"l1",known:{},hist:{},day:null,mimi:1,voice:"",rate:.85,rv:{}};
 try{Object.assign(S,JSON.parse(localStorage.getItem("hanbit")||"{}"))}catch(e){}
@@ -1177,7 +1177,7 @@ function head(){$("xp").textContent="⭐ "+tot()+"/100 · 🔥 "+streak()+" ngà
 $("nav").innerHTML=TABS.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="go('${t[0]}')"><span class="kr">${t[1]}</span>${t[2]}</button>`).join("")}
 function togMimi(){S.mimi=S.mimi===0?1:0;save();head();if(S.mimi)tip()}
 function go(t){stopT();tab=t;vw="list";R=TY=MT=RW=null;render()}
-function back(){go(PM=="gram"||PM=="gbuild"?"gram":"quiz")}
+function back(){if(/^g/.test(PM)){stopT();R=TY=MT=BD=null;tab="gram";head();gpick();return}go("quiz")}
 function render(){head();({home,vocab,quiz:practice,gram,goal:goalv,dict:dictv,hangul})[tab]();scrollTo(0,0);tip()}
 function home(){const D=day(),t=tot();
 const wk=[...Array(7)].map((_,i)=>{const x=new Date();x.setDate(x.getDate()-6+i);return[["CN","T2","T3","T4","T5","T6","T7"][x.getDay()],S.hist[x.toDateString()]||0]});
@@ -1210,7 +1210,7 @@ function dsel(cb){const g={};DK.forEach(d=>(g[d.g]=g[d.g]||[]).push(d));return`<
 function practice(){R=TY=MT=RW=null;$("m").innerHTML=`<div class="card"><b>⚙️ Cài đặt luyện tập</b><div class="hint" style="margin:10px 0 4px">Số câu mỗi lượt</div><div class="lv" style="margin:0">${[5,10,20,30,50,0].map(n=>`<button class="${curQn()==n?"on":""}" onclick="setQn(${n})">${n||"Tất cả"}</button>`).join("")}</div><div class="hint" style="margin:12px 0 4px">Công bố đáp án</div><div class="row"><button class="btn ${S.fb=="end"?"alt":""}" style="padding:10px" onclick="setFb('now')">Ngay sau mỗi câu</button><button class="btn ${S.fb=="end"?"":"alt"}" style="padding:10px" onclick="setFb('end')">Khi làm xong</button></div><p class="hint" style="margin:10px 0 0">${S.fb=="end"?"Làm hết bài rồi xem đáp án và đối chiếu từng câu.":"Chọn xong là biết đúng hay sai ngay."} Nếu bộ từ ít hơn số câu đã chọn, app dùng hết số từ của bộ. Cài đặt này không áp dụng cho Nối từ và Thi thử.</p></div><div class="card mode" onclick="exv()"><span class="ic">📝</span><div><b>Thi thử TOPIK</b><p class="hint" style="margin:0">Mô phỏng cấu trúc đề thật: TOPIK I và TOPIK II</p><small style="color:var(--p)">Có bấm giờ, chấm điểm, xếp cấp</small></div></div><div class="card mode" onclick="revv()"><span class="ic">🔁</span><div><b>Ôn lại bài làm sai</b><p class="hint" style="margin:0">${wl().length} mục cần ôn (từ và ngữ pháp)</p></div></div><div class="card"><b>Bộ từ luyện tập</b>${dsel("practice()")}</div>`+MODES.map(m=>`<div class="card mode" onclick="start('${m[0]}')"><span class="ic">${m[1]}</span><div><b>${m[2]}</b><p class="hint" style="margin:0">${m[3]}</p><small style="color:var(--p)">${m[4]}</small></div></div>`).join("")}
 function start(m){PM=m;R=TY=MT=BD=null;const w=RW||words();
 if(m=="flash"){tab="vocab";vw="study";fi=0;flip=false;return render()}
-if(m=="gram")return gq();if(m=="cloze")return clozePick();if(m=="trans")return runQ(mkT(w));if(m=="build")return buildStart("w");if(m=="gbuild")return buildStart("g");if(m=="revg")return gq(wgram());
+if(/^g(mix|fill|err|conj|cmb|sit)$/.test(m))return gex(m);if(m=="gpick"){tab="gram";head();return gpick()}if(m=="gram")return gq();if(m=="cloze")return clozePick();if(m=="trans")return runQ(mkT(w));if(m=="build")return buildStart("w");if(m=="gbuild")return buildStart("g");if(m=="revg")return gq(wgram());
 if(m=="mc"||m=="ls")return runQ(mkQ(m,w,cnt(w.length)));
 if(m=="match")return matchStart();
 TY={m,items:rnd(w).slice(0,cnt(w.length)),i:0,s:0,chk:0};ts()}
@@ -1240,7 +1240,7 @@ function chk(){const t=TY;if(t.chk){t.i++;return ts()}const c=t.items[t.i],n=x=>
 if(ok){t.s++;t.m=="dict"?pt("l",3,"d"+c[0]):pt("p",2,"t"+c[0]);okW("w",c[0])}else addW("w",c[0]);(t.log=t.log||[])[t.i]={a:$("ans").value,ok:ok};if(S.fb=="end"){t.i++;return ts()}
 $("fb").innerHTML=`<b style="color:var(--${ok?"ok":"no"})">${ok?"Chính xác!":"Chưa đúng."}</b> Đáp án: <span class="kr">${c[0]}</span> ${c[2]?"("+c[2]+") ":""}· ${c[1]}`;$("cb").textContent="Tiếp";cheer(ok);say(c[0])}
 function gram(){const grs=GR.map(g=>[g[0],g[1],g[2].map(p=>ALLG.find(x=>x[0]==p)).filter(Boolean)]),rv=ALLG.filter(x=>S.rv[x[0]]).length;
-$("m").innerHTML=`<div class="card hero"><h2>Ngữ pháp TOPIK</h2><p>${ALLG.length} mẫu · ${GR.length} nhóm · đã ôn ${rv}/${ALLG.length}</p><div class="row"><button class="btn w" onclick="start('gram')">Câu hỏi ngữ pháp</button><button class="btn w" onclick="start('gbuild')">Dịch Việt → Hàn</button></div></div>`+grs.map((g,gi)=>`<details class="card g" ${gi==0?"open":""}><summary><b>${g[0]}</b> <span class="hint">· ${g[2].length} mẫu</span><p class="hint" style="margin:4px 0 0">${g[1]}</p></summary>${g[2].map(x=>{const i=ALLG.indexOf(x),d=S.rv[x[0]];return`<div class="gi"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${x[0]}</h3><span class="chip">Cấp ${x[4]}</span></div><p><b>Nghĩa:</b> ${x[1]}</p>${gxp(x[0])}<div class="ex"><small class="hint">Ví dụ</small><p class="kr" style="font-weight:700">${x[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${i}][2],.8)">🔊</button></p><p class="hint">${x[3]}</p></div><button class="btn ${d?"ok":"alt"}" style="margin-top:8px" onclick="rev(${i},this)">${d?"✓ Đã ôn":"Đánh dấu đã ôn"}</button></div>`}).join("")}</details>`).join("")}
+$("m").innerHTML=`<div class="card hero"><h2>Ngữ pháp TOPIK</h2><p>${ALLG.length} mẫu · ${GR.length} nhóm · đã ôn ${rv}/${ALLG.length}</p><button class="btn w" onclick="gpick()">Bài tập ngữ pháp · 8 dạng · 4 mức độ</button></div>`+grs.map((g,gi)=>`<details class="card g" ${gi==0?"open":""}><summary><b>${g[0]}</b> <span class="hint">· ${g[2].length} mẫu</span><p class="hint" style="margin:4px 0 0">${g[1]}</p></summary>${g[2].map(x=>{const i=ALLG.indexOf(x),d=S.rv[x[0]];return`<div class="gi"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="kr">${x[0]}</h3><span class="chip">Cấp ${x[4]}</span></div><p><b>Nghĩa:</b> ${x[1]}</p>${gxp(x[0])}<div class="ex"><small class="hint">Ví dụ</small><p class="kr" style="font-weight:700">${x[2]} <button class="btn alt" style="padding:3px 10px" onclick="say(ALLG[${i}][2],.8)">🔊</button></p><p class="hint">${x[3]}</p></div><button class="btn ${d?"ok":"alt"}" style="margin-top:8px" onclick="rev(${i},this)">${d?"✓ Đã ôn":"Đánh dấu đã ôn"}</button></div>`}).join("")}</details>`).join("")}
 function rev(i,b){S.rv[ALLG[i][0]]=1;save();b.className="btn ok";b.textContent="✓ Đã ôn";cat(pt("g",1,"r"+i)?"Ôn xong mẫu này: +1 điểm ⭐":"Đã ôn mẫu này!")}
 let RW=null;
 const allw=()=>ALL.concat((S.imp||[]).flatMap(d=>d.w));
@@ -1314,7 +1314,7 @@ function goalv(){if(GT=="ana")return anav();const g=S.goal||{},lv=g.lv||0;
 $("m").innerHTML=segs()+`<div class="card"><b>🎯 Mục tiêu của bạn</b><div class="hint" style="margin:8px 0 4px">Cấp muốn đạt</div><select class="opt" id="gl" style="margin:0">${[1,2,3,4,5,6].map(l=>`<option value="${l}" ${l==lv?"selected":""}>TOPIK ${l<=2?"I":"II"} · Cấp ${l} (từ ${CUT[l]} điểm)</option>`).join("")}</select><div class="hint" style="margin:10px 0 4px">Trình độ hiện tại</div><select class="opt" id="gc" style="margin:0">${[0,1,2,3,4,5,6].map(l=>`<option value="${l}" ${l==(g.cur||0)?"selected":""}>${l?"Cấp "+l:"Mới bắt đầu"}</option>`).join("")}</select><div class="hint" style="margin:10px 0 4px">Ngày thi</div><input type="date" class="inp" id="gd" value="${g.date||""}"><button class="btn" style="width:100%" onclick="saveGoal()">Lưu mục tiêu</button></div>`+(lv?goalbody(lv):`<div class="card hint">Chọn cấp mục tiêu và ngày thi, rồi bấm Lưu để xem kế hoạch học mỗi ngày.</div>`)}
 function goalbody(lv){const tid=lv<=2?1:2,E=EX[tid],d=dleft(),ws=ALL.filter(w=>w[5]<=lv),kn=ws.filter(w=>S.known[w[0]]).length,gs=ALLG.filter(x=>x[4]<=lv),gr=gs.filter(x=>S.rv[x[0]]).length,rw=ws.length-kn,rg=gs.length-gr,mn=Math.round(CUT[lv]/E.pts*100),n=Math.max(d||1,1);
 let plan;if(d==null)plan="Hãy chọn ngày thi rồi bấm Lưu để Mimi tính kế hoạch.";else if(d<0)plan="Ngày thi đã qua. Hãy đặt ngày thi mới.";else{const pd=Math.ceil(rw/n);plan=`<p style="margin:0 0 6px">• <b>Từ vựng:</b> ${rw?`còn ${rw} từ trong phạm vi cấp 1 đến ${lv} của app, khoảng <b>${pd} từ mỗi ngày</b>.`:"bạn đã nhớ hết từ trong phạm vi này, hãy ôn lại bài làm sai."}</p><p style="margin:0 0 6px">• <b>Ngữ pháp:</b> ${rg?`còn ${rg} mẫu chưa ôn, khoảng <b>${Math.max(1,Math.ceil(rg/(n/7)))} mẫu mỗi tuần</b>.`:"bạn đã ôn hết mẫu trong phạm vi này."}</p><p style="margin:0 0 6px">• <b>Thi thử:</b> gợi ý 1 bài rút gọn mỗi tuần, và 2 bài đầy đủ trong 2 tuần cuối.</p><p style="margin:0">• <b>Điểm chuyên cần:</b> giữ từ 30 điểm mỗi ngày để không đứt chuỗi.</p>${pd>30?`<p class="hint" style="margin:8px 0 0">Mức này khá nặng (hơn 30 từ mỗi ngày). Bạn có thể dời ngày thi hoặc hạ mục tiêu.</p>`:""}`}
-const sk=[["Từ vựng",ws.length?Math.round(kn/ws.length*100):0,80,kn+"/"+ws.length+" từ đã nhớ (vạch: mục tiêu 80%)"],["Ngữ pháp",gs.length?Math.round(gr/gs.length*100):0,80,gr+"/"+gs.length+" mẫu đã ôn (vạch: mục tiêu 80%)"],["Nghe",av(lastEx("L"),acc(["ls","dict"])),mn,"Từ bài thi thử gần nhất và luyện tập nghe (vạch: mức tối thiểu "+mn+"%)"],["Đọc",av(lastEx("R"),acc(["mc","match","type","gram","cloze","trans","build","gbuild"])),mn,"Từ bài thi thử gần nhất và luyện tập đọc (vạch: mức tối thiểu "+mn+"%)"]];
+const sk=[["Từ vựng",ws.length?Math.round(kn/ws.length*100):0,80,kn+"/"+ws.length+" từ đã nhớ (vạch: mục tiêu 80%)"],["Ngữ pháp",gs.length?Math.round(gr/gs.length*100):0,80,gr+"/"+gs.length+" mẫu đã ôn (vạch: mục tiêu 80%)"],["Nghe",av(lastEx("L"),acc(["ls","dict"])),mn,"Từ bài thi thử gần nhất và luyện tập nghe (vạch: mức tối thiểu "+mn+"%)"],["Đọc",av(lastEx("R"),acc(["mc","match","type","gram","cloze","trans","build","gbuild","gfill","gerr","gconj","gcmb","gsit"])),mn,"Từ bài thi thử gần nhất và luyện tập đọc (vạch: mức tối thiểu "+mn+"%)"]];
 if(tid==2)sk.push(["Viết",lastEx("W"),mn,"Từ điểm tự chấm trong thi thử (vạch: mức tối thiểu "+mn+"%)"]);
 const h=(S.exh||[]).filter(x=>x.id==tid).slice(-8).reverse();
 return`<div class="card hero"><h2>Cấp ${lv} · từ ${CUT[lv]}/${E.pts} điểm</h2><p style="margin:0">${dtxt(d)}${g_cur()}</p></div><div class="card"><b>Kế hoạch mỗi ngày</b><p class="hint" style="margin:6px 0 10px">Tính theo kho từ trong app (${ws.length} từ ở cấp 1 đến ${lv}), chưa phải toàn bộ vốn từ TOPIK.</p>${plan}</div><div class="card"><b>Năng lực hiện tại</b>${sk.map(x=>brow(x[0],x[1],x[2],x[3])).join("")}</div><div class="card"><b>Điểm thi thử ${E.n}</b>${h.length?h.map(x=>brow(new Date(x.d).toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit"})+" · "+(x.short?"rút gọn":"đầy đủ"),Math.round(x.t/E.pts*100),mn,x.t+"/"+E.pts+" điểm"+(x.id==2&&x.W==null?" (chưa tính phần viết)":""))).join(""):`<p class="hint" style="margin:6px 0 0">Chưa có bài thi thử. Làm một bài ở tab Luyện tập để theo dõi tiến bộ.</p>`}<button class="btn alt" style="width:100%;margin-top:12px" onclick="go('quiz')">Đến Luyện tập</button></div>`}
@@ -1322,8 +1322,8 @@ function g_cur(){const g=S.goal||{};return g.cur?" · hiện tại cấp "+g.cur
 let GT="goal";
 const segs=()=>`<div class="row" style="margin-bottom:12px"><button class="btn ${GT=="goal"?"":"alt"}" onclick="GT='goal';goalv()">🎯 Mục tiêu</button><button class="btn ${GT=="ana"?"":"alt"}" onclick="GT='ana';goalv()">📊 Phân tích</button></div>`;
 const TYN={LA:"Nghe từ, chọn nghĩa",LB:"Nghe câu, chọn bản dịch",RA:"Điền từ vào chỗ trống",RB:"Nhận biết mẫu ngữ pháp",RC:"Nghĩa của từ trong câu",RD:"Dịch câu",RE:"Nghĩa của mẫu ngữ pháp"};
-const MON={cloze:"Điền từ vào đoạn văn",trans:"Dịch Hàn → Việt",build:"Ghép câu Việt → Hàn",gbuild:"Dịch Việt → Hàn (ngữ pháp)",mc:"Trắc nghiệm",match:"Nối từ với nghĩa",type:"Gõ từ vựng",ls:"Nghe và chọn nghĩa",dict:"Nghe viết",gram:"Câu hỏi ngữ pháp"};
-const WADV={cloze:["Ôn từ vựng","vocab"],trans:["Ôn từ vựng","vocab"],build:["Ôn từ vựng","vocab"],gbuild:["Ôn ngữ pháp","gram"],LA:["Luyện nghe","quiz"],LB:["Luyện nghe","quiz"],ls:["Luyện nghe","quiz"],dict:["Luyện nghe","quiz"],RA:["Ôn từ vựng","vocab"],mc:["Ôn từ vựng","vocab"],type:["Ôn từ vựng","vocab"],match:["Ôn từ vựng","vocab"],RC:["Ôn từ vựng","vocab"],RD:["Ôn từ vựng","vocab"],RB:["Ôn ngữ pháp","gram"],RE:["Ôn ngữ pháp","gram"],gram:["Ôn ngữ pháp","gram"]};
+const MON={gfill:"Điền chỗ trống (ngữ pháp)",gerr:"Tìm câu sai",gconj:"Chia động từ",gcmb:"Nối câu",gsit:"Tình huống giao tiếp",cloze:"Điền từ vào đoạn văn",trans:"Dịch Hàn → Việt",build:"Ghép câu Việt → Hàn",gbuild:"Dịch Việt → Hàn (ngữ pháp)",mc:"Trắc nghiệm",match:"Nối từ với nghĩa",type:"Gõ từ vựng",ls:"Nghe và chọn nghĩa",dict:"Nghe viết",gram:"Câu hỏi ngữ pháp"};
+const WADV={gfill:["Ôn ngữ pháp","gram"],gerr:["Ôn ngữ pháp","gram"],gconj:["Ôn ngữ pháp","gram"],gcmb:["Ôn ngữ pháp","gram"],gsit:["Ôn ngữ pháp","gram"],cloze:["Ôn từ vựng","vocab"],trans:["Ôn từ vựng","vocab"],build:["Ôn từ vựng","vocab"],gbuild:["Ôn ngữ pháp","gram"],LA:["Luyện nghe","quiz"],LB:["Luyện nghe","quiz"],ls:["Luyện nghe","quiz"],dict:["Luyện nghe","quiz"],RA:["Ôn từ vựng","vocab"],mc:["Ôn từ vựng","vocab"],type:["Ôn từ vựng","vocab"],match:["Ôn từ vựng","vocab"],RC:["Ôn từ vựng","vocab"],RD:["Ôn từ vựng","vocab"],RB:["Ôn ngữ pháp","gram"],RE:["Ôn ngữ pháp","gram"],gram:["Ôn ngữ pháp","gram"]};
 const mean=a=>{a=a.filter(x=>x!=null);return a.length?Math.round(a.reduce((p,c)=>p+c,0)/a.length):null};
 function anav(){const H=S.exh||[],P=S.st||{},tys={};
 H.forEach(h=>Object.entries(h.ty||{}).forEach(([k,v])=>{const a=tys[k]||[0,0];a[0]+=v[0];a[1]+=v[1];tys[k]=a}));
@@ -1608,7 +1608,7 @@ function clozePick(){$("m").innerHTML=`<button class="btn alt" onclick="practice
 function clozeRun(b){const P=CL.filter(p=>b=="x"||(b=="a"?p.lv<=2:b=="b"?p.lv>=3&&p.lv<=4:p.lv>=5)),q=curQn(),ps=rnd(P).slice(0,q?Math.max(1,Math.ceil(q/3)):P.length),items=[];
 ps.forEach(p=>{for(let k=1;k<=p.b.length;k++){const ans=p.b[k-1][0],o=rnd(p.b[k-1]),txt=p.t.replace(/\{(\d)\}/g,(m,d)=>{d=+d;return d<k?`<b style="color:var(--ok)">${p.b[d-1][0]}</b>`:d==k?`<b style="color:var(--p)">［ ${k} ］</b>`:`<b>（${d}）</b>`});
 items.push({m:"cloze",kr:1,o,a:o.indexOf(ans),w:ans,long:1,stem:`<span class="chip">${p.c}</span><div class="ex kr" style="line-height:1.9;margin:10px 0">${txt}</div><p>Chọn từ thích hợp cho chỗ trống <b>(${k})</b>.</p>`,xp:`<b>Dịch:</b> ${p.vi}<br><b>Lưu ý:</b> ${p.n}`,wk:allw().some(w=>w[0]==ans)?["w",ans]:null,aw:()=>pt("p",1,"cl"+p.c+k)})}});runQ(items)}
-function buildStart(k){PM=k=="g"?"gbuild":"build";const src=k=="g"?rnd(ALLG).slice(0,cnt(ALLG.length)).map(x=>({t:x[2],v:x[3],h:"Gợi ý ngữ pháp: "+x[0]+" ("+x[1]+")",wk:["g",x[0]]})):rnd(words().filter(w=>w[3]&&w[3].split(" ").length>=2)).slice(0,cnt(words().length)).map(w=>({t:w[3],v:w[4],h:"Từ gợi ý: "+w[0]+" = "+w[1],wk:["w",w[0]]}));
+function buildStart(k){PM=k=="g"?"gbuild":"build";const src=k=="g"?rnd(gpool()).slice(0,cnt(gpool().length)).map(x=>({t:x[2],v:x[3],h:"Gợi ý ngữ pháp: "+x[0]+" ("+x[1]+")",wk:["g",x[0]]})):rnd(words().filter(w=>w[3]&&w[3].split(" ").length>=2)).slice(0,cnt(words().length)).map(w=>({t:w[3],v:w[4],h:"Từ gợi ý: "+w[0]+" = "+w[1],wk:["w",w[0]]}));
 if(!src.length){cat("Bộ từ này chưa có câu ví dụ đủ dài để ghép câu 🐾");return}BD={k,items:src,i:0,s:0,mode:S.bm||"chip",log:[]};bs()}
 function bs(){const b=BD;if(b.i>=b.items.length)return bfin();const it=b.items[b.i];
 if(!it.ch){const tk=it.t.split(" "),ds=[...new Set([].concat(...rnd(b.items.filter(x=>x!=it)).slice(0,3).map(x=>x.t.split(" "))).filter(x=>!tk.includes(x)))].slice(0,2);it.ch=rnd([...tk,...ds].map((t,i)=>({t,i})));it.sel=[]}
@@ -1623,12 +1623,116 @@ const n=x=>x.replace(/[\s.,!?]/g,""),ok=n(got)==n(it.t);b.done=1;stat(b.k=="g"?"
 if(S.fb=="end"){b.i++;return bs()}
 $("xp").innerHTML=`<div class="ex" style="margin-top:8px"><b style="color:var(--${ok?"ok":"no"})">${ok?"Chính xác!":"Chưa đúng."}</b><p class="kr" style="margin:4px 0 0;font-weight:700">${it.t}</p>${ok?"":`<small class="hint">Bạn: ${esc(got)}</small>`}</div>`;$("bk").textContent="Câu tiếp →";cheer(ok);say(it.t)}
 function bfin(){const b=BD,n=b.items.length;$("m").innerHTML=`<div class="card hero" style="text-align:center"><h2>Hoàn thành! 🎉</h2><p>Đúng ${b.s}/${n} · điểm chuyên cần hôm nay ${tot()}/100</p><div class="row"><button class="btn w" onclick="start(PM)">Làm lại</button><button class="btn w" onclick="back()">Xong</button></div></div>`+(S.fb=="end"?`<div class="card"><b>Công bố đáp án</b>${b.items.map((it,i)=>{const l=b.log[i]||{};return`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><small class="hint">Câu ${i+1} ${l.ok?"✅ đúng":"❌ sai"}</small><div>${it.v}</div><div class="kr" style="font-weight:700">${it.t}</div><small class="hint">Bạn: ${esc(l.got||"(trống)")}</small></div>`}).join("")}</div>`:"")}
-function gq(L){const base=L||ALLG;runQ(rnd(base).slice(0,cnt(base.length)).map(x=>{const t=GX[x[0]]?rp([0,0,1,2,3]):0,up=ALLG.filter(y=>GX[y[0]]);let q;
+const GF=`1|저는 학생____.|이에요|예요|이야요|이예요|Tôi là học sinh.|학생 có patchim nên dùng 이에요.
+1|저는 의사____.|예요|이에요|이예요|이야요|Tôi là bác sĩ.|의사 không có patchim nên dùng 예요.
+1|저는 책____ 읽어요.|을|를|이|가|Tôi đọc sách.|책 có patchim, tân ngữ dùng 을.
+1|오늘은 날씨____ 좋아요.|가|이|를|을|Hôm nay thời tiết đẹp.|날씨 không có patchim, chủ ngữ dùng 가.
+1|저는 내일 학교____ 가요.|에|에서|를|가|Ngày mai tôi đến trường.|Điểm đến của 가다 dùng 에.
+1|저는 도서관____ 공부해요.|에서|에|를|이|Tôi học ở thư viện.|Nơi diễn ra hành động dùng 에서.
+1|여기 앉____.|으세요|세요|아요|으요|Mời ngồi đây.|앉다 có patchim nên dùng 으세요.
+1|저는 커피를 마____.|셔요|시어요|서요|마요|Tôi uống cà phê.|마시다 + 어요 rút gọn thành 마셔요.
+2|내일 친구를 ____.|만날 거예요|만난 거예요|만나을 거예요|만나는 거예요|Ngày mai tôi sẽ gặp bạn.|Gốc không có patchim thêm ㄹ 거예요: 만나 + ㄹ 거예요.
+2|한국에 ____.|가고 싶어요|가 싶어요|가고 싶어 해요|가고 싶요|Tôi muốn đến Hàn Quốc.|Nói về mình dùng -고 싶어요, còn -고 싶어 하다 dùng cho người khác.
+2|비가 오____ 우산을 가져가세요.|니까|아서|지만|려고|Trời mưa nên hãy mang ô.|Vế sau là mệnh lệnh nên dùng -(으)니까, không dùng -아/어서.
+2|너무 피곤____ 일찍 잤어요.|해서|하지만|하면|하려고|Vì quá mệt nên tôi ngủ sớm.|Nêu lý do dùng -아/어서: 피곤하다 thành 피곤해서.
+2|이 가방은 예쁘____ 비싸요.|지만|니까|려고|도록|Chiếc túi này đẹp nhưng đắt.|-지만 nối hai vế tương phản.
+2|같이 영화를 볼____?|까요|거예요|지만|래요|Chúng ta cùng xem phim nhé?|-(으)ㄹ까요? dùng để rủ ai cùng làm.
+2|내일 시험이 있어서 열심히 공부해____ 해요.|야|도|서|면|Ngày mai có kỳ thi nên phải học chăm.|-아/어야 하다 diễn tả điều phải làm.
+3|한국에 가____ 한국어를 배워요.|려고|으니까|지만|도록|Tôi học tiếng Hàn để đến Hàn Quốc.|-(으)려고 nêu mục đích của hành động sau.
+3|저는 한국에 간 ____ 있어요.|적이|적을|것이|때가|Tôi đã từng đến Hàn Quốc.|-(으)ㄴ 적이 있다 nói về kinh nghiệm.
+3|이 문제는 어려워서 저는 풀 수 ____.|없어요|안 없어요|못 없어요|없고|Bài này khó nên tôi không giải được.|Phủ định khả năng là -(으)ㄹ 수 없다.
+3|한국에서 살____ 되었어요.|게|도록|려고|지만|Tôi đã đến sống ở Hàn Quốc.|-게 되다 diễn tả sự thay đổi hoàn cảnh.
+3|내일 눈이 올 ____ 같아요.|것|수|적|뿐|Hình như ngày mai sẽ có tuyết.|-(으)ㄹ 것 같다 là phỏng đoán.
+4|바쁘____ 오늘은 못 가요.|기 때문에|는 바람에|도록|려고|Vì bận nên hôm nay tôi không đi được.|Tính từ + -기 때문에 nêu nguyên nhân. -는 바람에 chỉ đi với động từ và kết quả xấu.
+4|늦잠을 자____ 지각했어요.|는 바람에|려고|도록|ㄹ수록|Vì ngủ quên nên tôi đến trễ.|-는 바람에 nêu nguyên nhân dẫn đến kết quả xấu.
+4|친구 ____ 시험에 합격했어요.|덕분에|탓에|바람에|뿐|Nhờ bạn mà tôi đã đậu.|덕분에 dùng cho nguyên nhân tốt, còn 탓에 dùng cho nguyên nhân xấu.
+4|너무 긴장한 ____ 실수를 했어요.|나머지|덕분에|수록|만큼|Vì quá căng thẳng nên tôi mắc lỗi.|-(으)ㄴ 나머지 nêu hậu quả của trạng thái quá mức.
+4|연습할____ 실력이 늘어요.|수록|지만|려고|도록|Càng luyện tập thì càng tiến bộ.|-(으)ㄹ수록 nghĩa là càng… càng…
+4|그 영화는 한 번 볼 ____.|만해요|리가 없어요|뻔했어요|셈이에요|Bộ phim đó đáng xem một lần.|-(으)ㄹ 만하다 đánh giá việc đáng làm.
+4|비가 오____ 약속은 지킬 거예요.|더라도|니까|는 바람에|기 때문에|Dù trời mưa tôi vẫn giữ lời hẹn.|-더라도 nhượng bộ: dù… thì vẫn…
+4|이제 와서 후회해 ____ 소용없어요.|봤자|나머지|덕분에|만큼|Bây giờ có hối hận cũng vô ích.|-아/어 봤자 nghĩa là dù làm cũng vô ích.
+4|사람은 누구나 실수하____ 마련이다.|기|는|ㄴ|게|Con người ai cũng vốn hay mắc lỗi.|-기 마련이다 diễn tả quy luật tự nhiên.
+4|이 식당은 맛있을 ____ 아니라 값도 싸요.|뿐만|만큼|수록|때문에|Quán này không chỉ ngon mà còn rẻ.|-(으)ㄹ 뿐만 아니라 nghĩa là không chỉ… mà còn…
+4|불을 켠 ____ 잠이 들었어요.|채로|나머지|만큼|바람에|Tôi ngủ thiếp đi mà đèn vẫn bật.|-(으)ㄴ 채로 diễn tả giữ nguyên trạng thái.
+4|그런 일이 있을 ____ 없어요.|리가|뻔이|셈이|만큼|Không đời nào có chuyện như vậy.|-(으)ㄹ 리가 없다 phủ nhận mạnh.
+4|길에서 넘어질 ____ 했어요.|뻔|수|셈|적|Tôi suýt bị ngã trên đường.|-(으)ㄹ 뻔했다 nghĩa là suýt nữa thì.`,GE=`1|저는 학생이에요.|오늘은 날씨가 좋아요.|저는 책을 읽어요.|저는 의사이에요.|의사 không có patchim nên phải dùng 예요: 의사예요.
+1|저는 학교에 가요.|저는 밥을 먹어요.|저는 커피를 마셔요.|저는 도서관에 공부해요.|공부하다 là hành động diễn ra ở một nơi nên dùng 에서: 도서관에서 공부해요.
+2|내일 친구를 만날 거예요.|한국에 가고 싶어요.|피곤해서 일찍 잤어요.|비가 오아서 집에 있어요.|오다 + 아서 rút gọn thành 와서: 비가 와서.
+2|시간이 없으니까 빨리 가세요.|이 옷은 예쁘지만 비싸요.|내일 시험이 있어서 공부해야 해요.|배가 고파서 밥을 먹으세요.|-아/어서 không đi với mệnh lệnh, dùng -(으)니까: 배가 고프니까 드세요.
+2|저는 한국 음식을 좋아해요.|주말에 친구를 만나요.|우리 같이 갈까요?|저는 내일 학교에서 가요.|Điểm đến của 가다 dùng 에: 학교에 가요.
+3|한국에 간 적이 있어요.|비가 오면 집에 있을 거예요.|한국어를 배우려고 학원에 다녀요.|저는 한국에 가고 싶어해요.|Nói về mình dùng -고 싶어요. -고 싶어 하다 dành cho người khác.
+3|이 책은 읽을 만해요.|내일 눈이 올 것 같아요.|저는 수영할 수 없어요.|저는 그 사람을 만난 적이 있다요.|Dạng đúng là 만난 적이 있어요.
+3|바빠서 못 갔어요.|너무 피곤하면 쉬세요.|약을 먹고 푹 쉬세요.|오늘은 바쁘아서 못 가요.|바쁘다 + 아서 phải bỏ 으: 바빠서.
+4|늦잠을 자는 바람에 지각했어요.|친구 덕분에 합격했어요.|연습할수록 실력이 늘어요.|날씨가 좋은 바람에 소풍을 갔어요.|-는 바람에 chỉ dùng cho kết quả xấu. Câu này dùng -아/어서: 날씨가 좋아서.
+4|아무리 노력하더라도 결과가 안 좋을 수 있어요.|그 영화는 볼 만해요.|길에서 넘어질 뻔했어요.|저는 길에서 넘어질 뻔해요.|-(으)ㄹ 뻔하다 chỉ dùng ở quá khứ: 넘어질 뻔했어요.
+4|그럴 리가 없어요.|맛있을 뿐만 아니라 싸요.|불을 켠 채로 잤어요.|사람은 실수하는 마련이에요.|Dạng đúng là -기 마련이다: 실수하기 마련이에요.
+4|친구 덕분에 문제를 해결했어요.|그는 노력한 만큼 성공했어요.|아무리 힘들어도 포기하지 마세요.|비가 와서 우산을 가져가세요.|-아/어서 không đi với mệnh lệnh. Dùng -(으)니까: 비가 오니까 가져가세요.`,GC=`1|먹다|-아/어요|먹어요|먹아요|먹여요|먹으요|Gốc 먹- có ㅓ nên dùng -어요.
+1|가다|-아/어요|가요|가아요|갔요|가어요|가 + 아요 rút gọn thành 가요.
+1|하다|-아/어요|해요|하어요|하아요|했요|하다 chia thành 해요.
+1|앉다|-(으)세요|앉으세요|앉세요|앉아세요|앉으시요|Gốc có patchim thêm 으세요.
+2|먹다|-(으)ㄹ 거예요|먹을 거예요|먹ㄹ 거예요|먹는 거예요|먹은 거예요|Gốc có patchim thêm 을 거예요.
+2|듣다|-아/어서|들어서|듣어서|듣아서|들아서|듣다 là bất quy tắc ㄷ: ㄷ đổi thành ㄹ trước nguyên âm.
+2|덥다|-아/어서|더워서|덥어서|덥아서|더와서|덥다 là bất quy tắc ㅂ: ㅂ đổi thành 우 rồi thêm 어서.
+2|쓰다|-아/어요|써요|쓰어요|쓰아요|쏘요|Gốc kết thúc bằng 으 thì bỏ 으: 쓰 + 어요 thành 써요.
+2|모르다|-아/어요|몰라요|모르어요|모르아요|모레요|르 bất quy tắc: 모르다 thành 몰라요.
+3|만들다|-(으)세요|만드세요|만들세요|만들으세요|만들어세요|Gốc có ㄹ bỏ ㄹ trước ㅅ: 만드세요.
+3|살다|-는|사는|살는|살은|살ㄴ|Gốc có ㄹ bỏ ㄹ trước ㄴ: 사는.
+3|가다|-(으)ㄴ 적이 있다|간 적이 있다|가은 적이 있다|갈 적이 있다|가는 적이 있다|Gốc không có patchim thêm ㄴ: 간.
+3|돕다|-아/어요|도와요|돕어요|돕아요|도어요|돕다 là bất quy tắc ㅂ: 도와요.
+4|짓다|-아/어서|지어서|짓어서|지서|짓아서|ㅅ bất quy tắc: bỏ ㅅ trước nguyên âm nên thành 지어서.
+4|빠르다|-아/어서|빨라서|빠르어서|빠르아서|빠라서|르 bất quy tắc: 빠르다 thành 빨라서.
+4|살다|-(으)ㄹ수록|살수록|사ㄹ수록|사을수록|살을수록|Gốc kết thúc bằng ㄹ gắn -ㄹ수록 trực tiếp: 살수록.
+4|걷다|-(으)면|걸으면|걷으면|걸면|걷면|ㄷ bất quy tắc: 걷다 thành 걸으면.`,GM=`2|-(으)니까|비가 와요. 우산을 가져가세요.|비가 오니까 우산을 가져가세요.|비가 와서 우산을 가져가세요.|비가 오지만 우산을 가져가세요.|비가 오려고 우산을 가져가세요.|Vế sau là mệnh lệnh nên dùng -(으)니까.
+2|-지만|이 옷은 예뻐요. 비싸요.|이 옷은 예쁘지만 비싸요.|이 옷은 예뻐서 비싸요.|이 옷은 예쁘니까 비싸요.|이 옷은 예쁘려고 비싸요.|-지만 nối hai vế tương phản.
+3|-(으)려고|한국어를 배워요. 한국에 가고 싶어요.|한국에 가려고 한국어를 배워요.|한국에 가지만 한국어를 배워요.|한국에 가는 바람에 한국어를 배워요.|한국에 가도록 한국어를 배워요.|-(으)려고 nêu mục đích của hành động sau.
+3|-(으)면|시간이 있어요. 영화를 봐요.|시간이 있으면 영화를 봐요.|시간이 있지만 영화를 봐요.|시간이 있으려고 영화를 봐요.|시간이 있도록 영화를 봐요.|-(으)면 nêu điều kiện.
+4|-는 바람에|늦잠을 잤어요. 지각했어요.|늦잠을 자는 바람에 지각했어요.|늦잠을 자려고 지각했어요.|늦잠을 잘수록 지각했어요.|늦잠을 자도록 지각했어요.|-는 바람에 nêu nguyên nhân dẫn đến kết quả xấu.
+4|-(으)ㄹ수록|연습해요. 실력이 늘어요.|연습할수록 실력이 늘어요.|연습하는 바람에 실력이 늘어요.|연습할 뻔 실력이 늘어요.|연습한 채로 실력이 늘어요.|-(으)ㄹ수록 nghĩa là càng… càng…
+4|-(으)ㄹ 뿐만 아니라|음식이 맛있어요. 값도 싸요.|음식이 맛있을 뿐만 아니라 값도 싸요.|음식이 맛있는 바람에 값도 싸요.|음식이 맛있을수록 값도 싸요.|음식이 맛있기 마련이라 값도 싸요.|Bổ sung thêm ý: không chỉ… mà còn…
+4|-더라도|비가 와요. 약속은 지킬 거예요.|비가 오더라도 약속은 지킬 거예요.|비가 오는 바람에 약속은 지킬 거예요.|비가 올 뻔 약속은 지킬 거예요.|비가 오는 탓에 약속은 지킬 거예요.|-더라도 là nhượng bộ: dù… vẫn…
+4|-(으)ㄴ 채로|불을 켰어요. 잠이 들었어요.|불을 켠 채로 잠이 들었어요.|불을 켜는 바람에 잠이 들었어요.|불을 켤수록 잠이 들었어요.|불을 켜려고 잠이 들었어요.|-(으)ㄴ 채로 giữ nguyên trạng thái.
+4|-(으)ㄴ/는 덕분에|친구가 도와줬어요. 시험에 합격했어요.|친구가 도와준 덕분에 시험에 합격했어요.|친구가 도와준 탓에 시험에 합격했어요.|친구가 도와줄수록 시험에 합격했어요.|친구가 도와준 바람에 시험에 합격했어요.|덕분에 dùng cho nguyên nhân tốt.`,GS=`1|Bạn gặp thầy cô vào buổi sáng. Câu chào lịch sự nào đúng?|안녕하세요?|안녕?|잘 가요.|뭐 해요?|안녕하세요 là lời chào lịch sự dùng với người lớn.
+1|Bạn muốn hỏi giá một món đồ trong cửa hàng.|이거 얼마예요?|이거 뭐예요?|이거 어디예요?|이거 누구예요?|얼마예요? dùng để hỏi giá.
+2|Bạn muốn rủ bạn cùng đi ăn tối.|같이 저녁 먹을까요?|저녁을 먹었어요.|저녁을 먹고 싶어요.|저녁을 먹지만요.|-(으)ㄹ까요? dùng để rủ ai cùng làm.
+2|Bạn muốn nói với giáo viên rằng chính bạn muốn học thêm tiếng Hàn.|한국어를 더 배우고 싶어요.|한국어를 더 배우고 싶어 해요.|한국어를 더 배울까요?|한국어를 더 배웠어요.|Nói mong muốn của mình dùng -고 싶어요.
+3|Bạn nhắc bạn mang ô vì ngoài trời đang mưa.|비가 오니까 우산을 가져가세요.|비가 와서 우산을 가져가세요.|비가 오지만 우산을 가져가세요.|비가 오도록 우산을 가져가세요.|Vế sau là lời đề nghị nên dùng -(으)니까.
+3|Bạn muốn nói mình đã từng đến Busan.|부산에 간 적이 있어요.|부산에 갈 거예요.|부산에 가고 싶어요.|부산에 가게 됐어요.|-(으)ㄴ 적이 있다 nói về kinh nghiệm.
+3|Bạn muốn nói hình như hôm nay sẽ có mưa (phỏng đoán).|오늘은 비가 올 것 같아요.|오늘은 비가 올 뻔했어요.|오늘은 비가 올 리가 없어요.|오늘은 비가 오기 마련이에요.|-(으)ㄹ 것 같다 là phỏng đoán thông thường.
+4|Bạn muốn nói đã đến trễ vì ngủ quên (kết quả xấu).|늦잠을 자는 바람에 지각했어요.|늦잠을 잔 덕분에 지각했어요.|늦잠을 잘수록 지각했어요.|늦잠을 자려고 지각했어요.|-는 바람에 dùng cho kết quả xấu bất ngờ.
+4|Bạn nói với bạn thân rằng nhờ cậu mà đã đậu kỳ thi.|네 덕분에 시험에 합격했어.|네 탓에 시험에 합격했어.|네 바람에 시험에 합격했어.|네 뿐 시험에 합격했어.|덕분에 diễn tả lòng biết ơn với nguyên nhân tốt.
+4|Bạn nói chắc chắn rằng điều đó không thể xảy ra.|그럴 리가 없어요.|그럴 뻔했어요.|그럴 만해요.|그럴 셈이에요.|-(으)ㄹ 리가 없다 phủ nhận mạnh một khả năng.`;
+const GB={fill:[],err:[],conj:[],cmb:[],sit:[]};
+const gparse=(t,k,f)=>t.split("\n").forEach(l=>GB[k].push(f(l.split("|"))));
+gparse(GF,"fill",a=>({lv:+a[0],s:a[1],o:[a[2],a[3],a[4],a[5]],vi:a[6],n:a[7]}));
+gparse(GE,"err",a=>({lv:+a[0],o:[a[1],a[2],a[3]],w:a[4],n:a[5]}));
+gparse(GC,"conj",a=>({lv:+a[0],v:a[1],p:a[2],o:[a[3],a[4],a[5],a[6]],n:a[7]}));
+gparse(GM,"cmb",a=>({lv:+a[0],p:a[1],t:a[2],o:[a[3],a[4],a[5],a[6]],n:a[7]}));
+gparse(GS,"sit",a=>({lv:+a[0],t:a[1],o:[a[2],a[3],a[4],a[5]],n:a[6]}));
+const PL={1:[1],2:[2,3],3:[4,5],4:[5,6]};
+const gpool=()=>S.gl?ALLG.filter(x=>PL[S.gl].includes(x[4])):ALLG;
+const LVN={1:"Cơ bản",2:"Trung bình",3:"Nâng cao",4:"Thử thách"};
+const gchip=(t,b)=>`<span class="chip">${t} · Mức ${b.lv} ${LVN[b.lv]}</span>`;
+const gB={
+fill:b=>{const ans=b.o[0],o=rnd(b.o),full=b.s.replace("____",ans);return{m:"gfill",kr:1,o,a:o.indexOf(ans),w:full,long:1,stem:gchip("Điền chỗ trống",b)+`<div class="q kr" style="font-size:22px;margin:8px 0">${b.s.replace("____","<b style='color:var(--p)'>［　］</b>")}</div><p class="hint" style="text-align:center;margin:0 0 8px">${b.vi}</p>`,xp:`<b class="kr">${full}</b><br>${b.n}`,aw:()=>pt("g",2,"gf"+b.s)}},
+err:b=>{const o=rnd([...b.o,b.w]);return{m:"gerr",kr:1,o,a:o.indexOf(b.w),w:b.o[0],long:1,stem:gchip("Tìm câu sai",b)+`<p style="margin:10px 0">Câu nào <b>sai</b> ngữ pháp?</p>`,xp:`Câu sai: <b class="kr">${b.w}</b><br>${b.n}`,aw:()=>pt("g",2,"ge"+b.w)}},
+conj:b=>{const ans=b.o[0],o=rnd(b.o);return{m:"gconj",kr:1,o,a:o.indexOf(ans),w:ans,long:1,stem:gchip("Chia động từ",b)+`<p style="margin:10px 0">Chia động từ <b class="kr">${b.v}</b> theo mẫu <b class="kr">${b.p}</b>:</p>`,xp:`<b class="kr">${b.v} + ${b.p} = ${ans}</b><br>${b.n}`,aw:()=>pt("g",2,"gc"+b.v+b.p)}},
+cmb:b=>{const ans=b.o[0],o=rnd(b.o);return{m:"gcmb",kr:1,o,a:o.indexOf(ans),w:ans,long:1,stem:gchip("Nối câu",b)+`<p style="margin:10px 0 4px">Nối hai câu bằng mẫu <b class="kr">${b.p}</b>:</p><div class="ex kr" style="margin-bottom:8px">${b.t}</div>`,xp:`<b class="kr">${ans}</b><br>${b.n}`,aw:()=>pt("g",2,"gm"+b.t)}},
+sit:b=>{const ans=b.o[0],o=rnd(b.o);return{m:"gsit",kr:1,o,a:o.indexOf(ans),w:ans,long:1,stem:gchip("Tình huống",b)+`<p style="margin:10px 0">${b.t}</p>`,xp:`<b class="kr">${ans}</b><br>${b.n}`,aw:()=>pt("g",2,"gs"+b.t)}}};
+function gqItem(x){const t=GX[x[0]]?rp([0,0,1,2,3]):0,up=ALLG.filter(y=>GX[y[0]]);let q;
 if(t==0)q={kr:1,stem:`<p class="hint" style="margin:0">Câu này dùng mẫu ngữ pháp nào?</p><div class="q kr" style="font-size:22px;margin:8px 0">${x[2]}</div><p class="hint" style="text-align:center;margin:0 0 12px">${x[3]}</p>`,...mc4(x,ALLG,y=>y[0])};
 else if(t==1)q={stem:`<p>Mẫu <b class="kr">${x[0]}</b> có nghĩa là gì?</p>`,...mc4(x,ALLG,y=>y[1])};
 else if(t==2)q={stem:`<p>Mẫu <b class="kr">${x[0]}</b> thường dùng trong hoàn cảnh nào?</p>`,...mc4(x,up,y=>GX[y[0]][0])};
 else q={stem:`<p>Lưu ý nào đúng với mẫu <b class="kr">${x[0]}</b>?</p>`,...mc4(x,up,y=>GX[y[0]][1])};
-return{...q,m:"gram",wk:["g",x[0]],w:x[2],long:1,xp:gxh(x[0]),aw:()=>pt("g",2,"gq"+t+x[0])}}))}
+return{...q,m:"gram",wk:["g",x[0]],w:x[2],long:1,xp:gxh(x[0]),aw:()=>pt("g",2,"gq"+t+x[0])}}
+function gq(L){const base=L||gpool();runQ(rnd(base).slice(0,cnt(base.length)).map(gqItem))}
+function gex(kind){const L=S.gl||0,mk=k=>GB[k].filter(b=>!L||b.lv==L).map(gB[k]);let items;
+if(kind=="gmix")items=[...mk("fill"),...mk("err"),...mk("conj"),...mk("cmb"),...mk("sit"),...rnd(gpool()).slice(0,8).map(gqItem)];else items=mk(kind.slice(1));
+if(!items.length){cat("Chưa có bài ở mức này, hãy chọn mức khác nhé 🐾");return}
+runQ(rnd(items).slice(0,cnt(items.length)))}
+const GTL=[["gmix","🎲","Hỗn hợp","Trộn tất cả dạng bài ở mức đã chọn"],["gfill","✏️","Điền chỗ trống","Chọn mẫu hoặc trợ từ đúng, có cặp dễ nhầm"],["gerr","🔍","Tìm câu sai","Tìm lỗi ngữ pháp trong 4 câu"],["gconj","🔄","Chia động từ","Chia đúng dạng, gồm động từ bất quy tắc"],["gcmb","🔗","Nối câu","Nối hai câu bằng mẫu ngữ pháp cho trước"],["gsit","💬","Tình huống","Chọn câu hợp với hoàn cảnh giao tiếp"],["gram","🧠","Kiến thức mẫu","Nghĩa, hoàn cảnh dùng, lưu ý của mẫu"],["gbuild","✍","Dịch Việt → Hàn","Ghép hoặc gõ câu tiếng Hàn theo gợi ý ngữ pháp"]];
+function setGl(n){S.gl=n;save();gpick()}
+function gpick(){const L=S.gl||0,n=x=>x==0?GB.fill.length+GB.err.length+GB.conj.length+GB.cmb.length+GB.sit.length:["fill","err","conj","cmb","sit"].reduce((a,k)=>a+GB[k].filter(b=>b.lv==x).length,0);
+$("m").innerHTML=`<button class="btn alt" onclick="go('gram')">← Ngữ pháp</button><div class="card" style="margin-top:12px"><b>Mức độ</b><div class="lv" style="margin:8px 0 0">${[[0,"Tất cả"],[1,"1 · Cơ bản"],[2,"2 · Trung bình"],[3,"3 · Nâng cao"],[4,"4 · Thử thách"]].map(x=>`<button class="${L==x[0]?"on":""}" onclick="setGl(${x[0]})">${x[1]}</button>`).join("")}</div><p class="hint" style="margin:8px 0 0">${n(L)} bài có sẵn ở mức này (chưa tính Kiến thức mẫu và Dịch Việt → Hàn). Số câu mỗi lượt và cách công bố đáp án theo cài đặt ở tab Luyện tập.</p></div>`+GTL.map(t=>{const k=t[0].slice(1),c=GB[k]?GB[k].filter(x=>!L||x.lv==L).length:null;return`<div class="card mode" style="${c===0?"opacity:.5":""}" onclick="start('${t[0]}')"><span class="ic">${t[1]}</span><div><b>${t[2]}</b>${c==null?"":` <span class="chip">${c} bài</span>`}<p class="hint" style="margin:0">${t[3]}</p></div></div>`}).join("")}
 function hangul(){$("m").innerHTML=`<p class="hint">Bấm vào từng chữ để nghe phát âm. 14 phụ âm và 8 nguyên âm cơ bản.</p><div class="hg">${H.map(h=>`<button onclick="say('${h[2]}')"><b class="kr">${h[0]}</b><small>${h[1]}</small></button>`).join("")}</div>`}
 const TIPS={home:["Chào bạn, mình là Mimi! Học đều 10 phút mỗi ngày tốt hơn học dồn cuối tuần 🐱","Đạt 30 điểm chuyên cần mỗi ngày để giữ chuỗi nhé!","Hãy thử học theo lĩnh vực: gom từ cùng chủ đề sẽ dễ nhớ hơn."],vocab:["Chọn bộ từ theo cấp độ hoặc theo lĩnh vực bạn thích nhé.","Bấm 🔁 để nghe lặp chậm rồi nhại theo, được cộng điểm nghe & nói.","Đọc to câu ví dụ, nhớ cả cụm dễ hơn nhớ từng từ."],quiz:["Mỗi dạng bài cộng điểm vào một mục khác nhau, thử đủ cả sáu nhé!","Chưa có bàn phím Hàn? Cứ gõ phiên âm, Mimi vẫn chấm đúng.","Sai là cách nhớ lâu nhất, đừng ngại!"],gram:["Học ngữ pháp theo nhóm: các mẫu cùng nhóm hay bị nhầm với nhau đó.","Thử thay danh từ trong câu ví dụ bằng từ bạn biết.","Bấm Đánh dấu đã ôn để ghi điểm và theo dõi tiến độ."],hangul:["Hangul rất logic, vài ngày là thuộc!","Ghép phụ âm với ㅏ để luyện đọc: 가, 나, 다, 라…"]};
 const rp=a=>a[Math.floor(Math.random()*a.length)];
